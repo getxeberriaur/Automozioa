@@ -1,4 +1,4 @@
-# Laborategi praktikoa (2h): V16 gertaeren segurtasuna ingurune simulatuan
+# Laborategi praktikoa (2h): V16 abisuen segurtasuna ingurune simulatuan
 
 [Gaztelaniazko bertsioa](01_Laboratorio_2h.md)
 
@@ -11,7 +11,7 @@ Balidatzea nola aldatzen diren segurtasun-emaitzak backend-ak kontrol sendoak **
 
 ## 2) Ikaskuntza-emaitza
 Amaieran, talde bakoitzak honako hau egiteko gai izango da:
-- gertaeren bidalketan dauden ahultasun logikoak detektatzea;
+- V16 abisuen bidalketan dauden ahultasun logikoak detektatzea;
 - replay/injekzio proba kontrolatuak exekutatzea sandbox-ean;
 - oinarrizko mitigazioak ezarri eta haien eraginkortasuna egiaztatzea;
 - ebidentziak aurkeztea (pantaila-argazkiak, log-ak, ondorioak).
@@ -22,8 +22,8 @@ Amaieran, talde bakoitzak honako hau egiteko gai izango da:
 
 ### A fasea — Prestaketa eta baseline-a (0–25 min)
 - Ingurune lokala abiarazi.
-- Gertaera legitimoak bidali.
-- Backend-aren panelak/log-ak berrikusi.
+- Emuladoretik abisu legitimoak bidali.
+- `/aginte-panela` panela eta backend-aren log-ak berrikusi.
 
 **A entregagaia:** gertaera legitimo baten pantaila-argazkia eta ikusitako latentzia.
 
@@ -35,7 +35,7 @@ Amaieran, talde bakoitzak honako hau egiteko gai izango da:
 
 ### C fasea — Hardening-a (55–95 min)
 Aktibatu/egiaztatu kontrol hauek:
-- Gertaera bakoitzeko `nonce` bakarra
+- Abisu bakoitzeko `security.nonce` bakarra
 - Denbora-leihoa (adibidez, ±30 s)
 - Eskema- eta koordenatu-balidazio zorrotzak
 - Identitate bakoitzeko rate limiting-a
@@ -53,13 +53,13 @@ Aktibatu/egiaztatu kontrol hauek:
 
 ## 4) Laborategiaren gutxieneko arkitektura
 - **Baliza-simulagailua** (bezero-script-a)
-- **Ingestio-APIa** (backend lokala)
+- **Abisuak jasotzeko APIa** (backend lokala)
 - **Gertaeren biltegiratzea** (JSON/SQLite)
-- **Behaketa-kontsola** (log-ak + oinarrizko metrikak)
+- **Behaketa-kontsola** (`/aginte-panela` + `/events/recent` + log-ak)
 
 Fluxua:
-1. Simulagailuak gertaera sortzen du.
-2. APIak identitatea, denbora eta formatua balidatzen ditu.
+1. Emuladoreak V16 abisu bat sortzen du (`device`/`alert`/`location`/`security`).
+2. APIak identitatea, `security.sent_at`, `security.nonce` eta formatua balidatzen ditu.
 3. APIak onartu edo baztertu egiten du.
 4. Log-ek erabakia eta arrazoia erregistratzen dituzte.
 

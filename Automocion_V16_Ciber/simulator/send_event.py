@@ -14,6 +14,9 @@ import requests
 DEFAULT_URL = "http://127.0.0.1:8080/events"
 VALID_DEVICE_ID = "V16-001"
 INVALID_DEVICE_ID = "V16-999"
+DEFAULT_MANUFACTURER = "DemoV16"
+DEFAULT_MODEL = "LAB-V16"
+DEFAULT_FIRMWARE = "1.4.2"
 
 
 def utc_now_iso() -> str:
@@ -23,21 +26,45 @@ def utc_now_iso() -> str:
 def build_payload(
     *,
     device_id: str,
-    timestamp: str | None = None,
+    sent_at: str | None = None,
     nonce: str | None = None,
     latitude: float = 43.2630,
     longitude: float = -2.9350,
-    event_type: str = "hazard",
+    alert_type: str = "vehicle_stopped",
+    alert_status: str = "activated",
 ) -> dict[str, Any]:
+    current_time = sent_at or utc_now_iso()
+    alert_id = f"alert-{uuid.uuid4().hex[:12]}"
     return {
-        "event_id": f"evt-{uuid.uuid4().hex[:12]}",
-        "device_id": device_id,
-        "timestamp": timestamp or utc_now_iso(),
-        "nonce": nonce or f"nonce-{uuid.uuid4().hex[:12]}",
-        "latitude": latitude,
-        "longitude": longitude,
-        "event_type": event_type,
-        "payload_version": "1.0",
+        "message_id": f"msg-{uuid.uuid4().hex[:12]}",
+        "protocol_version": "1.0",
+        "message_type": "v16.alert.notification",
+        "device": {
+            "device_id": device_id,
+            "manufacturer": DEFAULT_MANUFACTURER,
+            "model": DEFAULT_MODEL,
+            "firmware_version": DEFAULT_FIRMWARE,
+            "vehicle_type": "turismo",
+        },
+        "alert": {
+            "alert_id": alert_id,
+            "alert_type": alert_type,
+            "status": alert_status,
+            "severity": "medium",
+            "activated_at": current_time,
+            "road_context": "road_shoulder",
+        },
+        "location": {
+            "latitude": latitude,
+            "longitude": longitude,
+            "heading_deg": 90,
+            "accuracy_m": 5.0,
+        },
+        "security": {
+            "nonce": nonce or f"nonce-{uuid.uuid4().hex[:12]}",
+            "sent_at": current_time,
+            "transport": "tls",
+        },
     }
 
 
@@ -77,7 +104,7 @@ def run_replay(url: str, device_id: str) -> int:
 
 def run_timestamp_atrasado(url: str, device_id: str) -> int:
     old_timestamp = (datetime.now(UTC) - timedelta(seconds=120)).isoformat()
-    payload = build_payload(device_id=device_id, timestamp=old_timestamp)
+    payload = build_payload(device_id=device_id, sent_at=old_timestamp)
     status_code, body = post_event(url, payload)
     print_result("timestamp-atrasado", status_code, body)
     return 0 if status_code >= 400 else 1
@@ -110,7 +137,7 @@ def run_rafaga(url: str, device_id: str, count: int) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Simulador de eventos V16 para laboratorio local.")
+    parser = argparse.ArgumentParser(description="Emulador de avisos de baliza V16 para laboratorio local.")
     parser.add_argument(
         "scenario",
         choices=[

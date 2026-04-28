@@ -15,18 +15,20 @@ Iradokitako paketeak:
 - uvicorn
 - pydantic
 - requests
-- python-dateutil
 
 ### 3) Gutxieneko egitura
 - `backend/app.py`
 - `simulator/send_event.py`
+- `samples/event_legitimo.json`
 - `logs/events.log`
 - `reports/`
+- `RUN_ME_FIRST.md`
 
 ### 4) Egiaztapen funtzionala
 - Abiarazi backend-a ataka lokalean (adibidez, 8080).
 - Bidali gertaera legitimo bat simulagailutik.
-- Baieztatu `accepted` egoera log-etan.
+- Baieztatu `accepted` egoera log-etan edo `/events/recent` endpoint-ean.
+- Egiaztatu ikusizko panela: `/aginte-panela`.
 
 ### 5) Segurtasun-probak
 - Payload beraren birbidalketa (replay-a).
@@ -37,6 +39,7 @@ Iradokitako paketeak:
 ### 6) Arrakasta-irizpideak
 - Backend-ak replay-a eta politikatik kanpoko gertaerak baztertzen ditu.
 - Bazterketa bakoitza `reason` eremuarekin dokumentatuta geratzen da.
+- `/aginte-panela` panelean onarpenak eta bazterketak ageri dira.
 - Taldeak ebidentziak entregatzen ditu `reports/` karpetan.
 
 ---

@@ -1,4 +1,4 @@
-# Laboratorio práctico (2h): Seguridad de eventos V16 en entorno simulado
+# Laboratorio práctico (2h): Seguridad de avisos V16 en entorno simulado
 
 [Bertsioa euskaraz](01_Laboratorio_2h_eu.md)
 
@@ -11,7 +11,7 @@ Validar cómo cambian los resultados de seguridad cuando el backend **no** tiene
 
 ## 2) Resultado de aprendizaje
 Al finalizar, cada equipo podrá:
-- Detectar vulnerabilidades lógicas en envío de eventos.
+- Detectar vulnerabilidades lógicas en envío de avisos V16.
 - Ejecutar pruebas controladas de replay/inyección en sandbox.
 - Implementar mitigaciones básicas y comprobar su eficacia.
 - Presentar evidencias (capturas, logs, conclusiones).
@@ -22,8 +22,8 @@ Al finalizar, cada equipo podrá:
 
 ### Fase A — Preparación y baseline (0–25 min)
 - Levantar entorno local.
-- Enviar eventos legítimos.
-- Revisar panel/logs del backend.
+- Enviar avisos legítimos desde el emulador.
+- Revisar panel visual `/aginte-panela` y logs del backend.
 
 **Entregable A:** 1 captura de evento legítimo y latencia observada.
 
@@ -35,7 +35,7 @@ Al finalizar, cada equipo podrá:
 
 ### Fase C — Hardening (55–95 min)
 Activar/validar controles:
-- Nonce único por evento
+- `security.nonce` único por aviso
 - Ventana temporal (ej. ±30 s)
 - Validaciones estrictas de esquema y coordenadas
 - Rate limiting por identidad
@@ -52,14 +52,14 @@ Activar/validar controles:
 ---
 
 ## 4) Arquitectura mínima del laboratorio
-- **Simulador de baliza** (script cliente)
-- **API de ingestión** (backend local)
+- **Emulador de baliza** (script cliente)
+- **API de recepción de avisos** (backend local)
 - **Almacenamiento de eventos** (JSON/SQLite)
-- **Consola de observación** (logs + métricas básicas)
+- **Consola de observación** (`/aginte-panela` + `/events/recent` + logs)
 
 Flujo:
-1. Simulador genera evento.
-2. API valida identidad, tiempo y formato.
+1. Emulador genera aviso V16 (device/alert/location/security).
+2. API valida identidad, `security.sent_at`, `security.nonce` y formato.
 3. API acepta o rechaza.
 4. Logs registran decisión y motivo.
 

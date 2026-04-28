@@ -1,5 +1,7 @@
 # Arranque rápido del laboratorio
 
+Este laboratorio emula el envío de un aviso telemático de baliza V16 hacia una plataforma de recepción local.
+
 ## 1) Crear y activar entorno virtual
 
 ### Windows PowerShell
@@ -13,6 +15,14 @@
 ## 3) Levantar backend
 
 `uvicorn backend.app:app --host 127.0.0.1 --port 8080 --reload`
+
+### Ver documentación interactiva
+
+`http://127.0.0.1:8080/docs`
+
+### Ver panel visual de operación
+
+`http://127.0.0.1:8080/aginte-panela`
 
 ## 4) Probar con el simulador
 
@@ -37,4 +47,11 @@
 ## 5) Revisar evidencias
 
 - Log principal: `logs/events.log`
+- Últimos avisos procesados: `http://127.0.0.1:8080/events/recent?limit=10`
+- Panel visual en euskara: `http://127.0.0.1:8080/aginte-panela`
 - Carpeta de informes: `reports/`
+
+### Plantillas de informe
+
+- Castellano: `reports/00_Plantilla_informe_evidencias.md`
+- Euskara: `reports/00_Ebidentzia_txosten_txantiloia.md`

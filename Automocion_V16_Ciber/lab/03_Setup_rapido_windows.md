@@ -15,18 +15,20 @@ Paquetes sugeridos:
 - uvicorn
 - pydantic
 - requests
-- python-dateutil
 
 ### 3) Estructura mínima
 - `backend/app.py`
 - `simulator/send_event.py`
+- `samples/event_legitimo.json`
 - `logs/events.log`
 - `reports/`
+- `RUN_ME_FIRST.md`
 
 ### 4) Comprobación funcional
 - Iniciar backend en puerto local (ej. 8080).
 - Enviar un evento legítimo desde simulador.
-- Confirmar `accepted` en logs.
+- Confirmar `accepted` en logs o en `/events/recent`.
+- Verificar visualmente el puesto de mando: `/aginte-panela`.
 
 ### 5) Pruebas de seguridad
 - Reenvío del mismo payload (replay).
@@ -37,6 +39,7 @@ Paquetes sugeridos:
 ### 6) Criterios de éxito
 - Backend rechaza replay y eventos fuera de política.
 - Cada rechazo queda documentado con `reason`.
+- El panel `/aginte-panela` refleja aceptaciones y rechazos.
 - Equipo entrega evidencias en `reports/`.
 
 ---

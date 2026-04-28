@@ -16,10 +16,11 @@
 4. Verificar que el puerto del backend está libre.
 
 ## C) Componentes mínimos
-- `backend/`: API de ingestión de eventos.
-- `simulator/`: generador de eventos legítimos y de prueba.
-- `logs/`: registro de decisiones (accepted/rejected + motivo).
+- `backend/`: API de recepción de avisos V16 simulados.
+- `simulator/`: emulador de baliza con escenarios de prueba.
+- `logs/`: registro de decisiones (`accepted/rejected` + motivo).
 - `reports/`: evidencias del equipo.
+- Panel visual: `http://127.0.0.1:8080/aginte-panela`.
 
 ## D) Datos de prueba sugeridos
 - 2 identidades válidas de baliza.
@@ -34,15 +35,18 @@
 ## E) Validaciones mínimas en backend
 - Esquema JSON obligatorio.
 - Coordenadas en rango válido.
-- Timestamp dentro de ventana temporal.
-- Nonce no reutilizable.
+- `security.sent_at` dentro de ventana temporal.
+- `security.nonce` no reutilizable.
 - Control de tasa por identidad.
 
 ## F) Logging recomendado
-Campos por evento:
-- `event_id`
+Campos por aviso:
+- `message_id`
 - `device_id`
-- `timestamp`
+- `alert_id`
+- `alert_type`
+- `alert_status`
+- `sent_at`
 - `decision` (accepted/rejected)
 - `reason`
 - `source_ip`
@@ -50,7 +54,7 @@ Campos por evento:
 
 ## G) Criterio de “laboratorio listo”
 - Se recibe 1 evento legítimo y se marca como `accepted`.
-- Se envía replay y se marca `rejected` con razón explícita.
+- Se envía replay y se marca `rejected` con razón `replayed_nonce`.
 - Se genera informe con al menos 3 evidencias.
 
 ## H) Plan de contingencia docente

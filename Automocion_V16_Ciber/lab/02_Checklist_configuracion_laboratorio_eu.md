@@ -16,10 +16,11 @@
 4. Egiaztatu backend-ak erabiliko duen ataka libre dagoela.
 
 ## C) Gutxieneko osagaiak
-- `backend/`: gertaeren ingestiorako APIa.
-- `simulator/`: gertaera legitimoak eta probakoak sortzeko tresna.
+- `backend/`: simulatutako V16 abisuak jasotzeko APIa.
+- `simulator/`: baliza-emuladorea, proba-eszenatokiekin.
 - `logs/`: erabakien erregistroa (`accepted/rejected` + arrazoia).
 - `reports/`: taldearen ebidentziak.
+- Panel bisuala: `http://127.0.0.1:8080/aginte-panela`.
 
 ## D) Probarako datu gomendatuak
 - Balizaren 2 identitate baliozko.
@@ -34,15 +35,18 @@
 ## E) Backend-ean egin beharreko gutxieneko balidazioak
 - Derrigorrezko JSON eskema.
 - Koordenatuak baliozko tartean egotea.
-- Timestamp-a denbora-leihoaren barruan egotea.
-- Berriro erabili ezin den nonce-a.
+- `security.sent_at` denbora-leihoaren barruan egotea.
+- `security.nonce` berriro erabili ezin izatea.
 - Identitate bakoitzeko tasa-kontrola.
 
 ## F) Gomendatutako logging-a
 Gertaera bakoitzeko eremuak:
-- `event_id`
+- `message_id`
 - `device_id`
-- `timestamp`
+- `alert_id`
+- `alert_type`
+- `alert_status`
+- `sent_at`
 - `decision` (`accepted/rejected`)
 - `reason`
 - `source_ip`
@@ -50,7 +54,7 @@ Gertaera bakoitzeko eremuak:
 
 ## G) “Laborategia prest” irizpidea
 - Gertaera legitimo 1 jasotzen da eta `accepted` gisa markatzen da.
-- Replay bat bidaltzen da eta `rejected` gisa markatzen da, arrazoia argi adierazita.
+- Replay bat bidaltzen da eta `rejected` gisa markatzen da, `replayed_nonce` arrazoiarekin.
 - Gutxienez 3 ebidentzia dituen txostena sortzen da.
 
 ## H) Irakaslearen kontingentzia-plana

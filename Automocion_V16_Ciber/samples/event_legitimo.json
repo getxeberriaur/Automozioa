@@ -1,10 +1,31 @@
 {
-  "event_id": "evt-ejemplo-0001",
-  "device_id": "V16-001",
-  "timestamp": "2026-04-28T10:00:00+00:00",
-  "nonce": "nonce-ejemplo-0001",
-  "latitude": 43.263,
-  "longitude": -2.935,
-  "event_type": "hazard",
-  "payload_version": "1.0"
+  "message_id": "msg-ejemplo-0001",
+  "protocol_version": "1.0",
+  "message_type": "v16.alert.notification",
+  "device": {
+    "device_id": "V16-001",
+    "manufacturer": "DemoV16",
+    "model": "LAB-V16",
+    "firmware_version": "1.4.2",
+    "vehicle_type": "turismo"
+  },
+  "alert": {
+    "alert_id": "alert-ejemplo-0001",
+    "alert_type": "vehicle_stopped",
+    "status": "activated",
+    "severity": "medium",
+    "activated_at": "2026-04-28T10:00:00+00:00",
+    "road_context": "road_shoulder"
+  },
+  "location": {
+    "latitude": 43.263,
+    "longitude": -2.935,
+    "heading_deg": 90,
+    "accuracy_m": 5.0
+  },
+  "security": {
+    "nonce": "nonce-ejemplo-0001",
+    "sent_at": "2026-04-28T10:00:00+00:00",
+    "transport": "tls"
+  }
 }

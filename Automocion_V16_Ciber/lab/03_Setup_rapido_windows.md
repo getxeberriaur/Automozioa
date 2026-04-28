@@ -1,5 +1,7 @@
 # Setup rápido del laboratorio en Windows (referencia docente)
 
+[Bertsioa euskaraz](03_Setup_rapido_windows_eu.md)
+
 ## Opción recomendada: stack Python local (simple)
 
 ### 1) Crear entorno virtual

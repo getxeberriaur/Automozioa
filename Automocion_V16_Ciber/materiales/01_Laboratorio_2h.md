@@ -1,5 +1,7 @@
 # Laboratorio práctico (2h): Seguridad de eventos V16 en entorno simulado
 
+[Bertsioa euskaraz](01_Laboratorio_2h_eu.md)
+
 ## 1) Objetivo
 Validar cómo cambian los resultados de seguridad cuando el backend **no** tiene controles robustos frente a cuando sí los tiene.
 

@@ -1,5 +1,7 @@
 # Intro (30 min): Ciberseguridad en balizas de emergencia conectadas (V16)
 
+[Bertsioa euskaraz](00_Guion_intro_30min_eu.md)
+
 ## 1) Objetivos de la mini-sesión
 Al finalizar la introducción, el profesorado será capaz de:
 - Explicar el papel de la baliza conectada en el ecosistema de tráfico inteligente.

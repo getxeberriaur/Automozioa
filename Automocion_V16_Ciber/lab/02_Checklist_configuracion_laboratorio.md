@@ -1,5 +1,7 @@
 # Checklist de configuración del laboratorio (docente)
 
+[Bertsioa euskaraz](02_Checklist_configuracion_laboratorio_eu.md)
+
 ## A) Requisitos previos (host)
 - Sistema: Windows 10/11, Linux o macOS.
 - Python 3.11+ instalado.

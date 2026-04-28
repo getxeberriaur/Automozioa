@@ -27,6 +27,7 @@ En esta primera versión, el repositorio contiene documentación base para prepa
 
 ### Documentación en castellano
 
+- [Automocion_V16_Ciber/RUN_ME_FIRST.md](Automocion_V16_Ciber/RUN_ME_FIRST.md)
 - [Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md)
 - [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md)
 - [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md)
@@ -47,16 +48,28 @@ Automozioa/
 ├─ README_eu.md
 ├─ README.md
 └─ Automocion_V16_Ciber/
+	├─ backend/
+	│  └─ app.py
 	├─ lab/
 	│  ├─ 02_Checklist_configuracion_laboratorio.md
 	│  ├─ 02_Checklist_configuracion_laboratorio_eu.md
 	│  ├─ 03_Setup_rapido_windows.md
 	│  └─ 03_Setup_rapido_windows_eu.md
+	├─ logs/
+	│  └─ .gitkeep
 	└─ materiales/
 		├─ 00_Guion_intro_30min.md
 		├─ 00_Guion_intro_30min_eu.md
 		├─ 01_Laboratorio_2h.md
 		└─ 01_Laboratorio_2h_eu.md
+	├─ reports/
+	│  └─ .gitkeep
+	├─ samples/
+	│  └─ event_legitimo.json
+	├─ simulator/
+	│  └─ send_event.py
+	├─ requirements.txt
+	└─ RUN_ME_FIRST.md
 ```
 
 ## Público objetivo
@@ -129,8 +142,19 @@ Estado actual:
 
 - documentación docente: disponible;
 - guion del laboratorio: disponible;
-- implementación ejecutable de referencia: pendiente;
+- backend mínimo de referencia: disponible;
+- simulador de pruebas: disponible;
 - plantillas de evidencias: pendiente.
+
+## Implementación mínima disponible
+
+El repositorio ya incluye una primera base ejecutable:
+
+- [Automocion_V16_Ciber/backend/app.py](Automocion_V16_Ciber/backend/app.py): API local con validación de esquema, ventana temporal, control anti-replay, control de tasa y logging.
+- [Automocion_V16_Ciber/simulator/send_event.py](Automocion_V16_Ciber/simulator/send_event.py): simulador con escenarios `legitimo`, `replay`, `timestamp-atrasado`, `coordenadas-invalidas`, `identidad-invalida` y `rafaga`.
+- [Automocion_V16_Ciber/samples/event_legitimo.json](Automocion_V16_Ciber/samples/event_legitimo.json): ejemplo de payload.
+- [Automocion_V16_Ciber/RUN_ME_FIRST.md](Automocion_V16_Ciber/RUN_ME_FIRST.md): arranque rápido.
+- [Automocion_V16_Ciber/requirements.txt](Automocion_V16_Ciber/requirements.txt): dependencias del laboratorio.
 
 ## Próximos pasos recomendados
 

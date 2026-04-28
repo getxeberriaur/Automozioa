@@ -27,6 +27,7 @@ Lehen bertsio honetan, biltegiak irakaskuntza-saio bat eta 2 orduko laborategi b
 
 ### Dokumentazioa euskaraz
 
+- [Automocion_V16_Ciber/RUN_ME_FIRST.md](Automocion_V16_Ciber/RUN_ME_FIRST.md)
 - [README_eu.md](README_eu.md)
 - [Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md)
 - [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md)
@@ -48,16 +49,28 @@ Automozioa/
 ├─ README_eu.md
 ├─ README.md
 └─ Automocion_V16_Ciber/
+   ├─ backend/
+   │  └─ app.py
    ├─ lab/
    │  ├─ 02_Checklist_configuracion_laboratorio.md
    │  ├─ 02_Checklist_configuracion_laboratorio_eu.md
    │  ├─ 03_Setup_rapido_windows.md
    │  └─ 03_Setup_rapido_windows_eu.md
+   ├─ logs/
+   │  └─ .gitkeep
    └─ materiales/
       ├─ 00_Guion_intro_30min.md
       ├─ 00_Guion_intro_30min_eu.md
       ├─ 01_Laboratorio_2h.md
       └─ 01_Laboratorio_2h_eu.md
+   ├─ reports/
+   │  └─ .gitkeep
+   ├─ samples/
+   │  └─ event_legitimo.json
+   ├─ simulator/
+   │  └─ send_event.py
+   ├─ requirements.txt
+   └─ RUN_ME_FIRST.md
 ```
 
 ## Norentzat dago zuzenduta
@@ -130,8 +143,19 @@ Uneko egoera:
 
 - irakaskuntza-dokumentazioa: erabilgarri;
 - laborategiaren gidoia: erabilgarri;
-- erreferentziazko inplementazio exekutagarria: egiteko;
+- backend minimo erreferentziala: erabilgarri;
+- proba-simulagailua: erabilgarri;
 - ebidentzien txantiloiak: egiteko.
+
+## Eskuragarri dagoen gutxieneko inplementazioa
+
+Biltegiak lehen oinarri exekutagarri bat dauka jada:
+
+- [Automocion_V16_Ciber/backend/app.py](Automocion_V16_Ciber/backend/app.py): eskema-balidazioa, denbora-leihoa, anti-replay kontrola, tasa-kontrola eta logging-a dituen API lokala.
+- [Automocion_V16_Ciber/simulator/send_event.py](Automocion_V16_Ciber/simulator/send_event.py): `legitimo`, `replay`, `timestamp-atrasado`, `coordenadas-invalidas`, `identidad-invalida` eta `rafaga` eszenatokiak dituen simulagailua.
+- [Automocion_V16_Ciber/samples/event_legitimo.json](Automocion_V16_Ciber/samples/event_legitimo.json): payload adibidea.
+- [Automocion_V16_Ciber/RUN_ME_FIRST.md](Automocion_V16_Ciber/RUN_ME_FIRST.md): hasierako abiarazte azkarra.
+- [Automocion_V16_Ciber/requirements.txt](Automocion_V16_Ciber/requirements.txt): laborategiaren mendekotasunak.
 
 ## Gomendatutako hurrengo urratsak
 

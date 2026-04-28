@@ -1,0 +1,10 @@
+{
+  "event_id": "evt-ejemplo-0001",
+  "device_id": "V16-001",
+  "timestamp": "2026-04-28T10:00:00+00:00",
+  "nonce": "nonce-ejemplo-0001",
+  "latitude": 43.263,
+  "longitude": -2.935,
+  "event_type": "hazard",
+  "payload_version": "1.0"
+}

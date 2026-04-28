@@ -1,0 +1,20 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# Local outputs
+Automocion_V16_Ciber/logs/*.log
+Automocion_V16_Ciber/reports/*
+!Automocion_V16_Ciber/reports/.gitkeep
+!Automocion_V16_Ciber/logs/.gitkeep
+
+# Editors / OS
+.vscode/
+.DS_Store
+Thumbs.db

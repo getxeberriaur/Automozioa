@@ -2,6 +2,12 @@
 
 [Gaztelaniazko bertsioa](00_Guion_intro_30min.md)
 
+Diapositiben euskarri-materiala: [00_Diapositivas_intro_30min.md](00_Diapositivas_intro_30min.md)
+
+Proiektore bertsioa (gaztelania): [00_Diapositivas_intro_30min_proyector.md](00_Diapositivas_intro_30min_proyector.md)
+
+Proiektore bertsioa (euskara): [00_Diapositivas_intro_30min_proyector_eu.md](00_Diapositivas_intro_30min_proyector_eu.md)
+
 ## 1) Mini-saioaren helburuak
 Sarrera amaitzean, irakasleek honako hau egiteko gai izan beharko dute:
 - baliza konektatuaren rola azaltzea trafiko adimendunaren ekosisteman;

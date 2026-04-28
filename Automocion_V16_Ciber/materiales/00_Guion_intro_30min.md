@@ -2,6 +2,12 @@
 
 [Bertsioa euskaraz](00_Guion_intro_30min_eu.md)
 
+Material de apoyo de diapositivas: [00_Diapositivas_intro_30min.md](00_Diapositivas_intro_30min.md)
+
+Versión proyector (castellano): [00_Diapositivas_intro_30min_proyector.md](00_Diapositivas_intro_30min_proyector.md)
+
+Versión proyector (euskara): [00_Diapositivas_intro_30min_proyector_eu.md](00_Diapositivas_intro_30min_proyector_eu.md)
+
 ## 1) Objetivos de la mini-sesión
 Al finalizar la introducción, el profesorado será capaz de:
 - Explicar el papel de la baliza conectada en el ecosistema de tráfico inteligente.

@@ -2,6 +2,8 @@
 
 Este laboratorio emula el envío de un aviso telemático de baliza V16 hacia una plataforma de recepción local.
 
+Guía de despliegue para aula: [lab/04_Despliegue_participantes.md](lab/04_Despliegue_participantes.md)
+
 ## 1) Crear y activar entorno virtual
 
 ### Windows PowerShell
@@ -60,3 +62,18 @@ Este laboratorio emula el envío de un aviso telemático de baliza V16 hacia una
 
 - Castellano: `presentaciones/Intro_V16_30min_ES.html`
 - Euskara: `presentaciones/Intro_V16_30min_EU.html`
+
+## 6) Despliegue para participantes (resumen)
+
+### Opción A (recomendada): online con Git
+1. `git clone <URL_DEL_REPO>`
+2. `cd Automozioa/Automocion_V16_Ciber`
+3. `git checkout v1.0-aula` (o versión indicada por el docente)
+4. Crear `venv`, instalar dependencias y arrancar backend.
+
+### Opción B (plan B): ZIP offline
+1. Descomprimir versión estable entregada por el docente.
+2. Ejecutar los mismos pasos de entorno y arranque.
+
+### Recomendación organizativa
+- Mantener una versión/branch específica para participantes para reducir complejidad en clase.

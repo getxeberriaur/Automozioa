@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intro V16 (30 min) - ES</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css" id="theme">
+  <style>
+    .small { font-size: .6em; opacity: .9; }
+    .accent { color: #5cc8ff; }
+  </style>
+</head>
+<body>
+  <div class="reveal"><div class="slides">
+    <section>
+      <h2>Ciberseguridad en balizas V16 conectadas</h2>
+      <p class="accent">Introducción + práctica (2h)</p>
+      <p class="small">Objetivo: entender riesgo y validar controles defensivos.</p>
+    </section>
+    <section>
+      <h3>¿Qué pasa cuando una baliza emite un aviso?</h3>
+      <ul>
+        <li>La baliza detecta incidencia.</li>
+        <li>Envía aviso al backend.</li>
+        <li>La plataforma decide: <b>aceptar</b> o <b>rechazar</b>.</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Flujo extremo a extremo</h3>
+      <ol>
+        <li>Dispositivo V16</li>
+        <li>Red de comunicaciones</li>
+        <li>Backend receptor</li>
+        <li>Plataforma/servicios de tráfico</li>
+      </ol>
+    </section>
+    <section>
+      <h3>Activos críticos</h3>
+      <ul>
+        <li>Identidad del dispositivo</li>
+        <li>Integridad del aviso</li>
+        <li>Frescura temporal</li>
+        <li>Disponibilidad</li>
+        <li>Trazabilidad</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Amenazas clave</h3>
+      <ul>
+        <li>Suplantación</li>
+        <li>Replay</li>
+        <li>Datos fuera de rango</li>
+        <li>Ráfaga / abuso de API</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Prioridad defensiva</h3>
+      <ul>
+        <li>Alta: replay, suplantación, ráfaga</li>
+        <li>Media: timestamp/coords inválidas</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Controles del backend</h3>
+      <ul>
+        <li>Esquema JSON estricto</li>
+        <li><code>security.sent_at</code> (ventana temporal)</li>
+        <li><code>security.nonce</code> (anti-replay)</li>
+        <li>Rate limiting por identidad</li>
+        <li>Logging con <code>reason</code></li>
+      </ul>
+    </section>
+    <section>
+      <h3>Qué medimos en la práctica</h3>
+      <ul>
+        <li>Aceptación de inválidos (debe tender a 0)</li>
+        <li>Rechazo con motivo técnico</li>
+        <li>Trazabilidad para informe</li>
+      </ul>
+      <p class="small">Panel: /aginte-panela · JSON: /events/recent</p>
+    </section>
+    <section>
+      <h3>Riesgo residual</h3>
+      <ul>
+        <li>Faltan controles de producción completos</li>
+        <li>Próximos pasos: firma, PKI, mTLS, SOC</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Transición al laboratorio</h3>
+      <ol>
+        <li>Aviso legítimo</li>
+        <li>Replay e inválidos</li>
+        <li>Observación panel/log</li>
+        <li>Informe de evidencias</li>
+      </ol>
+      <p class="small">Solo sandbox local o red aislada.</p>
+    </section>
+  </div></div>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script>Reveal.initialize({ hash: true, slideNumber: true });</script>
+</body>
+</html>

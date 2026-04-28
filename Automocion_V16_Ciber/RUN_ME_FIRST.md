@@ -55,3 +55,8 @@ Este laboratorio emula el envío de un aviso telemático de baliza V16 hacia una
 
 - Castellano: `reports/00_Plantilla_informe_evidencias.md`
 - Euskara: `reports/00_Ebidentzia_txosten_txantiloia.md`
+
+### Presentaciones intro (proyector)
+
+- Castellano: `presentaciones/Intro_V16_30min_ES.html`
+- Euskara: `presentaciones/Intro_V16_30min_EU.html`

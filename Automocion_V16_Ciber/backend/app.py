@@ -6,7 +6,7 @@ from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Query, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
@@ -137,9 +137,51 @@ def append_log(record: dict[str, Any]) -> None:
         handle.write(json.dumps(record, ensure_ascii=False) + "\n")
 
 
+def read_recent_log_records(limit: int, decision: str | None = None) -> list[dict[str, Any]]:
+    if not LOG_FILE.exists():
+        return []
+
+    records: list[dict[str, Any]] = []
+    with LOG_FILE.open("r", encoding="utf-8") as handle:
+        lines = handle.readlines()
+
+    for raw in reversed(lines):
+        raw = raw.strip()
+        if not raw:
+            continue
+
+        try:
+            record = json.loads(raw)
+        except json.JSONDecodeError:
+            continue
+
+        if decision and record.get("decision") != decision:
+            continue
+
+        records.append(record)
+        if len(records) >= limit:
+            break
+
+    return records
+
+
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
+
+@app.get("/events/recent")
+def recent_events(
+    limit: int = Query(default=20, ge=1, le=200),
+    decision: str | None = Query(default=None, pattern="^(accepted|rejected)$"),
+) -> dict[str, Any]:
+    records = read_recent_log_records(limit=limit, decision=decision)
+    return {
+        "count": len(records),
+        "limit": limit,
+        "decision_filter": decision,
+        "events": records,
+    }
 
 
 @app.post("/events")

@@ -1,7 +1,7 @@
 # Automozioa — Ciberseguridad en Automoción
 
 [Bertsioa euskaraz](README_eu.md)
-
+> **Programa completo del curso (3 días):** [00_Programa_curso.md](00_Programa_curso.md)
 Repositorio de materiales docentes y laboratorios prácticos sobre **ciberseguridad en automoción**. Cada carpeta contiene una práctica autónoma con documentación, scripts y plantillas de evidencias.
 
 > Todo el contenido está orientado a **formación defensiva en entorno simulado o sandbox**. No debe utilizarse sobre vehículos o infraestructuras reales sin autorización explícita.

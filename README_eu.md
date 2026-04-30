@@ -2,6 +2,8 @@
 
 [Gaztelaniazko bertsioa](README.md)
 
+> **Ikastaroaren programa osoa (3 egun):** [00_Horario_curso_eu.md](00_Horario_curso_eu.md)
+
 Automozioaren **zibersegurtasunari** buruzko irakaskuntza-material eta laborategi praktikoen biltegi hau da. Karpeta bakoitzak dokumentazioa, scriptak eta ebidentzia-txantiloiak dituen praktika autonomo bat dauka.
 
 > Eduki guztia **ingurune simulatu edo sandbox batean defentsa-prestakuntza** egiteko diseinatuta dago. Ez da baimenik gabe ibilgailu edo azpiegitura errealen gainean erabili behar.

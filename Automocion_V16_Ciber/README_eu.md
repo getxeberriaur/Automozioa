@@ -33,6 +33,7 @@ Lehen bertsio honetan, biltegiak irakaskuntza-saio bat eta 2 orduko laborategi b
 - [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md)
 - [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md)
 - [Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md](Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md)
+- [Automocion_V16_Ciber/lab/05_Demo_Ahultasunak_Help_Flash_eu.md](Automocion_V16_Ciber/lab/05_Demo_Ahultasunak_Help_Flash_eu.md) — Demo CVE-2025-65855 (irakasleak)
 
 ### Gaztelaniazko dokumentazioa
 

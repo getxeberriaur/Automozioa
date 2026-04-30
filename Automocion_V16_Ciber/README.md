@@ -32,6 +32,7 @@ En esta primera versión, el repositorio contiene documentación base para prepa
 - [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md)
 - [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md)
 - [Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md](Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md)
+- [Automocion_V16_Ciber/lab/05_Demo_Vulnerabilidades_Help_Flash.md](Automocion_V16_Ciber/lab/05_Demo_Vulnerabilidades_Help_Flash.md) — Demo CVE-2025-65855 (docente)
 
 ### Documentación en euskara
 

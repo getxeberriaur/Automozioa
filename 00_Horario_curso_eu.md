@@ -106,18 +106,56 @@
 
 | Ordutegia | Blokea |
 |---|---|
-| 09:00 – 10:30 | **OBD-II Portua, V16 Baliza eta Segurtasun Gateway-ak** |
+| 09:00 – 09:30 | **OBD-II Portua eta Segurtasun Gateway-ak** |
+| 09:30 – 10:15 | **Zuzeneko demo: V16 Balizetan Ahultasunak — CVE-2025-65855** |
+| 10:15 – 10:30 | Eztabaida + galderak |
 | 10:30 – 11:30 | **Zibersegurtasuna Automozio Tailerrean** |
 | 11:30 – 12:00 | Atsedenaldia |
 | 12:00 – 13:30 | **V. Praktikoa: CTF Automotive — UrbanFleet 2026 (Ariketa Integratzailea)** |
 | 13:30 – 14:00 | **Ondorioak eta Ebaluazioa** |
 
-### 09:00 – 10:30 | OBD-II Portua, V16 Baliza eta Segurtasun Gateway-ak
+### 09:00 – 09:30 | OBD-II Portua eta Segurtasun Gateway-ak
 
 - Fabrikatzaileak **Security Gateway (SGW)** nola ezartzen ari diren baimenik gabeko idazketak blokeatzeko
-- **Kontzeptua:** OBD-II portua diagnostikorako da, baina "atea" ere bada. Auto berriek (2020+) Security Gateway-ak dituzte
+- **Kontzeptua:** OBD-II portua diagnostikorako da, baina "atea" ere bada. Auto berriek (2020+) Security Gateway-ak dituzte, eta kanpoko tresnek ezin dute busera idatzi ziurtagiri digitalik gabe
 - **Eztabaida:** Nola eragiten dio honek tailer libreari? Fabrikatzailearen pasahitza behar al dugu balazta-pastillak aldatzeko?
-- **V16 Baliza Konektatua** [`Automocion_V16_Ciber/`](Automocion_V16_Ciber/README_eu.md): komunikazioak, geolokalizazioa eta mezu faltsuak — arriskuen analisia
+
+### 09:30 – 10:15 | Zuzeneko demo — V16 Balizetan Ahultasunak: CVE-2025-65855
+
+> Dokumentazio osoa: [`Automocion_V16_Ciber/lab/05_Demo_Ahultasunak_Help_Flash_eu.md`](Automocion_V16_Ciber/lab/05_Demo_Ahultasunak_Help_Flash_eu.md)
+
+**09:30 – 09:40 — V16/DGT 3.0 sistemaren arkitektura**
+- V16 baliza baten funtzionamendua: GPS → NB-IoT → APN pribatua → fabrikatzailearen zerbitzaria → DGT 3.0 → Google Maps/panelak
+- Analizatutako gailua: **Help Flash IoT** (Espainian 250.000+ unitate saldu)
+
+**09:40 – 09:50 — Ahultasunak (teoria)**
+- 1. ahultasuna: UDP komunikazioak argian, enkriptatu eta autentifikatu gabe (IMEI, GPS, Cell ID agerian)
+- Bektore aurreratua: fake eNodeB SDR bidez — ehunka metroko erradioan baliza guztiak interceptatu/isilarazi
+- 2. ahultasuna: OTA eguneratzea autentifikatu gabe — SSID eta pasahitza gailuz gailu berdinak, hardcoded
+
+**09:50 – 10:10 — Zuzeneko demo: OTA erasoa (CVE-2025-65855)**
+
+```bash
+# 1. WiFi AP faltsua gailu guztien kredentzialak erabiliz
+nmcli device wifi hotspot ssid "HF-UpdateAP-5JvqFV" password "HF-UpdateAP-5JvqFV"
+
+# 2. HTTP zerbitzari faltsua firmware maltzurrarekin
+sudo python3 Automocion_V16_Ciber/scripts/fake_ota_server.py --dns
+
+# 3. Balizako botoia 8 segundoz eduki → deskarga automatikoa ~30-60 s-tan
+```
+
+Proiektutako terminalak denbora errealean erakusten du gailuak nola deskargatzen duen firmware nortasuna ez sinadura digitalik egiaztatu gabe.
+
+**10:10 – 10:15 — Nola egin beharko litzateke?**
+- Falta denaren checklist-a: MQTT/TLS, kredentzial bakarrak, HTTPS, firmware sinadura, Secure Boot
+- Arau-esparruak: UNECE R155, ISO/SAE 21434, ETSI EN 303 645
+
+### 10:15 – 10:30 | Eztabaida eta galderak
+
+- *Gailu hau DGT-k homologatuta dago — zer esan nahi du horrek homologazio-prozesuari buruz?*
+- *Zer kostu baxuko neurrik arrisku gehiena kenduko luke?*
+- CVE-2025-65855 (MITRE) — jatorrizko ikerketa: Luis Miranda Acebedo
 
 ### 10:30 – 11:30 | Zibersegurtasuna Automozio Tailerrean
 

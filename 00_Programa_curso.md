@@ -106,18 +106,56 @@
 
 | Horario | Bloque |
 |---|---|
-| 09:00 – 10:30 | **Puerto OBD-II, Baliza V16 y Security Gateways** |
+| 09:00 – 09:30 | **Puerto OBD-II y Security Gateways** |
+| 09:30 – 10:15 | **Demo en vivo: Vulnerabilidades en Balizas V16 — CVE-2025-65855** |
+| 10:15 – 10:30 | Debate + preguntas |
 | 10:30 – 11:30 | **Ciberseguridad en el Taller de Automoción** |
 | 11:30 – 12:00 | Descanso |
 | 12:00 – 13:30 | **V. Práctica: CTF Automotive — UrbanFleet 2026 (Ejercicio integrador)** |
 | 13:30 – 14:00 | **Conclusiones y Evaluación** |
 
-### 09:00 – 10:30 | Puerto OBD-II, Baliza V16 y Security Gateways
+### 09:00 – 09:30 | Puerto OBD-II y Security Gateways
 
 - Cómo los fabricantes están implementando **Security Gateway (SGW)** para bloquear escrituras no autorizadas
 - **Concepto:** El puerto OBD-II es para diagnóstico, pero también es una "puerta". Los vehículos nuevos (2020+) tienen Security Gateways que impiden que una herramienta externa escriba en el bus sin certificado digital
 - **Debate:** ¿Cómo afecta esto al taller libre? ¿Necesitamos la contraseña del fabricante para cambiar pastillas de freno?
-- **Baliza V16 Conectada** [`Automocion_V16_Ciber/`](Automocion_V16_Ciber/README.md): comunicaciones, geolocalización y mensajes falsos — análisis de riesgos
+
+### 09:30 – 10:15 | Demo en vivo — Vulnerabilidades en Balizas V16: CVE-2025-65855
+
+> Documentación completa: [`Automocion_V16_Ciber/lab/05_Demo_Vulnerabilidades_Help_Flash.md`](Automocion_V16_Ciber/lab/05_Demo_Vulnerabilidades_Help_Flash.md)
+
+**09:30 – 09:40 — Arquitectura del sistema V16/DGT 3.0**
+- Cómo funciona una baliza V16: GPS → NB-IoT → APN privado → servidor fabricante → DGT 3.0 → Google Maps/paneles
+- Dispositivo analizado: **Help Flash IoT** (>250.000 unidades vendidas en España)
+
+**09:40 – 09:50 — Vulnerabilidades (teoría)**
+- Vulnerabilidad 1: comunicaciones UDP en claro, sin cifrado ni autenticación (IMEI, GPS, Cell ID expuestos)
+- Vector avanzado: fake eNodeB con SDR — interceptar/silenciar todas las balizas en un radio de cientos de metros
+- Vulnerabilidad 2: actualización OTA sin autenticación — SSID y contraseña hardcodeados e idénticos en todos los dispositivos
+
+**09:50 – 10:10 — Demo en vivo: ataque OTA (CVE-2025-65855)**
+
+```bash
+# 1. AP WiFi falso con las credenciales de todos los dispositivos
+nmcli device wifi hotspot ssid "HF-UpdateAP-5JvqFV" password "HF-UpdateAP-5JvqFV"
+
+# 2. Servidor HTTP falso con firmware malicioso
+sudo python3 Automocion_V16_Ciber/scripts/fake_ota_server.py --dns
+
+# 3. Mantener el botón de la baliza 8 segundos → descarga automática en ~30-60 s
+```
+
+El terminal proyectado muestra en tiempo real cómo el dispositivo descarga el firmware sin verificar identidad ni firma digital.
+
+**10:10 – 10:15 — ¿Cómo se debería hacer?**
+- Checklist de lo que falta: MQTT/TLS, credenciales únicas, HTTPS, firma de firmware, Secure Boot
+- Marco normativo: UNECE R155, ISO/SAE 21434, ETSI EN 303 645
+
+### 10:15 – 10:30 | Debate y preguntas
+
+- *¿Este dispositivo está homologado por la DGT — qué implica eso sobre el proceso de homologación?*
+- *¿Qué medida de bajo coste habría eliminado el 90% del riesgo?*
+- CVE-2025-65855 (MITRE) — investigación original: Luis Miranda Acebedo
 
 ### 10:30 – 11:30 | Ciberseguridad en el Taller de Automoción
 

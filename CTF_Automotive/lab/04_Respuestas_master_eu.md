@@ -8,6 +8,26 @@
 
 ---
 
+## 1. Fasean aktibo dagoen trafiko señueloa
+
+CTF bitartean, `scripts/decoy_traffic.py` ID faltsu hauek injektatzen ari da
+`vcan0`-n. **Hauetako bat ere ez da** inongo flag-en erantzun zuzena:
+
+| Señuelo IDa | Bus-ean ikusgai dagoen deskripzio faltsua | Aldaketa-eredua |
+|---|---|---|
+| `0x300` | "Motor RPM" | Senosoidala, ~20 Hz, beti aldatzen |
+| `0x4AA` | "Motor tenperatura" | Motela, ~2 s-an behin |
+| `0x1F0` | "Pneumatiko presioa" | Oso motela, ~4 s-an behin |
+| `0x3C0` | "12V bateria" | Ia estatikoa, ~10 s-an behin |
+| `0x520` | "Euri/argi sentsorea" | Ausazko pultsuak, tik-eko ~%3 |
+| `0x6B0` | "ECU timestamp" | Kontagailu inkrementala, 20 Hz |
+
+> **Nola hauteman:** señueloek beren erritmoa dute. Azeleragailua mugitzean,
+> `0x244` soilik aldatzen da ekintzarekin sinkronian.
+> `0x300`-ek bere kurba senosoidal jarraitzen du independenteki.
+
+---
+
 ## Flag-en erreferentzia azkarra
 
 | Flaga | Balio zuzena | Tolerantzia |

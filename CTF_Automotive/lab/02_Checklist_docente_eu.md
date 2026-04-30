@@ -32,6 +32,16 @@
 - [ ] `fuzz_can.py` exekutagarria
 - [ ] `can_dos.py` exekutagarria
 
+### Trafiko señueloa (derrigorrezkoa 1. Fase benetakoa izateko)
+- [ ] `scripts/decoy_traffic.py` badago: `ls scripts/decoy_traffic.py`
+- [ ] python-can instalatuta: `python3 -c "import can"`
+- [ ] Terminal bereizi batean abiarazita **parte-hartzaileak iritsi baino lehen**:
+  ```bash
+  python3 scripts/decoy_traffic.py
+  ```
+- [ ] Scriptak abioan 6 señuelo ID erakusten dituela egiaztatu
+- [ ] `candump vcan0`-rekin egiaztatu: `0x300`, `0x4AA`, `0x1F0`, `0x3C0`, `0x520`, `0x6B0` IDak agertzen direla
+
 ---
 
 ## B) Prestatu beharreko materialak (inprimatuta)
@@ -53,7 +63,14 @@
 | FLAG-F1B | `0x19B` | Parte-hartzaileak 0x19B aldatzen dela erakusten du ateak irekitzerakoan |
 | FLAG-F1C | `0x01` | Parte-hartzaileak 0x188-ko byte 0 = 01 erakusten du ezkerreko txandakatzearekin |
 
-**F1 iradokitako ahozko galdera:** *"Zergatik ez duzu framerik bidali fase honetan? Zer arrisku izango luke benetako ibilgailu batean?"*
+> **Señuelo IDak aktibo** (`decoy_traffic.py`-k injektatuta) — parte-hartzaileak hauetako bat
+> aurkezten badu, ez balioztatu; esan *"jarraitu bilatzen"*:
+> `0x300`, `0x4AA`, `0x1F0`, `0x3C0`, `0x520`, `0x6B0`
+>
+> Metodo zuzena: `controls`-eko ekintza eta bus-eko aldaketa erlazionatzea.
+> Azeleragailua mugitu → `0x244` soilik aldatzen da ekintza horren erritmoan.
+
+**F1 iradokitako ahozko galdera:** *"Nola bereizi dituzu benetako IDak señueloenetatik? Zein tresnarekin erlazionatu duzu ekintza byte-aldaketarekin?"*
 
 ---
 

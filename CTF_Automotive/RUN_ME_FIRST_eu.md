@@ -45,25 +45,48 @@ cd /ICSim/karpeta
 
 ---
 
-## 3. urratsa — Zailtasun doikuntza (aukerazkoa)
+## 3. urratsa — Seinale-trafiko gezurrezkoa abiarazi
 
-### Maila aurreratua — zarata gehitu
+> **Derrigorrezko urratsa** CTFeko 1. Fasea benetako ezagutza-lan bat izan dadin.
+> Urrats hau egiten ez bada, ICSim-en IDak berehala ageri dira eta parte-hartzaileek
+> F1 flagak komandorik exekutatu gabe bete ditzakete.
 
 ```bash
-# 3. terminala — zarata IDak (Aurreratua/Aditu mailan soilik)
-cangen vcan0 -I r -L 8 -D r -g 50 &
-# ~50ms-an behin ausazko frameak sortzen ditu ezagutza zailtze aldera
+# 3. terminala — señuelo injektatzailea (CTF osoan aktibo mantendu)
+python3 scripts/decoy_traffic.py
 ```
+
+Scriptak 6 ID gezurrezko gehigarri injektatzen ditu `vcan0`-n:
+
+| ID señuelo | Deskripzio faltsua | Portaera |
+|---|---|---|
+| `0x300` | "Motor RPM" | ~50ms-an behin aldatzen da, kurba senoidal motela |
+| `0x4AA` | "Motor tenperatura" | 2 s-an behin aldatzen da, pixkanaka igotzen/jaisten |
+| `0x1F0` | "Pneumatiko presioa" | 4 s-an behin aldatzen da, 4 byte |
+| `0x3C0` | "12V bateria" | Ia estatikoa, 10 s-an behin aldatzen |
+| `0x520` | "Euri/argi sentsorea" | Ausazko pultsu irregularrak |
+| `0x6B0` | "ECU timestamp" | Etengabeko kontagailu inkrementala |
+
+**Funtsezko ideia:** señueloek beren erritmoa dute, ez dute simulagailuaren
+ekintzei erantzuten. "Azeleragailua mugitu → zer ID aldatzen da?" koerlazioaren
+bidezko metodoa oraindik zuzena da.
 
 ### Maila oinarrizkoa — laguntza taula eman
 
-Parte-hartzaileei eman hasieran:
+Taldeak zailtasunak baditu, taula hau eman **soilik** F1 denbora gainditzen bada:
 
 | CAN ID | Gutxi gorabeherako funtzioa |
 |---|---|
 | 0x244 | Ibilgailuaren dinamikarekin lotua |
 | 0x188 | Seinaleekin lotua |
 | 0x19B | Ibilgailurako sarbidearekin lotua |
+
+### Aditu maila — zarata gehigarria
+
+```bash
+# Señueloaren gainean: erabat ausazko frameak gehitu
+cangen vcan0 -I r -L 8 -D r -g 30 &
+```
 
 ---
 

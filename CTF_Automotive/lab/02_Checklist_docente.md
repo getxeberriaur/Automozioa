@@ -32,6 +32,16 @@
 - [ ] `fuzz_can.py` ejecutable
 - [ ] `can_dos.py` ejecutable
 
+### Tráfico señuelo (obligatorio para Fase 1 genuina)
+- [ ] `scripts/decoy_traffic.py` presente: `ls scripts/decoy_traffic.py`
+- [ ] python-can instalado: `python3 -c "import can"`
+- [ ] Lanzado en terminal separada **antes** de que lleguen los participantes:
+  ```bash
+  python3 scripts/decoy_traffic.py
+  ```
+- [ ] Confirmar que el script muestra 6 IDs señuelo en el log de arranque
+- [ ] Verificar con `candump vcan0` que se ven IDs: `0x300`, `0x4AA`, `0x1F0`, `0x3C0`, `0x520`, `0x6B0`
+
 ---
 
 ## B) Materiales a preparar (impresos)
@@ -53,7 +63,14 @@
 | FLAG-F1B | `0x19B` | El participante muestra 0x19B cambiando al abrir/cerrar puertas en controls |
 | FLAG-F1C | `0x01` | El participante muestra byte 0 = 01 en ID 0x188 al activar giro izquierdo |
 
-**Pregunta oral sugerida F1:** *"¿Por qué no emitiste ningún frame en esta fase? ¿Qué riesgo tendría haberlo hecho en un vehículo real?"*
+> **IDs señuelo activos** (inyectados por `decoy_traffic.py`) — si el participante presenta
+> uno de estos como respuesta, NO validar; indicar *"sigue buscando"*:
+> `0x300`, `0x4AA`, `0x1F0`, `0x3C0`, `0x520`, `0x6B0`
+>
+> El método correcto es correlacionar acción en `controls` con cambio en el bus:
+> mover acelerador → solo `0x244` cambia al ritmo de la acción.
+
+**Pregunta oral sugerida F1:** *"¿Cómo distinguiste los IDs reales de los señuelos? ¿Qué herramienta te ayudó a correlacionar acción con cambio de byte?"*
 
 ---
 

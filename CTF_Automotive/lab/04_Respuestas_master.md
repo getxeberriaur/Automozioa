@@ -8,6 +8,26 @@
 
 ---
 
+## Tráfico señuelo activo en Fase 1
+
+Durante el CTF, `scripts/decoy_traffic.py` está inyectando los siguientes IDs ficticios
+en `vcan0`. **Ninguno de estos es la respuesta correcta** a ningún flag:
+
+| ID señuelo | Descripción falsa visible en el bus | Patrón de variación |
+|---|---|---|
+| `0x300` | "RPM motor" | Senoidal, ~20 Hz, varía siempre |
+| `0x4AA` | "Temperatura motor" | Lenta, cada ~2 s |
+| `0x1F0` | "Presión neumáticos" | Muy lenta, cada ~4 s |
+| `0x3C0` | "Batería 12V" | Casi estático, cada ~10 s |
+| `0x520` | "Sensor lluvia/luz" | Pulsos aleatorios, ~3% por tick |
+| `0x6B0` | "Timestamp ECU" | Contador incremental, 20 Hz |
+
+> **Cómo detectarlos:** los señuelos varían con su propio ritmo interno. Al mover el
+> acelerador en `controls`, solo `0x244` cambia en sincronía con la acción.
+> `0x300` sigue su curva senoidal independientemente.
+
+---
+
 ## Referencia rápida de flags
 
 | Flag | Valor correcto | Tolerancia |

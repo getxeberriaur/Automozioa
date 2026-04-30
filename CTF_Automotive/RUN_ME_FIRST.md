@@ -46,25 +46,49 @@ cd /ruta/a/ICSim
 
 ---
 
-## Paso 3 — Ajuste de dificultad (opcional)
+## Paso 3 — Lanzar tráfico señuelo
 
-### Nivel Avanzado — añadir ruido al bus
+> **Paso obligatorio** para que la Fase 1 del CTF sea un reconocimiento genuino.
+> Sin este paso, los IDs de ICSim son visibles inmediatamente y los participantes
+> pueden rellenar los flags de Fase 1 sin ejecutar ningún comando.
 
 ```bash
-# Terminal 3 (solo nivel Avanzado/Expert) — IDs de ruido
-cangen vcan0 -I r -L 8 -D r -g 50 &
-# Genera frames aleatorios cada ~50ms para dificultar reconocimiento
+# Terminal 3 — inyector de señuelos (mantener activo todo el CTF)
+python3 scripts/decoy_traffic.py
 ```
+
+El script inyecta 6 IDs ficticios adicionales en `vcan0`:
+
+| ID señuelo | Descripción falsa | Comportamiento |
+|---|---|---|
+| `0x300` | "RPM motor" | Varía cada ~50ms, curva senoidal lenta |
+| `0x4AA` | "Temperatura motor" | Cambia cada 2 s, sube/baja gradualmente |
+| `0x1F0` | "Presión neumáticos" | Cambia cada 4 s, 4 bytes |
+| `0x3C0` | "Batería 12V" | Casi estático, cambia cada 10 s |
+| `0x520` | "Sensor lluvia/luz" | Pulsos aleatorios irregulares |
+| `0x6B0` | "Timestamp ECU" | Contador incremental continuo |
+
+**Clave pedagógica:** los señuelos varían con su propio ritmo interno, NO en
+respuesta a las acciones del simulador. La correlación
+"muevo el acelerador → ¿qué ID cambia?" sigue siendo el método correcto.
 
 ### Nivel Básico — entregar tabla de ayuda
 
-Imprimir y entregar a los **participantes** antes de empezar:
+Si el grupo tiene dificultades, imprimir y entregar esta tabla **solo** si
+se supera el tiempo de Fase 1:
 
 | CAN ID | Función aproximada |
 |---|---|
 | 0x244 | Relacionado con dinámica del vehículo |
 | 0x188 | Relacionado con señalización |
 | 0x19B | Relacionado con acceso al vehículo |
+
+### Nivel Experto — ruido adicional
+
+```bash
+# Añadir encima del señuelo: frames completamente aleatorios
+cangen vcan0 -I r -L 8 -D r -g 30 &
+```
 
 ---
 

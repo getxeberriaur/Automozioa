@@ -30,6 +30,17 @@ Laboratorio sobre las vulnerabilidades del protocolo **CAN bus** usando el simul
 
 ---
 
+### 3 — CTF Automotive — UrbanFleet 2026 (`CTF_Automotive/`)
+
+Ejercicio integrador tipo **Capture The Flag** de 90 minutos que combina todas las técnicas del lab CAN bus (reconocimiento, inyección, replay, DoS/fuzzing) en un escenario competitivo por equipos.
+
+**Temas:** Red Team en bus CAN, ataque encadenado por fases, defensa y contramedidas, presentación de evidencias.  
+**Prerequisito:** haber completado `CANbus_ICSim_Ciber/`.  
+**Entorno:** Linux con ICSim + vcan0 (mismo entorno que la práctica 2).  
+**Documentación:** [CTF_Automotive/README.md](CTF_Automotive/README.md)
+
+---
+
 ## Estructura del repositorio
 
 ```text
@@ -49,15 +60,22 @@ Automozioa/
 │   ├── reports/
 │   └── requirements.txt
 │
-└── CANbus_ICSim_Ciber/                ← Práctica 2: CAN Bus
+├── CANbus_ICSim_Ciber/                ← Práctica 2: CAN Bus
+│   ├── README.md
+│   ├── README_eu.md
+│   ├── RUN_ME_FIRST.md
+│   ├── lab/
+│   ├── scripts/
+│   ├── samples/
+│   ├── logs/
+│   ├── reports/
+│   └── requirements.txt
+│
+└── CTF_Automotive/                    ← Práctica 3: CTF integrador
     ├── README.md
     ├── README_eu.md
     ├── RUN_ME_FIRST.md
     ├── lab/
-    ├── scripts/
-    ├── samples/
-    ├── logs/
-    ├── reports/
     └── requirements.txt
 ```
 

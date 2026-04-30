@@ -30,6 +30,17 @@ V16 larrialdi-abisu sistema konektatuaren zibersegurtasunari buruzko laborategia
 
 ---
 
+### 3 — CTF Automotive — UrbanFleet 2026 (`CTF_Automotive/`)
+
+90 minutuko **Capture The Flag** motako ariketa integratzailea, CAN bus laborategiko teknika guztiak (ezagutza, injekzioa, replay, DoS/fuzzing) taldeen arteko lehia-eszenatoki batean konbinatzen dituena.
+
+**Gaiak:** CAN bus-eko Red Team-a, faseka kateatutako erasoa, defentsa eta kontraesanerako neurriak, ebidentzien aurkezpena.  
+**Aurrebaldintza:** `CANbus_ICSim_Ciber/` osatu izana.  
+**Ingurunea:** Linux ICSim + vcan0-rekin (2. praktikako ingurune bera).  
+**Dokumentazioa:** [CTF_Automotive/README_eu.md](CTF_Automotive/README_eu.md)
+
+---
+
 ## Biltegiaren egitura
 
 ```text
@@ -49,15 +60,22 @@ Automozioa/
 │   ├── reports/
 │   └── requirements.txt
 │
-└── CANbus_ICSim_Ciber/                ← 2. Praktika: CAN Bus
+├── CANbus_ICSim_Ciber/                ← 2. Praktika: CAN Bus
+│   ├── README.md
+│   ├── README_eu.md
+│   ├── RUN_ME_FIRST.md
+│   ├── lab/
+│   ├── scripts/
+│   ├── samples/
+│   ├── logs/
+│   ├── reports/
+│   └── requirements.txt
+│
+└── CTF_Automotive/                    ← 3. Praktika: CTF integratzailea
     ├── README.md
     ├── README_eu.md
     ├── RUN_ME_FIRST.md
     ├── lab/
-    ├── scripts/
-    ├── samples/
-    ├── logs/
-    ├── reports/
     └── requirements.txt
 ```
 

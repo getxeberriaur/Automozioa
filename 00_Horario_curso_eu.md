@@ -59,9 +59,20 @@
 
 ### 09:00 – 10:30 | Teoria: Alderantzizko Ingeniaritzako Teknikak
 
-- **SavvyCAN** erabiltzea CAN bus-eko seinaleak grafikoki ikusteko
+**09:00 – 09:15 — Erakustaldi proiektatua: SavvyCAN (irakasleak)**
+
+> Irakaslea SavvyCAN `vcan0`-ra konektatuta proiektatzen du `controls`-en azeleragailua mugitzen duen bitartean. Parte-hartzaileek denbora errealean ikusten dute `0x244` IDaren byteek gorantz doan kurba nola marrazten duten — atzo `cansniffer`-ekin testuan ikusi zuten datu bera, orain profesional batek bezala grafikatuta.
+>
+> **Mezu nagusia:** *"Hori da ikertzaileek eta OEM-ek erabiltzen duten tresna. Gure laborategian `cansniffer` eta `can_scanner.py` erabiltzen ditugu, konfigurazio gehigarririk gabe terminaleko baliokideak baitira."*
+>
+> Erreferentzia: [SavvyCAN](https://github.com/collin80/SavvyCAN) — kode irekiko GUI-a, SocketCAN (`vcan0`) onartzen du Linux-en.
+
+**09:15 – 10:30 — Alderantzizko ingeniaritza: teoria eta metodologia**
+
 - Segundoko milaka trama artean komando espezifiko bat nola isolatu
-- CAN trafiko-azterketa metodologia
+- CAN trafiko-azterketa metodologia: kaptura → iragazketa → korrelazioa → hipotesia → egiaztapena
+- DBC fitxategiak: industriak CAN seinaleak nola dokumentatzen dituen (Vector estandarra)
+- SavvyCAN eta DBC fitxategien irakurketa benetako testuinguruan
 
 ### 10:30 – 11:30 | II. Praktikoa — CAN Bus: B Praktika (Frame Injekzioa)
 

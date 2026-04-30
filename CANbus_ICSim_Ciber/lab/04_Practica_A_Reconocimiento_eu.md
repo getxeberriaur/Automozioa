@@ -172,3 +172,50 @@ Ebidentzia-txantiloian bete (`reports/00_Ebidentzia_txosten_txantiloia.md`):
 - Zergatik da arriskutsua CAN bus-ak autentifikaziorik ez izatea?
 - Nola erabil lezake erasotzaile batek informazio hori benetako ibilgailu batean?
 - Zeintzuk dira ibilgailu modernoetan mapeatze hau zailtzen dituzten neurriak?
+
+---
+
+## A.5 Eranskina — SavvyCAN: bistaratze grafikoa (aukerazkoa)
+
+> **Maila:** boluntarioen esplorazio · **Gutxi gorabeherako denbora:** 20 minutu  
+> Eranskin honek aurreko ariketetan ikusi dituzun datu berdinak ikertzaile profesionalek eta OEM-ek erabiltzen duten tresnarekin ikusteko aukera ematen du.
+
+### Zer ekartzen du SavvyCAN-ek `cansniffer`-en aldean?
+
+| `cansniffer` (terminala) | SavvyCAN (GUI) |
+|---|---|
+| Aldatzen diren byteak kolore bidez erakusten ditu | Byte bakoitzaren balioa denboran zehar grafikatzen du |
+| Instalaziorik gabe, beti funtzionatzen du | AppImage + FUSE behar du |
+| Korrelazioa azkar egiteko egokia | Alderantzizko ingeniaritza xehaturako egokia |
+| Historial bisualik gabe | Historial osoa zoom-arekin |
+| Ez ditu DBC fitxategiak irakurtzen | DBC fitxategiak irakurtzen ditu (industria estandarra) |
+
+### Instalazio VMn (konpilatu gabe)
+
+```bash
+# AppImage deskargatu (dependentziarik instalatu gabe)
+wget https://github.com/collin80/SavvyCAN/releases/latest/download/SavvyCAN-x86_64.AppImage
+chmod +x SavvyCAN-x86_64.AppImage
+
+# Zure VMn FUSE erabilgarri ez badago:
+sudo apt install -y libfuse2
+
+# Exekutatu
+./SavvyCAN-x86_64.AppImage
+```
+
+### `vcan0`-ra konektatu
+
+1. ICSim eta `controls` ohiko moduan abiarazi
+2. SavvyCAN-en: **Connection → Open Connection Manager**
+3. **SocketCAN** hautatu, interfazea: `vcan0` → **Connect**
+4. Joan **Graph → Signal Graph View** atalera
+
+### Ariketa gidatua
+
+1. Azeleragailua astiro mugitu 0-tik maximora — `0x244` IDaren 3. bytearen kurba behatu
+2. Ezkerreko txandakatze-adierazlea aktibatu — `0x188` IDa aurkitu eta balioaren aldaketa behatu
+3. Aurreko ariketetako `cansniffer`-ekin ikusi zenuenarekin alderatu
+4. Grafikaren pantaila-argazki bat gorde ebidentzia-txostenerako
+
+> **Oharra:** AppImage zure VMn abiarazten ez bada, irakasleak emaitza berdinak dituen erakustaldi proiektatua prest du.

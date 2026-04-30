@@ -182,3 +182,50 @@ Completar en el informe de evidencias (`reports/00_Plantilla_informe_evidencias.
 - ¿Por qué es peligroso que el CAN bus no tenga autenticación?
 - ¿Cómo podría un atacante usar esta información en un vehículo real?
 - ¿Qué mitigaciones existen en los vehículos modernos para dificultar este mapeo?
+
+---
+
+## Anexo A.5 — SavvyCAN: visualización gráfica (opcional)
+
+> **Nivel:** exploración voluntaria · **Tiempo estimado:** 20 minutos  
+> Este anexo permite ver los mismos datos de los ejercicios anteriores con la herramienta que usan los investigadores profesionales y los OEM.
+
+### ¿Qué aporta SavvyCAN sobre `cansniffer`?
+
+| `cansniffer` (terminal) | SavvyCAN (GUI) |
+|---|---|
+| Muestra bytes cambiantes en color | Grafica el valor de cada byte a lo largo del tiempo |
+| Sin instalación, funciona siempre | Requiere AppImage + FUSE |
+| Ideal para correlación rápida | Ideal para ingeniería inversa detallada |
+| Sin historial visual | Historial completo con zoom |
+| No lee archivos DBC | Lee archivos DBC (estándar industria) |
+
+### Instalación en la VM (sin compilar)
+
+```bash
+# Descargar AppImage (no requiere instalar dependencias)
+wget https://github.com/collin80/SavvyCAN/releases/latest/download/SavvyCAN-x86_64.AppImage
+chmod +x SavvyCAN-x86_64.AppImage
+
+# Si FUSE no está disponible en tu VM:
+sudo apt install -y libfuse2
+
+# Ejecutar
+./SavvyCAN-x86_64.AppImage
+```
+
+### Conectar a `vcan0`
+
+1. Arrancar ICSim y `controls` como de costumbre
+2. En SavvyCAN: **Connection → Open Connection Manager**
+3. Seleccionar **SocketCAN**, interfaz: `vcan0` → **Connect**
+4. Ir a **Graph → Signal Graph View**
+
+### Ejercicio guiado
+
+1. Mover el acelerador lentamente de 0 a máximo — observar la curva del ID `0x244`, byte 3
+2. Activar el intermitente izquierdo — localizar el ID `0x188` y observar el cambio de valor
+3. Comparar la visualización con lo que veías en `cansniffer` en los ejercicios anteriores
+4. Guardar una captura de pantalla de la gráfica para el informe de evidencias
+
+> **Nota:** si el AppImage no arranca en tu VM, el docente tiene una demo proyectada lista con los mismos resultados.

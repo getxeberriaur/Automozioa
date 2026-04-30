@@ -59,9 +59,20 @@
 
 ### 09:00 – 10:30 | Teoría: Técnicas de Ingeniería Inversa
 
-- Uso de **SavvyCAN** para visualizar gráficamente señales del CAN bus
+**09:00 – 09:15 — Demo proyectada: SavvyCAN (docente)**
+
+> El docente proyecta SavvyCAN conectado a `vcan0` mientras mueve el acelerador en `controls`. Los participantes ven en tiempo real cómo los bytes del ID `0x244` dibujan una curva ascendente — el mismo dato que ayer vieron en texto con `cansniffer`, ahora graficado como lo haría un profesional.
+>
+> **Mensaje clave:** *"Esta es la herramienta que usan los investigadores y los OEMs. En nuestro lab usamos `cansniffer` y `can_scanner.py`, que son el equivalente por terminal sin configuración adicional."*
+>
+> Referencia: [SavvyCAN](https://github.com/collin80/SavvyCAN) — GUI de código abierto, soporta SocketCAN (`vcan0`) en Linux.
+
+**09:15 – 10:30 — Ingeniería inversa: teoría y metodología**
+
 - Cómo aislar un comando específico entre miles de tramas por segundo
-- Metodología de análisis de tráfico CAN
+- Metodología de análisis de tráfico CAN: captura → filtrado → correlación → hipotésis → verificación
+- Archivos DBC: cómo la industria documenta las señales CAN (estándar Vector)
+- SavvyCAN y la lectura de archivos DBC en contexto real
 
 ### 10:30 – 11:30 | II. Práctica — CAN Bus: Práctica B (Inyección de frames)
 

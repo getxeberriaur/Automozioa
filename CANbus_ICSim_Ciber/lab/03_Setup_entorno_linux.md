@@ -1,5 +1,7 @@
 # Setup del entorno Linux / VM — Paso a paso
 
+[Bertsioa euskaraz](03_Setup_entorno_linux_eu.md)
+
 ## Opción A — Máquina virtual (recomendada para Windows)
 
 ### A1. Instalar VirtualBox

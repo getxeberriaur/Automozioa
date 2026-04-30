@@ -1,5 +1,7 @@
 # Introducción al protocolo CAN Bus y su superficie de ataque
 
+[Bertsioa euskaraz](01_Introduccion_CANbus_eu.md)
+
 ## 1. ¿Qué es el CAN bus?
 
 El **Controller Area Network (CAN)** es un protocolo de comunicación en serie desarrollado por Bosch en 1983, diseñado para permitir que microcontroladores y dispositivos se comuniquen entre sí sin necesidad de un ordenador central. Desde la década de 1990 es el estándar de facto en la electrónica de automoción.

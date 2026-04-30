@@ -1,5 +1,7 @@
 # Práctica D — Fuzzing y Denegación de Servicio (DoS)
 
+[Bertsioa euskaraz](07_Practica_D_Fuzzing_DoS_eu.md)
+
 **Duración estimada:** 45 minutos  
 **Dificultad:** Media-Alta  
 **Herramientas:** `cangen`, `scripts/fuzz_can.py`, `scripts/can_dos.py`

@@ -1,5 +1,7 @@
 # Práctica A — Reconocimiento del bus CAN
 
+[Bertsioa euskaraz](04_Practica_A_Reconocimiento_eu.md)
+
 **Duración estimada:** 45 minutos  
 **Dificultad:** Básica  
 **Herramientas:** `candump`, `cansniffer`, `scripts/can_scanner.py`

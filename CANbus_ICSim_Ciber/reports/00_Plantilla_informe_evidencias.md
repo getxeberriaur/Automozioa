@@ -1,5 +1,7 @@
 # Plantilla de informe de evidencias — Laboratorio CAN Bus (equipo)
 
+[Bertsioa euskaraz](00_Ebidentzia_txosten_txantiloia.md)
+
 ## 1) Datos del equipo
 
 - Centro:

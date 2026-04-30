@@ -1,5 +1,7 @@
 # Práctica C — Ataque de Replay
 
+[Bertsioa euskaraz](06_Practica_C_Replay_eu.md)
+
 **Duración estimada:** 40 minutos  
 **Dificultad:** Media  
 **Herramientas:** `candump`, `canplayer`, `scripts/replay_attack.py`

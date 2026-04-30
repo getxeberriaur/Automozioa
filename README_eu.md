@@ -1,177 +1,76 @@
-# Automozioa
+# Automozioa — Automozioaren Zibersegurtasuna
 
 [Gaztelaniazko bertsioa](README.md)
 
-Automozioaren zibersegurtasunari buruzko irakaskuntza-materialak eta laborategi praktikoa biltzen dituen laguntza-biltegia da hau, ingurune simulatuan dauden V16 balizen gertaera konektatuetan arreta jarrita.
+Automozioaren **zibersegurtasunari** buruzko irakaskuntza-material eta laborategi praktikoen biltegi hau da. Karpeta bakoitzak dokumentazioa, scriptak eta ebidentzia-txantiloiak dituen praktika autonomo bat dauka.
 
-## Helburua
+> Eduki guztia **ingurune simulatu edo sandbox batean defentsa-prestakuntza** egiteko diseinatuta dago. Ez da baimenik gabe ibilgailu edo azpiegitura errealen gainean erabili behar.
 
-Biltegi hau honetarako pentsatuta dago:
+---
 
-- ITS sistemetako eta automozio konektatuko zibersegurtasunari buruzko sarrera-saio didaktikoak laguntzeko;
-- defentsara bideratutako laborategi kontrolatu, erreproduzigarri eta gidatu bat eskaintzeko;
-- backend-a, simulagailua eta ebidentziak dituen praktika lokal bat eraikitzeko oinarri izateko.
+## Praktika erabilgarriak
 
-> Garrantzitsua: eduki guztia tokiko sandbox edo sare isolatu batean defentsa-ikuspegiko prestakuntzarako diseinatuta dago. Ez da azpiegitura errealetan erabili behar.
+### 1 — V16 baliza konektatua (`Automocion_V16_Ciber/`)
 
-## Uneko edukia
+V16 larrialdi-abisu sistema konektatuaren zibersegurtasunari buruzko laborategia. Tokiko REST API baten gainean baliza-gertaerak bidaltzen eta baliozkotzen simulatzen du.
 
-Lehen bertsio honetan, biltegiak irakaskuntza-saio bat eta 2 orduko laborategi bat prestatzeko oinarrizko dokumentazioa dauka:
+**Gaiak:** JSON eskemaren baliozkotzea, nonce bidezko replay-aurkako babesa, denbora-leihoa, rate limiting, gertaeren trazabilitatea.  
+**Ingurunea:** Python / FastAPI — Windows, Linux eta macOS-en funtzionatzen du.  
+**Dokumentazioa:** [Automocion_V16_Ciber/README_eu.md](Automocion_V16_Ciber/README_eu.md)
 
-- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md): 30 minutuko sarrera-gidoia.
-- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md): laborategi praktikoaren diseinua.
-- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md): irakaslearentzako prestaketa-checklista.
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md](Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md): Windows-erako erreferentziazko konfigurazio azkarra.
+---
 
-## Dokumentazioaren aurkibidea
+### 2 — CAN Bus ICSim-ekin (`CANbus_ICSim_Ciber/`)
 
-### Dokumentazioa euskaraz
+**CAN bus** protokoloaren ahuleziei buruzko laborategia, ICSim simulagailua (Instrument Cluster Simulator) eta `can-utils` tresnak erabilita. Ezagutza pasiboa, frame injekzioa, replay-a eta fuzzing/DoS-a biltzen ditu.
 
-- [Automocion_V16_Ciber/RUN_ME_FIRST.md](Automocion_V16_Ciber/RUN_ME_FIRST.md)
-- [README_eu.md](README_eu.md)
-- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md)
-- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md)
-- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md)
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md](Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md)
+**Gaiak:** CAN 2.0 protokoloa, frame-en alderantzizko ingeniaritza, autentifikaziorik gabeko injekzioa, replay erasoa, bus flooding-a.  
+**Ingurunea:** Linux (Ubuntu 22.04 / Kali) `vcan0` birtualarekin — VM batean ere erabil daiteke.  
+**Dokumentazioa:** [CANbus_ICSim_Ciber/README_eu.md](CANbus_ICSim_Ciber/README_eu.md)
 
-### Gaztelaniazko dokumentazioa
-
-- [README.md](README.md)
-- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md)
-- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md)
-- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md)
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md](Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md)
+---
 
 ## Biltegiaren egitura
 
 ```text
 Automozioa/
-├─ README_eu.md
-├─ README.md
-└─ Automocion_V16_Ciber/
-   ├─ backend/
-   │  └─ app.py
-   ├─ lab/
-   │  ├─ 02_Checklist_configuracion_laboratorio.md
-   │  ├─ 02_Checklist_configuracion_laboratorio_eu.md
-   │  ├─ 03_Setup_rapido_windows.md
-   │  └─ 03_Setup_rapido_windows_eu.md
-   ├─ logs/
-   │  └─ .gitkeep
-   └─ materiales/
-      ├─ 00_Guion_intro_30min.md
-      ├─ 00_Guion_intro_30min_eu.md
-      ├─ 01_Laboratorio_2h.md
-      └─ 01_Laboratorio_2h_eu.md
-   ├─ reports/
-   │  └─ .gitkeep
-   ├─ samples/
-   │  └─ event_legitimo.json
-   ├─ simulator/
-   │  └─ send_event.py
-   ├─ requirements.txt
-   └─ RUN_ME_FIRST.md
+├── README.md                          ← indize orokorra (gaztelania)
+├── README_eu.md                       ← fitxategi hau (indize orokorra, euskaraz)
+│
+├── Automocion_V16_Ciber/              ← 1. Praktika: V16 baliza
+│   ├── README.md
+│   ├── README_eu.md
+│   ├── RUN_ME_FIRST.md
+│   ├── backend/
+│   ├── lab/
+│   ├── simulator/
+│   ├── samples/
+│   ├── logs/
+│   ├── reports/
+│   └── requirements.txt
+│
+└── CANbus_ICSim_Ciber/                ← 2. Praktika: CAN Bus
+    ├── README.md
+    ├── README_eu.md
+    ├── RUN_ME_FIRST.md
+    ├── lab/
+    ├── scripts/
+    ├── samples/
+    ├── logs/
+    ├── reports/
+    └── requirements.txt
 ```
+
+---
 
 ## Norentzat dago zuzenduta
 
-Bereziki erabilgarria da honako hauentzat:
+- LHko (Automozio, Informatika, Zibersegurtasuna) eta unibertsitateko irakasleak.
+- Automozio konektatuaren segurtasun-demostrazioetan lan egin nahi duten talde teknikoak.
+- Sistema txertatuetan eta CAN bus-en zibersegurtasunarekiko interesa duten ikasleak.
 
-- LHko, unibertsitateko edo prestakuntza teknikoko irakasleak;
-- automozio konektatuko segurtasunaren tokiko erakustaldi bat muntatu nahi duten taldeak;
-- gertaeren balidazioa, trazabilitatea eta oinarrizko hardening-a lantzeko sentsibilizazio-jarduerak.
+---
 
-## Ikuspegi pedagogikoa
+## Ohar legala
 
-Proposatutako laborategiak bi egoera alderatzen ditu:
-
-1. balidazio eskasak dituen backend bat;
-2. defentsa-kontrolak aktibatuta dituen backend bera.
-
-Dokumentazioan lantzen diren kontrolen artean daude:
-
-- JSON eskemaren balidazio zorrotza;
-- koordenatuen balidazioa;
-- `timestamp` eremurako denbora-leihoa;
-- `nonce` bidezko replay erasoen prebentzioa;
-- identitate bakoitzeko rate limiting-a;
-- onarpen edo ukapen arrazoia jasotzen duen log-a.
-
-## Nola erabili biltegi hau
-
-### 1. aukera: irakaskuntza-material gisa bakarrik
-
-Klaseko euskarri gisa bakarrik erabili nahi baduzu:
-
-1. berrikusi sarrera-gidoia [Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md) fitxategian;
-2. egokitu saio praktikoa [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md) dokumentuarekin;
-3. erabili [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md) fitxategiko checklista saioa eman aurretik.
-
-### 2. aukera: laborategi exekutagarri bihurtzea
-
-Biltegiaren hurrengo bilakaera gomendatua:
-
-- `backend/` sortzea ingestio-API lokalerako;
-- `simulator/` sortzea gertaera legitimoak eta probakoak sortzeko;
-- `logs/` sortzea trazabilitaterako;
-- `reports/` sortzea talde bakoitzaren ebidentzietarako;
-- `requirements.txt` eta payload adibideak gehitzea.
-
-## Aurreikusitako laborategi-fluxua
-
-Helburuzko fluxua honako hau da:
-
-1. simulagailuak gertaera bat sortzen du;
-2. backend-ak formatua, denbora, identitatea eta politika balidatzen ditu;
-3. backend-ak `accepted` edo `rejected` erabakitzen du;
-4. erabakia log-etan erregistratzen da;
-5. taldeak ebidentziak eta ondorioak dokumentatzen ditu.
-
-## Espero diren ikaskuntza-emaitzak
-
-Material hau erabilita, parte-hartzaileek honako hauek egiteko gaitasuna izan beharko lukete:
-
-- automozio konektatuko sistema bateko aktibo kritikoak identifikatzea;
-- spoofing-a, replay-a eta datu baliogabeen injekzioa bereiztea;
-- oinarrizko balidazio- eta trazabilitate-kontrolak aplikatzea;
-- log-ak ebidentzia tekniko gisa interpretatzea;
-- mitigazioak eta hondar-arriskua justifikatzea.
-
-## Biltegiaren egoera
-
-Uneko egoera:
-
-- irakaskuntza-dokumentazioa: erabilgarri;
-- laborategiaren gidoia: erabilgarri;
-- backend minimo erreferentziala: erabilgarri;
-- proba-simulagailua: erabilgarri;
-- ebidentzien txantiloiak: egiteko.
-
-## Eskuragarri dagoen gutxieneko inplementazioa
-
-Biltegiak lehen oinarri exekutagarri bat dauka jada:
-
-- [Automocion_V16_Ciber/backend/app.py](Automocion_V16_Ciber/backend/app.py): eskema-balidazioa, denbora-leihoa, anti-replay kontrola, tasa-kontrola eta logging-a dituen API lokala.
-- [Automocion_V16_Ciber/simulator/send_event.py](Automocion_V16_Ciber/simulator/send_event.py): `legitimo`, `replay`, `timestamp-atrasado`, `coordenadas-invalidas`, `identidad-invalida` eta `rafaga` eszenatokiak dituen simulagailua.
-- [Automocion_V16_Ciber/samples/event_legitimo.json](Automocion_V16_Ciber/samples/event_legitimo.json): payload adibidea.
-- [Automocion_V16_Ciber/RUN_ME_FIRST.md](Automocion_V16_Ciber/RUN_ME_FIRST.md): hasierako abiarazte azkarra.
-- [Automocion_V16_Ciber/requirements.txt](Automocion_V16_Ciber/requirements.txt): laborategiaren mendekotasunak.
-
-## Gomendatutako hurrengo urratsak
-
-1. Python-en gutxieneko inplementazioa osatzea;
-2. gertaera baliozkoen eta baliogabeen adibideak gehitzea;
-3. `reports/` karpetarako txosten-txantiloi bat prestatzea;
-4. talde bakoitzarentzako abiarazte azkarreko jarraibideak gehitzea;
-5. laborategia Windows ingurune erreal batean balidatzea, saioa eman aurretik.
-
-## Segurtasun- eta etika-printzipioak
-
-- Tokiko, simulatutako edo isolatutako inguruneak bakarrik.
-- Material hauek sistema errealen aurka erabiltzea debekatuta dago.
-- Helburua soilik hezitzailea eta defentsiboa da.
-- Praktikak balidazioa, hardening-a, detekzioa eta erantzuna izan behar ditu ardatz.
-
-## Lizentzia eta erabilera
-
-Material hau ikastetxe batean berrerabiliko baduzu, komeni da biltegian lizentzia esplizitu bat gehitzea eta, nahi izanez gero, egiletza edo ekarpen-ohar bat eranstea.
+Laborategi hauetan erakutsitako teknikak baimenik gabe sistema errealen gainean erabiltzea legez kontrakoa da eta bide-segurtasuna arriskuan jar dezake. Ingurune guztiak tokiko sandbox batean edo sare guztiz isolatuan funtzionatzeko diseinatuta daude.

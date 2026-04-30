@@ -1,5 +1,7 @@
 # Checklist de configuración del laboratorio CAN Bus (docente)
 
+[Bertsioa euskaraz](02_Checklist_configuracion_laboratorio_eu.md)
+
 ## A) Requisitos del sistema (por puesto)
 
 - [ ] Ubuntu 22.04 LTS o Kali Linux 2024+ (física o VM con ≥4 GB RAM, ≥2 vCPU).

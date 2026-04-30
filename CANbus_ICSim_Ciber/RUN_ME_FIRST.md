@@ -1,5 +1,7 @@
 # RUN ME FIRST — Arranque rápido del laboratorio CAN Bus
 
+[Bertsioa euskaraz](RUN_ME_FIRST_eu.md)
+
 > Tiempo estimado: **10 minutos** (asumiendo que la VM Linux ya está lista y can-utils + ICSim compilados).
 
 ---

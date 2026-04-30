@@ -1,5 +1,7 @@
 # Práctica B — Inyección de frames CAN
 
+[Bertsioa euskaraz](05_Practica_B_Inyeccion_eu.md)
+
 **Duración estimada:** 40 minutos  
 **Dificultad:** Media  
 **Herramientas:** `cansend`, `python-can`

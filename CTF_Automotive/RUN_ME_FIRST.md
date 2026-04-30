@@ -58,7 +58,7 @@ cangen vcan0 -I r -L 8 -D r -g 50 &
 
 ### Nivel Básico — entregar tabla de ayuda
 
-Imprimir y entregar a los equipos antes de empezar:
+Imprimir y entregar a los **participantes** antes de empezar:
 
 | CAN ID | Función aproximada |
 |---|---|
@@ -70,8 +70,8 @@ Imprimir y entregar a los equipos antes de empezar:
 
 ## Paso 4 — Materiales a distribuir
 
-- [ ] Una copia de `lab/01_Enunciado_participantes.md` por equipo (o en pantalla)
-- [ ] Una copia de `lab/03_Hoja_flags_equipo.md` por equipo (impresa para firmar)
+- [ ] Una copia de `lab/01_Enunciado_participantes.md` por participante (o en pantalla)
+- [ ] Una copia de `lab/03_Hoja_flags_equipo.md` por participante (impresa para firmar)
 - [ ] Hoja de normas (incluida en el enunciado)
 - [ ] Acceso al terminal Linux con herramientas disponibles
 
@@ -97,7 +97,7 @@ Hora de fin: inicio + 90 min = `___:___`
 
 ## Paso 6 — Durante el CTF (rol de GM)
 
-- Validar flags cuando un equipo las presente (ver `04_Respuestas_master.md`)
+- Validar flags cuando un **participante** las presente (ver `04_Respuestas_master.md`)
 - Registrar timestamp de cada flag validada para calcular bonus de velocidad
 - **Pistas permitidas** (sin revelar respuestas):
   - F1: *"¿Qué herramienta muestra solo los bytes que cambian?"*
@@ -114,4 +114,4 @@ Hora de fin: inicio + 90 min = `___:___`
 | `vcan0` no aparece | `sudo modprobe vcan; sudo ip link add dev vcan0 type vcan; sudo ip link set up vcan0` |
 | ICSim no arranca | Verificar que las dependencias SDL2 están instaladas: `sudo apt install libsdl2-dev libsdl2-image-dev` |
 | ICSim no responde a inyecciones | Confirmar que está escuchando en `vcan0`, no en `can0` |
-| Equipos bloqueados en F1 >15 min | Dar pista de `cansniffer` o entregar tabla de IDs (solo nivel básico) |
+| Participantes bloqueados en F1 >15 min | Dar pista de `cansniffer` o entregar tabla de IDs (solo nivel básico) |

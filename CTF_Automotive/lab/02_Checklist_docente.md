@@ -36,8 +36,8 @@
 
 ## B) Materiales a preparar (impresos)
 
-- [ ] `01_Enunciado_participantes.md` — una copia por equipo
-- [ ] `03_Hoja_flags_equipo.md` — una copia por equipo (para firmar y entregar)
+- [ ] `01_Enunciado_participantes.md` — una copia por participante
+- [ ] `03_Hoja_flags_equipo.md` — una copia por participante (para firmar y entregar)
 - [ ] `04_Respuestas_master.md` — **solo docente**, no distribuir
 - [ ] Hoja de puntuación en blanco (ver sección D)
 
@@ -49,9 +49,9 @@
 
 | Flag | Respuesta correcta | Cómo validar |
 |---|---|---|
-| FLAG-F1A | `0x244` | El equipo muestra `cansniffer` o log con 0x244 cambiando al mover el acelerador |
-| FLAG-F1B | `0x19B` | El equipo muestra 0x19B cambiando al abrir/cerrar puertas en controls |
-| FLAG-F1C | `0x01` | El equipo muestra byte 0 = 01 en ID 0x188 al activar giro izquierdo |
+| FLAG-F1A | `0x244` | El participante muestra `cansniffer` o log con 0x244 cambiando al mover el acelerador |
+| FLAG-F1B | `0x19B` | El participante muestra 0x19B cambiando al abrir/cerrar puertas en controls |
+| FLAG-F1C | `0x01` | El participante muestra byte 0 = 01 en ID 0x188 al activar giro izquierdo |
 
 **Pregunta oral sugerida F1:** *"¿Por qué no emitiste ningún frame en esta fase? ¿Qué riesgo tendría haberlo hecho en un vehículo real?"*
 
@@ -96,19 +96,19 @@
 
 Aceptar si:
 - [ ] El código Python funciona en el terminal sin errores
-- [ ] El equipo puede demostrar que detecta/filtra al menos un frame anómalo en tiempo real
-- [ ] El equipo explica en 2 frases la limitación de su contramedida
+- [ ] El participante puede demostrar que detecta/filtra al menos un frame anómalo en tiempo real
+- [ ] El participante explica en 2 frases la limitación de su contramedida
 
 ---
 
 ## D) Hoja de puntuación (rellenar durante el CTF)
 
-| Equipo | F1A | F1B | F1C | F2A | F2B | F2C | F2D | F3 | F4 | Bonus | Tiempo flags | TOTAL |
+| Participante | F1A | F1B | F1C | F2A | F2B | F2C | F2D | F3 | F4 | Bonus | Tiempo flags | TOTAL |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Equipo 1 | | | | | | | | | | | | |
-| Equipo 2 | | | | | | | | | | | | |
-| Equipo 3 | | | | | | | | | | | | |
-| Equipo 4 | | | | | | | | | | | | |
+| Participante 1 | | | | | | | | | | | | |
+| Participante 2 | | | | | | | | | | | | |
+| Participante 3 | | | | | | | | | | | | |
+| Participante 4 | | | | | | | | | | | | |
 
 **Puntos por flag:** F1 = 50/flag · F2 = 50/flag · F3 = 150 · F4 = 150 · Bonus = 100
 
@@ -122,7 +122,7 @@ Aceptar si:
 
 ## E) Cierre del CTF
 
-1. Anunciar los resultados y el equipo ganador
+1. Anunciar los resultados y el **participante ganador**
 2. Revisión colectiva de 10-15 min: el GM muestra los comandos correctos de cada fase
 3. Debate: *"¿Qué contramedidas habrían impedido cada fase?"*
 4. Recoger todas las hojas de flags firmadas (evidencia de participación)

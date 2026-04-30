@@ -49,9 +49,9 @@
 
 | Flaga | Erantzun zuzena | Nola balioztatu |
 |---|---|---|
-| FLAG-F1A | `0x244` | Taldeak 0x244 aldatzen dela erakusten du azeleratzailea mugitzean |
-| FLAG-F1B | `0x19B` | Taldeak 0x19B aldatzen dela erakusten du ateak irekitzerakoan |
-| FLAG-F1C | `0x01` | Taldeak 0x188-ko byte 0 = 01 erakusten du ezkerreko txandakatzearekin |
+| FLAG-F1A | `0x244` | Parte-hartzaileak 0x244 aldatzen dela erakusten du azeleratzailea mugitzean |
+| FLAG-F1B | `0x19B` | Parte-hartzaileak 0x19B aldatzen dela erakusten du ateak irekitzerakoan |
+| FLAG-F1C | `0x01` | Parte-hartzaileak 0x188-ko byte 0 = 01 erakusten du ezkerreko txandakatzearekin |
 
 **F1 iradokitako ahozko galdera:** *"Zergatik ez duzu framerik bidali fase honetan? Zer arrisku izango luke benetako ibilgailu batean?"*
 
@@ -96,19 +96,19 @@
 
 Onartu baldin eta:
 - [ ] Python kodea terminalean errorik gabe funtzionatzen badu
-- [ ] Taldeak denbora errealean frame anomaloa detektatu/filtratzen duela frogatu dezakeen
-- [ ] Taldeak 2 esalditan bere kontraneurriak duen mugapena azaltzen badu
+- [ ] Parte-hartzaileak denbora errealean frame anomaloa detektatu/filtratzen duela frogatu dezakeen
+- [ ] Parte-hartzaileak 2 esalditan bere kontraneurriak duen mugapena azaltzen badu
 
 ---
 
 ## D) Puntuazio-orria (CTF bitartean bete)
 
-| Taldea | F1A | F1B | F1C | F2A | F2B | F2C | F2D | F3 | F4 | Bonus | Flag denbora | TOTALA |
+| Parte-hartzailea | F1A | F1B | F1C | F2A | F2B | F2C | F2D | F3 | F4 | Bonus | Flag denbora | TOTALA |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1. Taldea | | | | | | | | | | | | |
-| 2. Taldea | | | | | | | | | | | | |
-| 3. Taldea | | | | | | | | | | | | |
-| 4. Taldea | | | | | | | | | | | | |
+| 1. Parte-hartzailea | | | | | | | | | | | | |
+| 2. Parte-hartzailea | | | | | | | | | | | | |
+| 3. Parte-hartzailea | | | | | | | | | | | | |
+| 4. Parte-hartzailea | | | | | | | | | | | | |
 
 **Flag bakoitzeko puntuak:** F1 = 50/flag · F2 = 50/flag · F3 = 150 · F4 = 150 · Bonus = 100
 
@@ -122,7 +122,7 @@ Onartu baldin eta:
 
 ## E) CTF-aren itxiera
 
-1. Emaitzak eta irabazle taldea iragarri
+1. Emaitzak eta **irabazle parte-hartzailea** iragarri
 2. 10-15 minutuko berrikuspena kolektiboa: GM-ak fase bakoitzeko komando zuzenak erakusten ditu
 3. Eztabaida: *"Zein kontraesanerako neurrik saihestu zezakeen fase bakoitza?"*
 4. Sinatu flag-orri guztiak bildu (partaidetza-ebidentzia)

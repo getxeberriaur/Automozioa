@@ -13,7 +13,7 @@
 >
 > Jardunbide susmagarria detektatu da enpresaren eraikinen sotoko aparkalekuan. Segurtasun sailak zuen taldea kontratatu du **baimendutako Red Team ariketa** bat egiteko, eta ibilgailuaren OBD-II konektoreraen sarbide fisikoa duen erasotzaile baten eragina frogatzeko.
 >
-> **90 minutu** daukazue. Helburu ibilgailua ICSim bidez simulatzen da `vcan0`-n.
+> **90 minutu** dituzu. Helburu ibilgailua ICSim bidez simulatzen da `vcan0`-n.
 
 ---
 
@@ -23,7 +23,7 @@
 2. Debekatuta dago laborategiko ingurunetik kanpoko sistemak erasotzea
 3. Flag bakoitza Game Master-ari (GM) eman behar zaio ebidentziarekin (komandoa + kaptura)
 4. GM-ak edozein flag-en ahozko azalpena eskatu dezake balioztatu aurretik
-5. Berdinketan, denbora gutxien erabili duen taldeak irabazten du
+5. Berdinketan, denbora gutxien erabili duen parte-hartzaileak irabazten du
 
 ---
 
@@ -125,7 +125,7 @@ Tresna guztiak `PATH`-en daude edo `../CANbus_ICSim_Ciber/scripts/`-en.
 
 ## BONUS FASEA — Kontraesanerako neurriak (Defentsa) · 15 min · 100 puntu
 
-**Testuingurua:** *Blue Team taldeak neurri tekniko erreala proposatu eta ezartzen du.*
+**Testuingurua:** *Parte-hartzaileak (Blue Team rola) neurri tekniko erreala proposatu eta ezartzen du.*
 
 `python-can` erabiliz **gutxienez bat** inplementatu:
 

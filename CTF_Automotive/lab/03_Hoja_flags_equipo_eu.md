@@ -1,5 +1,5 @@
 # CTF Automotive — UrbanFleet 2026
-## Flag-en entrega-orria (taldeko)
+## Flag-en entrega-orria (banakakoa)
 
 [Gaztelaniazko bertsioa](03_Hoja_flags_equipo.md)
 
@@ -7,11 +7,8 @@
 
 **Zentroa:** ________________________________  
 **Data:** ________________________________  
-**Taldearen izena:** ________________________________  
-**Kideak:**
-1. ________________________________
-2. ________________________________
-3. ________________________________
+**Parte-hartzailearen izena:** ________________________________  
+**Ikasturtea / taldea:** ________________________________
 
 **Hasiera ordua:** ____:____  
 **Entrega ordua:** ____:____
@@ -129,5 +126,5 @@ Muga nagusia:
 
 ---
 
-**Taldearen sinadura:** ________________________________  
+**Parte-hartzailearen sinadura:** ________________________________  
 **GM-aren sinadura:** ________________________________

@@ -3,13 +3,13 @@
 [Gaztelaniazko bertsioa](README.md)
 
 > Ibilgailuen zibersegurtasuneko CTF integratzailea: eraso/defentsa CAN bus simulatu baten gainean.  
-> Iraupena: **90 minutu** · 2-3 pertsonako taldeak · Maila: LH Zibersegurtasuna / Automozioa
+> Iraupena: **90 minutu** · **Banakakoa** · Maila: LH Zibersegurtasuna / Automozioa
 
 ---
 
 ## Deskribapena
 
-CTF tematikoa, non taldeek **Red Team** baten rola hartzen duten *UrbanFleet 2026* flota fiktizioko ibilgailu baten telemetria ECU bat erasotuz.  
+CTF tematikoa, non parte-hartzaile bakoitzak **Red Team** baten rola hartzen duen *UrbanFleet 2026* flota fiktizioko ibilgailu baten telemetria ECU bat erasotuz.  
 Ingurunea guztiz birtuala da: [ICSim](https://github.com/zombieCraig/ICSim) aginte-panelaren simulagailu gisa eta `vcan0` CAN interfaze birtual gisa. Ez da hardware errealrik behar.
 
 ## Aurrebaldintzak
@@ -52,8 +52,8 @@ CTF_Automotive/
 
 1. [`RUN_ME_FIRST_eu.md`](RUN_ME_FIRST_eu.md) irakurri eta ingurunea egiaztatu (30 minutu lehenago)
 2. [`04_Respuestas_master_eu.md`](lab/04_Respuestas_master_eu.md) inprimatu — **ez partekatu**
-3. [`01_Enunciado_participantes_eu.md`](lab/01_Enunciado_participantes_eu.md) banatu talde bakoitzari
-4. [`03_Hoja_flags_equipo_eu.md`](lab/03_Hoja_flags_equipo_eu.md) kopia bat eman talde bakoitzari
+3. [`01_Enunciado_participantes_eu.md`](lab/01_Enunciado_participantes_eu.md) banatu parte-hartzaile bakoitzari
+4. [`03_Hoja_flags_equipo_eu.md`](lab/03_Hoja_flags_equipo_eu.md) kopia bat eman parte-hartzaile bakoitzari
 5. Kronometroa martxan jarri eta Game Master gisa jardun
 
 ## Zailtasun aldaerak

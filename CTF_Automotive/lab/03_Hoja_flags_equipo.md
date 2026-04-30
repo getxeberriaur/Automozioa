@@ -1,5 +1,5 @@
 # CTF Automotive — UrbanFleet 2026
-## Hoja de entrega de flags (por equipo)
+## Hoja de entrega de flags (individual)
 
 [Bertsioa euskaraz](03_Hoja_flags_equipo_eu.md)
 
@@ -7,11 +7,8 @@
 
 **Centro:** ________________________________  
 **Fecha:** ________________________________  
-**Nombre del equipo:** ________________________________  
-**Integrantes:**
-1. ________________________________
-2. ________________________________
-3. ________________________________
+**Nombre del participante:** ________________________________  
+**Curso / grupo:** ________________________________
 
 **Hora de inicio:** ____:____  
 **Hora de entrega:** ____:____
@@ -129,5 +126,5 @@ Limitación principal:
 
 ---
 
-**Firma del equipo:** ________________________________  
+**Firma del participante:** ________________________________  
 **Firma del GM:** ________________________________

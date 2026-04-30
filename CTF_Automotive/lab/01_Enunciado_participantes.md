@@ -13,7 +13,7 @@
 >
 > Se ha detectado actividad sospechosa en el parking subterráneo del edificio corporativo. El departamento de seguridad ha contratado a vuestro equipo para realizar un **ejercicio de Red Team autorizado** y demostrar el impacto real de un atacante con acceso físico al conector OBD-II del vehículo.
 >
-> Disponéis de **90 minutos**. El vehículo objetivo está simulado mediante ICSim en `vcan0`.
+> Dispondrás de **90 minutos**. El vehículo objetivo está simulado mediante ICSim en `vcan0`.
 
 ---
 
@@ -23,7 +23,7 @@
 2. Está prohibido atacar sistemas ajenos al entorno de laboratorio
 3. Cada flag debe entregarse al Game Master (GM) con evidencia (comando + captura)
 4. El GM puede pedir explicación oral de cualquier flag antes de validarla
-5. En caso de empate en puntos, gana el equipo con menor tiempo total
+5. En caso de empate en puntos, gana el participante con menor tiempo total
 
 ---
 
@@ -125,7 +125,7 @@ Todas las herramientas están en `PATH` o en `../CANbus_ICSim_Ciber/scripts/`.
 
 ## FASE BONUS — Contramedidas (Defensa) · 15 min · 100 pts
 
-**Contexto:** *El equipo de Blue Team propone e implementa una contramedida técnica real.*
+**Contexto:** *El participante (rol Blue Team) propone e implementa una contramedida técnica real.*
 
 Implementar **al menos una** de las siguientes opciones en Python usando `python-can`:
 

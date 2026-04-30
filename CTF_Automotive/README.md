@@ -3,13 +3,13 @@
 [Bertsioa euskaraz](README_eu.md)
 
 > Ejercicio integrador de ciberseguridad en automoción: ataque/defensa sobre bus CAN simulado.  
-> Duración: **90 minutos** · Equipos de 2-3 personas · Nivel: FP Ciberseguridad / Automoción
+> Duración: **90 minutos** · **Individual** · Nivel: FP Ciberseguridad / Automoción
 
 ---
 
 ## Descripción
 
-CTF temático donde los equipos asumen el rol de un **Red Team** atacando la ECU de telemetría de un vehículo de la flota ficticia *UrbanFleet 2026*.  
+CTF temático donde cada participante asume el rol de un **Red Team** atacando la ECU de telemetría de un vehículo de la flota ficticia *UrbanFleet 2026*.  
 El entorno es completamente virtual: [ICSim](https://github.com/zombieCraig/ICSim) como simulador del cuadro de instrumentos y `vcan0` como interfaz CAN virtual. No se requiere hardware real.
 
 ## Prerequisito obligatorio
@@ -52,8 +52,8 @@ CTF_Automotive/
 
 1. Leer [`RUN_ME_FIRST.md`](RUN_ME_FIRST.md) y verificar el entorno (30 min antes)
 2. Imprimir [`04_Respuestas_master.md`](lab/04_Respuestas_master.md) — **no compartir**
-3. Distribuir [`01_Enunciado_participantes.md`](lab/01_Enunciado_participantes.md) a cada equipo
-4. Entregar una copia de [`03_Hoja_flags_equipo.md`](lab/03_Hoja_flags_equipo.md) a cada equipo
+3. Distribuir [`01_Enunciado_participantes.md`](lab/01_Enunciado_participantes.md) a cada participante
+4. Entregar una copia de [`03_Hoja_flags_equipo.md`](lab/03_Hoja_flags_equipo.md) a cada participante
 5. Arrancar el cronómetro y actuar como Game Master
 
 ## Variantes de dificultad

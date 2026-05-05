@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  icsim:
+    build: .
+    image: icsim-novnc:latest
+    container_name: icsim-lab
+    network_mode: "host"
+    cap_add:
+      - NET_ADMIN
+    shm_size: '1gb'
+    restart: unless-stopped
+    environment:
+      - DISPLAY=:1

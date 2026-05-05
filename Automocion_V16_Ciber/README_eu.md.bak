@@ -18,30 +18,30 @@ Biltegi hau honetarako pentsatuta dago:
 
 Lehen bertsio honetan, biltegiak irakaskuntza-saio bat eta 2 orduko laborategi bat prestatzeko oinarrizko dokumentazioa dauka:
 
-- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md](materiales/00_Guion_intro_30min_eu.md): 30 minutuko sarrera-gidoia.
-- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](materiales/01_Laboratorio_2h_eu.md): laborategi praktikoaren diseinua.
-- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md](lab/02_Checklist_configuracion_laboratorio_eu.md): irakaslearentzako prestaketa-checklista.
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md](lab/03_Setup_rapido_windows_eu.md): Windows-erako erreferentziazko konfigurazio azkarra.
+- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md): 30 minutuko sarrera-gidoia.
+- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md): laborategi praktikoaren diseinua.
+- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md): irakaslearentzako prestaketa-checklista.
+- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md](Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md): Windows-erako erreferentziazko konfigurazio azkarra.
 
 ## Dokumentazioaren aurkibidea
 
 ### Dokumentazioa euskaraz
 
-- [Automocion_V16_Ciber/RUN_ME_FIRST.md](RUN_ME_FIRST.md)
+- [Automocion_V16_Ciber/RUN_ME_FIRST.md](Automocion_V16_Ciber/RUN_ME_FIRST.md)
 - [README_eu.md](README_eu.md)
-- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md](materiales/00_Guion_intro_30min_eu.md)
-- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](materiales/01_Laboratorio_2h_eu.md)
-- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md](lab/02_Checklist_configuracion_laboratorio_eu.md)
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md](lab/03_Setup_rapido_windows_eu.md)
-- [Automocion_V16_Ciber/lab/05_Demo_Ahultasunak_Help_Flash_eu.md](lab/05_Demo_Ahultasunak_Help_Flash_eu.md) — Demo CVE-2025-65855 (irakasleak)
+- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md)
+- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md)
+- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md)
+- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md](Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md)
+- [Automocion_V16_Ciber/lab/05_Demo_Ahultasunak_Help_Flash_eu.md](Automocion_V16_Ciber/lab/05_Demo_Ahultasunak_Help_Flash_eu.md) — Demo CVE-2025-65855 (irakasleak)
 
 ### Gaztelaniazko dokumentazioa
 
 - [README.md](README.md)
-- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md](materiales/00_Guion_intro_30min.md)
-- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](materiales/01_Laboratorio_2h.md)
-- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](lab/02_Checklist_configuracion_laboratorio.md)
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md](lab/03_Setup_rapido_windows.md)
+- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md)
+- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md)
+- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md)
+- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md](Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md)
 
 ## Biltegiaren egitura
 
@@ -104,9 +104,9 @@ Dokumentazioan lantzen diren kontrolen artean daude:
 
 Klaseko euskarri gisa bakarrik erabili nahi baduzu:
 
-1. berrikusi sarrera-gidoia [Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md](materiales/00_Guion_intro_30min_eu.md) fitxategian;
-2. egokitu saio praktikoa [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](materiales/01_Laboratorio_2h_eu.md) dokumentuarekin;
-3. erabili [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md](lab/02_Checklist_configuracion_laboratorio_eu.md) fitxategiko checklista saioa eman aurretik.
+1. berrikusi sarrera-gidoia [Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md) fitxategian;
+2. egokitu saio praktikoa [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md) dokumentuarekin;
+3. erabili [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md) fitxategiko checklista saioa eman aurretik.
 
 ### 2. aukera: laborategi exekutagarri bihurtzea
 
@@ -152,11 +152,11 @@ Uneko egoera:
 
 Biltegiak lehen oinarri exekutagarri bat dauka jada:
 
-- [Automocion_V16_Ciber/backend/app.py](backend/app.py): eskema-balidazioa, denbora-leihoa, anti-replay kontrola, tasa-kontrola eta logging-a dituen API lokala.
-- [Automocion_V16_Ciber/simulator/send_event.py](simulator/send_event.py): `legitimo`, `replay`, `timestamp-atrasado`, `coordenadas-invalidas`, `identidad-invalida` eta `rafaga` eszenatokiak dituen simulagailua.
-- [Automocion_V16_Ciber/samples/event_legitimo.json](samples/event_legitimo.json): payload adibidea.
-- [Automocion_V16_Ciber/RUN_ME_FIRST.md](RUN_ME_FIRST.md): hasierako abiarazte azkarra.
-- [Automocion_V16_Ciber/requirements.txt](requirements.txt): laborategiaren mendekotasunak.
+- [Automocion_V16_Ciber/backend/app.py](Automocion_V16_Ciber/backend/app.py): eskema-balidazioa, denbora-leihoa, anti-replay kontrola, tasa-kontrola eta logging-a dituen API lokala.
+- [Automocion_V16_Ciber/simulator/send_event.py](Automocion_V16_Ciber/simulator/send_event.py): `legitimo`, `replay`, `timestamp-atrasado`, `coordenadas-invalidas`, `identidad-invalida` eta `rafaga` eszenatokiak dituen simulagailua.
+- [Automocion_V16_Ciber/samples/event_legitimo.json](Automocion_V16_Ciber/samples/event_legitimo.json): payload adibidea.
+- [Automocion_V16_Ciber/RUN_ME_FIRST.md](Automocion_V16_Ciber/RUN_ME_FIRST.md): hasierako abiarazte azkarra.
+- [Automocion_V16_Ciber/requirements.txt](Automocion_V16_Ciber/requirements.txt): laborategiaren mendekotasunak.
 
 ## Gomendatutako hurrengo urratsak
 

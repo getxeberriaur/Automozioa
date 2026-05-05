@@ -18,29 +18,29 @@ Este repositorio está pensado para:
 
 En esta primera versión, el repositorio contiene documentación base para preparar una sesión docente y un laboratorio de 2 horas:
 
-- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md](materiales/00_Guion_intro_30min.md): guion de introducción de 30 minutos.
-- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](materiales/01_Laboratorio_2h.md): diseño del laboratorio práctico.
-- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](lab/02_Checklist_configuracion_laboratorio.md): checklist docente de preparación.
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md](lab/03_Setup_rapido_windows.md): guía rápida de referencia para Windows.
+- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md): guion de introducción de 30 minutos.
+- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md): diseño del laboratorio práctico.
+- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md): checklist docente de preparación.
+- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md](Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md): guía rápida de referencia para Windows.
 
 ## Índice de documentación
 
 ### Documentación en castellano
 
-- [Automocion_V16_Ciber/RUN_ME_FIRST.md](RUN_ME_FIRST.md)
-- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md](materiales/00_Guion_intro_30min.md)
-- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](materiales/01_Laboratorio_2h.md)
-- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](lab/02_Checklist_configuracion_laboratorio.md)
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md](lab/03_Setup_rapido_windows.md)
-- [Automocion_V16_Ciber/lab/05_Demo_Vulnerabilidades_Help_Flash.md](lab/05_Demo_Vulnerabilidades_Help_Flash.md) — Demo CVE-2025-65855 (docente)
+- [Automocion_V16_Ciber/RUN_ME_FIRST.md](Automocion_V16_Ciber/RUN_ME_FIRST.md)
+- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md)
+- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md)
+- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md)
+- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md](Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md)
+- [Automocion_V16_Ciber/lab/05_Demo_Vulnerabilidades_Help_Flash.md](Automocion_V16_Ciber/lab/05_Demo_Vulnerabilidades_Help_Flash.md) — Demo CVE-2025-65855 (docente)
 
 ### Documentación en euskara
 
 - [README_eu.md](README_eu.md)
-- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md](materiales/00_Guion_intro_30min_eu.md)
-- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](materiales/01_Laboratorio_2h_eu.md)
-- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md](lab/02_Checklist_configuracion_laboratorio_eu.md)
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md](lab/03_Setup_rapido_windows_eu.md)
+- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md)
+- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md)
+- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md)
+- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md](Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md)
 
 ## Estructura del repositorio
 
@@ -103,9 +103,9 @@ Los controles que se trabajan en la documentación incluyen:
 
 Si quieres usarlo solo como soporte de clase:
 
-1. revisa el guion de introducción en [Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md](materiales/00_Guion_intro_30min.md);
-2. adapta la sesión práctica con [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](materiales/01_Laboratorio_2h.md);
-3. utiliza la checklist de [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](lab/02_Checklist_configuracion_laboratorio.md) antes de impartirla.
+1. revisa el guion de introducción en [Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md);
+2. adapta la sesión práctica con [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md);
+3. utiliza la checklist de [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md) antes de impartirla.
 
 ### Opción 2: evolucionarlo a laboratorio ejecutable
 
@@ -151,11 +151,11 @@ Estado actual:
 
 El repositorio ya incluye una primera base ejecutable:
 
-- [Automocion_V16_Ciber/backend/app.py](backend/app.py): API local con validación de esquema, ventana temporal, control anti-replay, control de tasa y logging.
-- [Automocion_V16_Ciber/simulator/send_event.py](simulator/send_event.py): simulador con escenarios `legitimo`, `replay`, `timestamp-atrasado`, `coordenadas-invalidas`, `identidad-invalida` y `rafaga`.
-- [Automocion_V16_Ciber/samples/event_legitimo.json](samples/event_legitimo.json): ejemplo de payload.
-- [Automocion_V16_Ciber/RUN_ME_FIRST.md](RUN_ME_FIRST.md): arranque rápido.
-- [Automocion_V16_Ciber/requirements.txt](requirements.txt): dependencias del laboratorio.
+- [Automocion_V16_Ciber/backend/app.py](Automocion_V16_Ciber/backend/app.py): API local con validación de esquema, ventana temporal, control anti-replay, control de tasa y logging.
+- [Automocion_V16_Ciber/simulator/send_event.py](Automocion_V16_Ciber/simulator/send_event.py): simulador con escenarios `legitimo`, `replay`, `timestamp-atrasado`, `coordenadas-invalidas`, `identidad-invalida` y `rafaga`.
+- [Automocion_V16_Ciber/samples/event_legitimo.json](Automocion_V16_Ciber/samples/event_legitimo.json): ejemplo de payload.
+- [Automocion_V16_Ciber/RUN_ME_FIRST.md](Automocion_V16_Ciber/RUN_ME_FIRST.md): arranque rápido.
+- [Automocion_V16_Ciber/requirements.txt](Automocion_V16_Ciber/requirements.txt): dependencias del laboratorio.
 
 ## Próximos pasos recomendados
 

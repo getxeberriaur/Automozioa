@@ -18,3 +18,6 @@ Automocion_V16_Ciber/reports/*
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Backups
+*.bak

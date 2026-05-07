@@ -10,6 +10,7 @@ RUN apt-get update \
     libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev \
     xvfb x11vnc websockify novnc can-utils iproute2 sudo iputils-ping \
     ca-certificates wget net-tools procps \
+    openbox xdotool xauth x11-xserver-utils tint2 \
  && rm -rf /var/lib/apt/lists/*
 
 # Clone and build ICSim

@@ -2,70 +2,65 @@
 
 [Bertsioa euskaraz](RUN_ME_FIRST_eu.md)
 
-> Tiempo estimado: **10 minutos** (asumiendo que la VM Linux ya está lista y can-utils + ICSim compilados).
+> Tiempo estimado: **5 minutos** con Docker (método recomendado).
 
 ---
 
-## Paso 1 — Levantar la interfaz CAN virtual
+## Método recomendado — Docker
+
+### Paso 1 — Construir la imagen
 
 ```bash
-sudo bash scripts/setup_vcan.sh
+cd CANbus_ICSim_Ciber
+docker build -t icsim:local .
 ```
 
-Verificar:
+> Solo es necesario la primera vez o cuando se modifique el `Dockerfile`.
+
+### Paso 2 — Arrancar el contenedor
+
 ```bash
-ip link show vcan0
-# Debe mostrar: vcan0: <NOARP,UP,LOWER_UP> ...
+docker run --name icsim_run --network host --cap-add NET_ADMIN -d icsim:local
 ```
 
----
+El contenedor levanta automáticamente:
+- Interfaz CAN virtual `vcan0`
+- ICSim (velocímetro) y controls (mando)
+- Servidor VNC + noVNC en puerto `6080`
 
-## Paso 2 — Iniciar ICSim (cuadro de mandos)
+### Paso 3 — Abrir la interfaz gráfica
 
-Abrir terminal 1:
+Abre en el navegador:
+```
+http://localhost:6080/vnc_lite.html
+```
+
+Verás dos ventanas con barra de título (openbox) y una barra de tareas (tint2):
+- **Velocímetro** (icsim) — arriba
+- **Mando de control** (controls) — abajo
+
+### Paso 4 — Verificar tráfico en bus
+
+Desde tu terminal (host), conéctate al bus virtual dentro del contenedor:
+
 ```bash
-./ICSim/icsim vcan0
+docker exec -it icsim_run candump vcan0
 ```
-Aparecerá una ventana gráfica con velocímetro, intermitentes y estado de puertas.
 
----
-
-## Paso 3 — Iniciar el mando de control
-
-Abrir terminal 2:
-```bash
-./ICSim/controls vcan0
-```
-Usar teclado o gamepad para interactuar. Las teclas por defecto:
-- `W/S` — acelerar / frenar (velocidad)
-- `Q/E` — intermitente izquierda / derecha
-- `1/2/3/4` — bloquear/desbloquear puertas
-
----
-
-## Paso 4 — Verificar tráfico en bus
-
-Abrir terminal 3:
-```bash
-candump vcan0
-```
-Debes ver tramas fluyendo. Ejemplo de salida:
+Debes ver tramas fluyendo. Ejemplo:
 ```
 vcan0  244   [8]  00 00 00 00 00 00 00 00
 vcan0  188   [8]  00 00 00 00 00 00 00 00
 vcan0  19B   [8]  0F 00 00 00 00 00 00 00
 ```
 
----
+### Paso 5 — Ejecutar la primera inyección de prueba
 
-## Paso 5 — Ejecutar la primera inyección de prueba
-
-Abrir terminal 4:
 ```bash
-# Subir velocidad al máximo en el cuadro de mandos
-cansend vcan0 244#00000000FF000000
+docker exec -it icsim_run cansend vcan0 244#00000000FF000000
 ```
-Observar el velocímetro de ICSim subir.
+
+Observar el velocímetro de ICSim subir en el navegador.
 
 ---
 
@@ -74,6 +69,44 @@ Observar el velocímetro de ICSim subir.
 Si el velocímetro responde a `cansend`, el entorno está listo. Continúa con:
 
 → **[Práctica A — Reconocimiento](lab/04_Practica_A_Reconocimiento.md)**
+
+---
+
+## Comandos útiles del contenedor
+
+```bash
+# Ver logs del contenedor
+docker logs -f icsim_run
+
+# Abrir shell dentro del contenedor
+docker exec -it icsim_run bash
+
+# Parar el contenedor
+docker stop icsim_run
+
+# Eliminar el contenedor (para empezar de nuevo)
+docker rm -f icsim_run
+```
+
+---
+
+## Método alternativo — Instalación nativa en Linux
+
+> Solo si no puedes usar Docker. Ver [`lab/02_Checklist_configuracion_laboratorio.md`](lab/02_Checklist_configuracion_laboratorio.md) y [`lab/03_Setup_entorno_linux.md`](lab/03_Setup_entorno_linux.md).
+
+```bash
+# Levantar vcan0
+sudo bash scripts/setup_vcan.sh
+
+# Iniciar ICSim (terminal 1)
+./ICSim/builddir/icsim vcan0
+
+# Iniciar controls (terminal 2)
+./ICSim/builddir/controls vcan0
+
+# Verificar tráfico (terminal 3)
+candump vcan0
+```
 
 ---
 

@@ -39,6 +39,12 @@
 
 ## Requisitos mínimos
 
+### Opción A — Docker (recomendada, sin instalar dependencias)
+- **Docker** instalado en Linux/macOS/Windows (con WSL2).
+- **CPU:** 2 núcleos, 4 GB RAM.
+- El contenedor incluye ICSim, can-utils, Xvfb, openbox, tint2 y noVNC.
+
+### Opción B — Instalación nativa en Linux
 - **Sistema operativo:** Ubuntu 22.04 LTS o Kali Linux 2024+ (VM o bare metal).  
   *Windows no soporta SocketCAN de forma nativa. Ver `lab/03_Setup_entorno_linux.md` para opciones de VM.*
 - **CPU:** 2 núcleos, 4 GB RAM.

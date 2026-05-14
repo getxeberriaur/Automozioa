@@ -63,11 +63,16 @@ Impacto docente a remarcar:
 - Logging y correlación para detección de anomalías.
 - Revocación y respuesta ante incidente.
 
+> **Conexión con el lab:** los controles de nonce (`nonce_cache`), ventana temporal (`TIMESTAMP_WINDOW_SECONDS = 30`) y rate limiting (`RATE_LIMIT_MAX_EVENTS = 5`) están implementados en el backend. Los participantes los verán funcionar — y los romperán cambiando los valores.
+
 ### 0:26–0:30 | Puente al laboratorio (4 min)
 **Qué harán en 2h:**
-1. Generar tráfico legítimo y observarlo.
-2. Simular ataques de lógica (replay e inyección) en entorno controlado.
-3. Activar controles y medir mejora.
+1. Generar tráfico legítimo y observarlo en el panel visual y los logs.
+2. Simular ataques de lógica (replay, timestamp manipulado, identidad falsa, ráfaga) en entorno controlado y anotar los códigos HTTP de respuesta.
+3. **Hardening:** modificar parámetros del backend (`TIMESTAMP_WINDOW_SECONDS`, `RATE_LIMIT_MAX_EVENTS`) y medir el impacto directo — conectando la teoría de controles con líneas de código concretas.
+4. Documentar evidencias y redactar conclusiones en la plantilla de informe.
+
+> **Truco docente:** mostrar en pantalla el bloque de constantes de `backend/app.py` durante este puente. Los participantes verán que los controles que acabas de explicar son literalmente 4 líneas de código — desmitifica la seguridad y motiva el hardening.
 
 ---
 

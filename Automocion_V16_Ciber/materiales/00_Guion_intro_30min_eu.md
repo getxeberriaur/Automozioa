@@ -63,11 +63,16 @@ Azpimarratzeko inpaktu didaktikoa:
 - Anomaliak detektatzeko logging-a eta korrelazioa.
 - Ezeztapena eta gorabeheren aurreko erantzuna.
 
+> **Laborategiarekiko lotura:** nonce-aren kontrolak (`nonce_cache`), denbora-leihoa (`TIMESTAMP_WINDOW_SECONDS = 30`) eta rate limiting-a (`RATE_LIMIT_MAX_EVENTS = 5`) backend-ean inplementatuta daude. Parte-hartzaileek funtzionatzen ikusteko aukera izango dute — eta balioak aldatuta hautsi ere bai.
+
 ### 0:26–0:30 | Laborategirako zubia (4 min)
 **2 orduan egingo dutena:**
-1. Trafiko legitimoa sortu eta behatu.
-2. Logika-erasoak simulatu ingurune kontrolatuan (replay-a eta injekzioa).
-3. Kontrolak aktibatu eta hobekuntza neurtu.
+1. Trafiko legitimoa sortu eta panel bisualean eta log-etan behatu.
+2. Logika-erasoak simulatu ingurune kontrolatuan (replay-a, timestamp manipulatua, identitate faltsua, ráfaga) eta HTTP erantzun-kodeak idatzi.
+3. **Hardening-a:** backend-aren parametroak aldatu (`TIMESTAMP_WINDOW_SECONDS`, `RATE_LIMIT_MAX_EVENTS`) eta zuzeneko eragina neurtu — kontrol-teoria kode-lerro zehatz batzuekin lotuz.
+4. Ebidentziak dokumentatu eta ondorioak txostenaren txantiloian idatzi.
+
+> **Truko didaktikoa:** `backend/app.py`-ren konstante-blokea pantailan erakutsi zubi honetan. Parte-hartzaileek ikusiko dute azaldu berri dituzun kontrolak literalki 4 kode-lerro direla — segurtasuna desmitifikatzen du eta hardening-a motibatzen.
 
 ---
 

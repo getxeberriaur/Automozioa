@@ -24,7 +24,7 @@ RUN useradd -m -s /bin/bash labuser && chown -R labuser:labuser /opt/ICSim
 
 # Add entrypoint and lab helper
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN sed -i 's/\r$//' /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/entrypoint.sh
 
 # Ensure noVNC and websockify are available. Some distributions/packages
 # may not install the novnc proxy script to /usr/share/novnc/utils by

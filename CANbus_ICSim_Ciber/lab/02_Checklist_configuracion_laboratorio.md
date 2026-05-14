@@ -4,20 +4,35 @@
 
 ---
 
-## Opción recomendada — Docker ✅
+## ¿Linux o Windows? — Elige tu camino
+
+> **ICSim requiere `vcan`, un módulo del kernel Linux.** Docker Desktop en Windows usa un kernel Microsoft sin este módulo, por lo que **no es posible ejecutar el lab directamente en Windows con Docker Desktop.**
+
+| Situación del participante | Método recomendado |
+|---|---|
+| **Linux nativo** (Ubuntu, Kali, Debian…) | → [Opción A — Docker en Linux](#opción-a--docker-en-linux-recomendada) |
+| **Windows** | → [Opción B — VM VirtualBox con OVA](#opción-b--vm-virtualbox-ova-para-windows) |
+| Sin internet / sin VM | → [Opción C — Instalación nativa Linux](#opción-c--instalación-nativa-en-linux) |
+
+---
+
+## Opción A — Docker en Linux (recomendada)
 
 Método más rápido y reproducible. No requiere compilar ICSim ni instalar SDL2.
 
 ### Requisitos
+- [ ] Linux con módulo `vcan` disponible (`sudo modprobe vcan` no da error).
 - [ ] Docker instalado (`docker --version` responde).
 - [ ] 4 GB RAM, 2 vCPU, 5 GB disco libre.
-- [ ] Linux con módulo `vcan` disponible (`modprobe vcan` no da error).
 
 ### Arranque
 ```bash
+# Cargar módulo vcan (solo la primera vez por sesión)
+sudo modprobe vcan
+
 cd CANbus_ICSim_Ciber
 docker build -t icsim:local .
-docker run --name icsim_run --network host --cap-add NET_ADMIN -d icsim:local
+docker run --name icsim_run -p 5901:5901 -p 6080:6080 --cap-add NET_ADMIN -d icsim:local
 ```
 
 ### Verificación
@@ -30,14 +45,51 @@ docker run --name icsim_run --network host --cap-add NET_ADMIN -d icsim:local
 
 | Problema | Acción |
 |---|---|
+| `modprobe vcan` falla | El kernel no tiene soporte CAN — usar Opción B o instalar kernel genérico |
 | Error "permission denied" en docker | `sudo usermod -aG docker $USER` + cerrar/abrir sesión |
 | Contenedor ya existe | `docker rm -f icsim_run` |
 | Puerto 6080 ocupado | `docker run ... -p 6081:6080 ...` y abrir `:6081` |
 | X server no arranca | `docker logs icsim_run` → buscar `/tmp/xvfb.log` |
+| `SIOCGIFINDEX: No such device` en logs | `vcan0` no existe — ejecutar `sudo modprobe vcan` en el host |
 
 ---
 
-## Opción alternativa — Instalación nativa en Linux
+## Opción B — VM VirtualBox + OVA (para Windows)
+
+> **Docker Desktop en Windows no soporta `vcan`** (el kernel Microsoft WSL2 no incluye `CONFIG_CAN_VCAN`). La solución más rápida para Windows es importar una VM preconfigurada.
+
+### Preparación del docente (una vez, antes del curso)
+
+1. En una máquina Linux, ejecutar el script de preparación:
+   ```bash
+   cd CANbus_ICSim_Ciber
+   sudo bash scripts/setup_ova_vm.sh
+   ```
+2. Apagar la VM: `sudo shutdown now`
+3. En VirtualBox: **Archivo → Exportar servicio virtualizado**
+   - Formato: `OVA 2.0`
+   - Nombre sugerido: `CANbus_ICSim_Lab.ova`
+4. Distribuir la OVA a los participantes (USB, servidor local, Google Drive…)
+
+### Setup del participante Windows (5 min)
+
+1. Instalar **VirtualBox** desde [https://www.virtualbox.org](https://www.virtualbox.org).
+2. Doble clic en `CANbus_ICSim_Lab.ova` → Importar.
+3. Iniciar la VM → usuario `canlab`.
+4. Abrir terminal en la VM y ejecutar:
+   ```bash
+   bash ~/Escritorio/Iniciar_ICSim_Lab.sh
+   ```
+5. Abrir en el navegador de la VM: `http://localhost:6080/vnc_lite.html`
+
+### Verificación (desde dentro de la VM)
+- [ ] `ip link show vcan0` muestra estado `UP`.
+- [ ] `http://localhost:6080/vnc_lite.html` muestra velocímetro y mando.
+- [ ] `candump vcan0` muestra tramas fluyendo.
+
+---
+
+## Opción C — Instalación nativa en Linux
 
 > Usar solo si Docker no está disponible en el aula.
 
@@ -49,7 +101,7 @@ docker run --name icsim_run --network host --cap-add NET_ADMIN -d icsim:local
 - [ ] Tarjeta gráfica con soporte OpenGL (para SDL2 / ventana ICSim).
 - [ ] Python 3.10+.
 
-> **Windows:** No soporta SocketCAN. Usar VM VirtualBox/VMware o WSL2 con kernel personalizado (complejo — no recomendado para aula).
+> **Windows:** Docker Desktop no soporta `vcan` (kernel Microsoft sin `CONFIG_CAN_VCAN`). Ver [Opción B — VM VirtualBox + OVA](#opción-b--vm-virtualbox-ova-para-windows).
 
 ---
 
@@ -167,6 +219,7 @@ Si el centro dispone de hardware USB-CAN (p.ej. dongle usbcan/BluePill+ del proy
 |---|---|
 | ICSim no compila | Usar imagen Docker (`docker build -t icsim:local .`) |
 | SDL2 no disponible en VM | Activar aceleración gráfica en settings de VM, o usar Docker |
-| `vcan0` desaparece al reiniciar | Añadir `setup_vcan.sh` a `/etc/rc.local` o systemd |
+| `vcan0` desaparece al reiniciar | El servicio `vcan0.service` del script `setup_ova_vm.sh` lo hace persistente |
 | Paquetes sin internet | Preparar USB con `.deb` de `can-utils`, `libsdl2-dev`, `libsdl2-image-dev` |
-| Equipo sin VM | Usar live USB Kali Linux con persistence, o Docker en Windows con WSL2 |
+| Windows sin VirtualBox | Usar live USB Kali Linux con persistence |
+| Docker Desktop en Windows no muestra ICSim | Esperado — usar Opción B (OVA) |

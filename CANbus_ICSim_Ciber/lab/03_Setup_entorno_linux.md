@@ -51,26 +51,31 @@ sudo reboot
 
 ---
 
-## Opción C — Docker (avanzado)
+## Opción C — Docker en Linux (recomendada si tienes Docker)
 
-> Requiere Docker Desktop en Windows + WSL2 backend, o Docker en Linux host.
+> Método más rápido. Requiere Linux con kernel que incluya `vcan`.
 
 ```bash
-# Crear contenedor privilegiado con soporte CAN
-docker run -it --privileged \
-  --cap-add=NET_ADMIN \
-  ubuntu:22.04 bash
+# 1. Levantar vcan0 en el host
+sudo bash scripts/setup_vcan.sh
+
+# 2. Construir la imagen (solo la primera vez)
+cd CANbus_ICSim_Ciber
+docker build -t icsim:local .
+
+# 3. Arrancar el contenedor
+docker run --name icsim_run --network host --cap-add NET_ADMIN -d icsim:local
+
+# 4. Abrir en el navegador
+# http://localhost:6080/vnc_lite.html
 ```
 
-Dentro del contenedor:
-```bash
-apt update && apt install -y can-utils python3 python3-pip
-modprobe vcan  # puede fallar en algunos kernels Docker
-ip link add dev vcan0 type vcan
-ip link set up vcan0
-```
+> **Nota sobre inyección:** `cansend vcan0 244#00000000FF000000` con un solo frame compite con las tramas continuas de ICSim. Para que el efecto sea visible, usar bucle:
+> ```bash
+> while true; do cansend vcan0 244#00000000FF000000; sleep 0.01; done
+> ```
 
-> **Limitación:** ICSim necesita SDL2 y pantalla gráfica — requiere X11 forwarding o VNC. No recomendado para aula sin experiencia en Docker.
+> **Windows:** Docker Desktop no soporta `vcan`. Ver [Opción A](#opción-a--máquina-virtual-recomendada-para-windows) o [Opción B](#opción-b--kali-linux-recomendada-si-el-centro-ya-la-usa).
 
 ---
 
@@ -175,5 +180,9 @@ cansend vcan0 244#00000000FF000000
 
 Antes de la sesión:
 1. Con todo instalado y funcionando, hacer snapshot de la VM: `VirtualBox → Máquina → Tomar Snapshot → "lab-listo"`.
-2. Distribuir la VM como `.ova` exportada si los equipos son distintos.
-3. Los participantes solo tienen que importar la `.ova` y ejecutar `setup_vcan.sh`.
+2. Para distribuir entre los participantes, usar el script de preparación automática y exportar como OVA:
+   ```bash
+   sudo bash scripts/setup_ova_vm.sh
+   # Al terminar: apagar VM y exportar desde VirtualBox → Archivo → Exportar servicio virtualizado
+   ```
+3. Los participantes solo tienen que importar la `.ova` y ejecutar `~/Escritorio/Iniciar_ICSim_Lab.sh`.

@@ -2,7 +2,19 @@
 
 [Gaztelaniazko bertsioa](RUN_ME_FIRST.md)
 
-> Estimatutako denbora: **10 minutu** (Linux VM prest dagoenean eta can-utils + ICSim konpilatuta daudenean).
+> Estimatutako denbora: **5 minutu** Docker-ekin Linuxen / **15 minutu** Windowsen VM batetik.
+
+---
+
+## Linux ala Windows?
+
+> **ICSim-ek `vcan` behar du, Linux kernel-eko modulu bat.**
+> Docker Desktop Windowsen Microsoft kernel bat erabiltzen du, modulu hau gabe — **Windowsen zuzenean ez du funtzionatzen.**
+
+| Sistema | Metodoa |
+|---|---|
+| **Linux natiboa** (Ubuntu, Kali…) | Jarraitu beheko urratsak |
+| **Windows** | Lehenik [konfiguratu Linux VM bat](lab/02_Checklist_configuracion_laboratorio_eu.md#b-aukera--virtualbox-vm--ova-windowserako), gero jarraitu urrats hauek VMren barrutik |
 
 ---
 
@@ -20,60 +32,102 @@ ip link show vcan0
 
 ---
 
-## 2. urratsa — ICSim abiarazi (aginte-panela)
+## 2. urratsa — Docker irudia eraiki
 
-1. terminala ireki:
 ```bash
-./ICSim/builddir/icsim vcan0
+cd CANbus_ICSim_Ciber
+docker build -t icsim:local .
 ```
-Abiaduragailua, txandakatzaileak eta ateen egoera dituen leiho grafiko bat agertuko da.
+
+> Lehen aldiz soilik beharrezkoa da, edo `Dockerfile` aldatzen denean.
 
 ---
 
-## 3. urratsa — Kontrol-agintea abiarazi
+## 3. urratsa — Edukiontzia abiarazi
 
-2. terminala ireki:
 ```bash
-./ICSim/builddir/controls vcan0
+docker run --name icsim_run --network host --cap-add NET_ADMIN -d icsim:local
 ```
-Teklatua edo gamepad-a erabili interakziorako. Lehenetsitako teklak:
-- `W/S` — azeleratu / frenatu (abiadura)
-- `Q/E` — ezkerreko / eskuineko txandakatzearen adierazlea
-- `1/2/3/4` — ateak blokeatu/desblokeatu
+
+> `--network host` beharrezkoa da Linuxen, edukiontziak host-eko `vcan0` ikus dezan.
+
+Edukiontziak automatikoki abiarazten ditu:
+- ICSim (abiaduragailua) eta controls (agintea)
+- VNC + noVNC zerbitzaria `6080` atakan
 
 ---
 
-## 4. urratsa — Bus-eko trafikoa egiaztatu
+## 4. urratsa — Interfaze grafikoa ireki
 
-3. terminala ireki:
+Arakatzailean ireki:
+```
+http://localhost:6080/vnc_lite.html
+```
+
+Bi leiho ikusiko dituzu:
+- **Abiaduragailua** (icsim) — goian
+- **Kontrol-agintea** (controls) — behean
+
+Interakzionatu aginte-panelarekin teklatua erabiliz (geziak = azeleratu/frenatu, Q/E = txandakatzaileak).
+
+---
+
+## 5. urratsa — Bus-eko trafikoa egiaztatu
+
+Hostetik terminalean (ez edukiontziaren barruan):
+
 ```bash
 candump vcan0
 ```
-Tramak fluxuan ikusten dituzula egiaztatu behar duzu. Irteera adibidea:
+
+Tramak fluxuan ikusi behar dituzu:
 ```
-vcan0  244   [8]  00 00 00 00 00 00 00 00
+vcan0  244   [8]  00 00 00 00 1A 00 00 00
 vcan0  188   [8]  00 00 00 00 00 00 00 00
 vcan0  19B   [8]  0F 00 00 00 00 00 00 00
 ```
 
 ---
 
-## 5. urratsa — Lehen proba-injekzioa exekutatu
+## 6. urratsa — Lehen proba-injekzioa
 
-4. terminala ireki:
 ```bash
-# Abiaduragailua maximora igo aginte-panelean
+# Frame bakarra (efektua aldi batekoa da)
 cansend vcan0 244#00000000FF000000
+
+# Etengabeko efekturako (begizta jarraitua)
+while true; do cansend vcan0 244#00000000FF000000; sleep 0.01; done
 ```
-ICSim-en abiaduragailua igotzen ikusi.
+
+ICSim-en abiaduragailua igotzen ikusi arakatzailean.
+
+> **Oharra:** ICSim-ek etengabe bere tramak sortzen ditu. `cansend` bakar batek haiekin lehiatzen du eta agian ez da nabarituko. Begiztak injekzioak bus-a menderatzen duela bermatzen du.
 
 ---
 
 ## Dena funtzionatzen al du?
 
-`cansend`-ari abiaduragailua erantzuten badio, ingurunea prest dago. Jarraitu honela:
+`cansend` begiztari abiaduragailua erantzuten badio, ingurunea prest dago. Jarraitu honela:
 
 → **[A Praktika — Ezagutza](lab/04_Practica_A_Reconocimiento_eu.md)**
+
+---
+
+## Edukiontziaren komando erabilgarriak
+
+```bash
+# Edukiontziaren logak ikusi
+docker logs -f icsim_run
+
+# Shell ireki edukiontziaren barruan
+docker exec -it icsim_run bash
+
+# Edukiontzia gelditu
+docker stop icsim_run
+
+# Edukiontzia ezabatu (berrabiarazteko)
+docker rm -f icsim_run
+```
 
 ---
 
@@ -81,8 +135,10 @@ ICSim-en abiaduragailua igotzen ikusi.
 
 | Sintoma | Konponbidea |
 |---|---|
-| `vcan0` ez da agertzen | `sudo modprobe vcan` eta setup_vcan.sh berriz exekutatu |
-| ICSim-ek ez du leihoa irekitzen | `libsdl2-dev libsdl2-image-dev` instalatu |
-| `candump`-ek ez du ezer erakusten | ICSim eta controls martxan daudela egiaztatu |
-| `cansend`-ek socket errorea ematen du | `vcan0` UP egoera duela egiaztatu: `ip link set vcan0 up` |
+| `vcan0` ez da agertzen | `sudo modprobe vcan` eta `setup_vcan.sh` berriz exekutatu |
+| Edukiontziak berehala irteten du | `docker logs icsim_run` — entrypoint erroreak bilatu |
+| `candump`-ek ez du ezer erakusten | ICSim martxan dagoela egiaztatu: `docker logs icsim_run` |
+| `cansend`-ek ez du abiaduragailua mugitzen | Begizta erabili: `while true; do cansend vcan0 244#00000000FF000000; sleep 0.01; done` |
+| `cansend`-ek socket errorea ematen du | `vcan0` UP dagoela egiaztatu: `ip link show vcan0` |
+| Windowsen Docker-ek ez du funtzionatzen | Docker Desktop-ek ez du `vcan` onartzen — Linux VM erabili (ikus checklist) |
 | `python-can`-ek ez du inportatzen | venv aktibatu: `source .venv/bin/activate` |

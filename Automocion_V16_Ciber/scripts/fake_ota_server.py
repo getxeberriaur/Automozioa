@@ -60,27 +60,24 @@ SETTINGS_FILENAME = "settings_v18.json"
 # Nombre del firmware "malicioso" (en la demo es completamente benigno)
 FIRMWARE_FILENAME = "firmware_v99.bin"
 
-# Contenido del firmware benign (sería código malicioso en un ataque real)
-FIRMWARE_PAYLOAD = b"""
-##################################################################
-#  FIRMWARE DEMO  — CVE-2025-65855                              #
-#  Este fichero es BENIGNO y sirve solo como prueba de concepto #
-#  En un ataque real, aqui iria codigo ejecutable malicioso     #
-#  que daría al atacante control total del dispositivo          #
-##################################################################
-
-[DEMO] Firmware descargado con éxito desde el servidor falso.
-[DEMO] El dispositivo aceptó la actualización sin verificar:
-  - Identidad del servidor
-  - Firma digital del firmware
-  - Certificado TLS (no existe: HTTP plano)
-  - Integridad del contenido
-
-[CVE-2025-65855] Investigador original: Luis Miranda Acebedo
-[REF] https://github.com/LuisMirandaAcebedo/security_articles
-
-Timestamp: DEMO_TIMESTAMP
-"""
+# Contenido del firmware benigno (seria codigo malicioso en un ataque real)
+FIRMWARE_PAYLOAD = (
+    b"##################################################################\n"
+    b"#  FIRMWARE DEMO  - CVE-2025-65855                              #\n"
+    b"#  Este fichero es BENIGNO y sirve solo como prueba de concepto #\n"
+    b"#  En un ataque real, aqui iria codigo ejecutable malicioso     #\n"
+    b"#  que daria al atacante control total del dispositivo          #\n"
+    b"##################################################################\n\n"
+    b"[DEMO] Firmware descargado con exito desde el servidor falso.\n"
+    b"[DEMO] El dispositivo acepto la actualizacion sin verificar:\n"
+    b"  - Identidad del servidor\n"
+    b"  - Firma digital del firmware\n"
+    b"  - Certificado TLS (no existe: HTTP plano)\n"
+    b"  - Integridad del contenido\n\n"
+    b"[CVE-2025-65855] Investigador original: Luis Miranda Acebedo\n"
+    b"[REF] https://github.com/LuisMirandaAcebedo/security_articles\n\n"
+    b"Timestamp: DEMO_TIMESTAMP\n"
+)
 
 
 # ---------------------------------------------------------------------------

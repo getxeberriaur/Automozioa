@@ -233,9 +233,69 @@ python3 fake_ota_server.py
 
 ---
 
-### Paso 6 — Escenarios reales (5 min, debate)
+### Paso 6 — ¿Qué acceso tiene realmente el atacante? (5 min)
 
-**Mostrar y comentar brevemente:**
+> Esta es la pregunta que suele surgir en el aula justo después de ver la demo. Responderla bien es clave para que el impacto pedagógico sea correcto.
+
+**Respuesta corta:** en la demo, ninguno. En un ataque real con preparación previa, control total.
+
+#### Lo que hace la demo (benigno)
+
+```
+Baliza conecta al AP falso
+        │
+        ▼
+Descarga settings.json + firmware_v99.bin   ← fichero de texto benigno
+        │
+        ▼
+Se reinicia  →  FIN
+```
+
+La demo **no instala código ejecutable** en la baliza. El fichero `firmware_v99.bin` del repo es texto plano — demuestra que la descarga ocurre sin autenticación, pero no compromete el dispositivo. Al reiniciar, la baliza vuelve a su comportamiento normal.
+
+> **Decir en clase:** *"Lo que acabamos de ver no es 'hackear' la baliza en tiempo real. Es demostrar que la puerta está abierta. Lo peligroso es lo que un atacante podría meter por esa puerta si hubiera preparado el firmware con antelación."*
+
+#### Lo que haría un atacante real (requiere trabajo previo)
+
+Un firmware malicioso **diseñado específicamente para el hardware de esta baliza** podría conseguir:
+
+| Capacidad | Cómo | Impacto |
+|---|---|---|
+| **Backdoor persistente** | Firmware que abre túnel al atacante en cada arranque | Control remoto permanente aunque el usuario no lo sepa |
+| **Silenciar emergencias** | Firmware que desactiva la transmisión NB-IoT | La baliza parpadea pero no avisa a nadie |
+| **GPS falso** | Firmware que envía coordenadas inventadas | Falsas alertas en DGT, servicios de emergencia mal despachados |
+| **Acceso al APN privado** | La baliza ya está en la red Vodafone → el firmware abre un túnel hacia fuera | Acceso a la red interna de todas las balizas |
+| **Botnet de 250.000 dispositivos** | Distribución masiva del firmware malicioso aprovechando credenciales universales | DDoS, vigilancia GPS masiva, saturación de DGT |
+
+**Pero esto no es trivial** — requiere:
+1. Ingeniería inversa del firmware original (días o semanas de trabajo técnico)
+2. Conocer la arquitectura del microcontrolador del dispositivo
+3. Compilar código ejecutable para ese hardware específico
+4. Que el bootloader no tenga protecciones adicionales de escritura
+
+#### La distinción clave para el aula
+
+```
+DEMO PEDAGÓGICA:
+─────────────────────────────────────────────────────
+Baliza descarga fichero benigno
+→ Demuestra que NO verifica el origen
+→ Impacto real: ninguno
+→ Mensaje: "la puerta está abierta"
+
+ATAQUE REAL (preparación previa necesaria):
+─────────────────────────────────────────────────────
+Baliza descarga firmware compilado para su hardware
+→ Se ejecuta en cada arranque
+→ Impacto: control total y permanente del dispositivo
+→ Mensaje: "alguien pasó por esa puerta sin que lo supieras"
+```
+
+> **Mensaje clave para el aula:** *"Esta vulnerabilidad no es un ataque de película en tiempo real. Es más sutil y más grave: es un ataque de preparación y distribución. El atacante prepara el firmware malicioso una vez, crea el AP en un lugar público, y cualquier baliza que pase por ahí en modo OTA queda comprometida para siempre. El usuario nunca lo sabe porque los LEDs siguen parpadeando con normalidad."*
+
+---
+
+### Paso 7 — Escenarios reales (5 min, debate)
 
 | Escenario | Vector | Impacto |
 |---|---|---|

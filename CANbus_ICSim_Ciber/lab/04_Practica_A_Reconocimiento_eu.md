@@ -180,6 +180,12 @@ Ebidentzia-txantiloian bete (`reports/00_Ebidentzia_txosten_txantiloia.md`):
 > **Maila:** boluntarioen esplorazio · **Gutxi gorabeherako denbora:** 20 minutu  
 > Eranskin honek aurreko ariketetan ikusi dituzun datu berdinak ikertzaile profesionalek eta OEM-ek erabiltzen duten tresnarekin ikusteko aukera ematen du.
 
+> ⚠️ **Exekuzio ingurunea — garrantzitsua:**  
+> SavvyCAN **host makinan** exekutatzen da, ez Docker edukiontziaren barruan.  
+> Edukiontziak `--network host` eta `--cap-add NET_ADMIN` aukerarekin exekutatzen denez, edukiontziak sortutako `vcan0` interfazea host-aren kernelean zuzenean ikusgai geratzen da.  
+> Fluxua: `[ICSim + controls (Docker)] → vcan0 (host kernela) ← [SavvyCAN (host-a)]`  
+> Irakasleak aldi berean noVNC duen nabigatzailea (`localhost:6080`) eta SavvyCAN mahaigainean irekita eduki ditzake.
+
 ### Zer ekartzen du SavvyCAN-ek `cansniffer`-en aldean?
 
 | `cansniffer` (terminala) | SavvyCAN (GUI) |
@@ -190,14 +196,14 @@ Ebidentzia-txantiloian bete (`reports/00_Ebidentzia_txosten_txantiloia.md`):
 | Historial bisualik gabe | Historial osoa zoom-arekin |
 | Ez ditu DBC fitxategiak irakurtzen | DBC fitxategiak irakurtzen ditu (industria estandarra) |
 
-### Instalazio VMn (konpilatu gabe)
+### Instalazio host-ean (konpilatu gabe)
 
 ```bash
 # AppImage deskargatu (dependentziarik instalatu gabe)
 wget https://github.com/collin80/SavvyCAN/releases/latest/download/SavvyCAN-x86_64.AppImage
 chmod +x SavvyCAN-x86_64.AppImage
 
-# Zure VMn FUSE erabilgarri ez badago:
+# Zure sisteman FUSE erabilgarri ez badago:
 sudo apt install -y libfuse2
 
 # Exekutatu
@@ -206,7 +212,7 @@ sudo apt install -y libfuse2
 
 ### `vcan0`-ra konektatu
 
-1. ICSim eta `controls` ohiko moduan abiarazi
+1. Ziurtatu Docker edukiontziak exekutatzen ari dela (`docker ps` — `icsim_run` agertu behar da)
 2. SavvyCAN-en: **Connection → Open Connection Manager**
 3. **SocketCAN** hautatu, interfazea: `vcan0` → **Connect**
 4. Joan **Graph → Signal Graph View** atalera

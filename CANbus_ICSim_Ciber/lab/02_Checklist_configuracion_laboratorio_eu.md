@@ -52,6 +52,27 @@ docker run --name icsim_run --network host --cap-add NET_ADMIN -d icsim:local
 | `cansend` bakar batek ez du abiaduragailua mugitzen | Espero da — ICSim-ek bere tramak bidaltzen ditu etengabe. Begizta erabili: `while true; do cansend vcan0 244#00000000FF000000; sleep 0.01; done` |
 | `SIOCGIFINDEX: No such device` logeetan | `vcan0` ez dago — hostean `sudo modprobe vcan` exekutatu eta edukiontzia berrabiarazi |
 
+### 2. Eguneko SavvyCAN erakustaldi ia (irakaslea soilik)
+
+> SavvyCAN **host makinan** exekutatzen da, ez edukiontziaren barruan. Edukiontziak `vcan0` host-aren kernelean sortzen du (`--cap-add NET_ADMIN` aukerari esker), beraz SavvyCAN zuzenean konekta daiteke mahaigainetik.
+
+```bash
+# AppImage deskargatu host-ean (behin, ikastaroa baino lehen)
+wget https://github.com/collin80/SavvyCAN/releases/latest/download/SavvyCAN-x86_64.AppImage
+chmod +x SavvyCAN-x86_64.AppImage
+sudo apt install -y libfuse2   # exekutatzean errorea bada soilik
+
+# Egiaztatu vcan0 host-etik ikusgai dagoela (edukiontziak exekutatzen ari denean)
+ip link show vcan0   # interfazea erakutsi behar du
+
+# SavvyCAN abiarazi
+./SavvyCAN-x86_64.AppImage
+```
+
+- [ ] SavvyCAN errorerik gabe irekitzen da host-aren mahaigainean.
+- [ ] SavvyCAN-en: **Connection → Open Connection Manager → SocketCAN → `vcan0` → Connect**.
+- [ ] noVNC-n azeleragailua mugitzean (`localhost:6080`), tramak agertzen dira SavvyCAN-en.
+
 ---
 
 ## B aukera — VirtualBox VM + OVA (Windowserako)

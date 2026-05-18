@@ -52,6 +52,27 @@ docker run --name icsim_run -p 5901:5901 -p 6080:6080 --cap-add NET_ADMIN -d ics
 | X server no arranca | `docker logs icsim_run` → buscar `/tmp/xvfb.log` |
 | `SIOCGIFINDEX: No such device` en logs | `vcan0` no existe — ejecutar `sudo modprobe vcan` en el host |
 
+### Demo SavvyCAN del Día 2 (solo docente)
+
+> SavvyCAN se ejecuta **en el host**, no dentro del contenedor. El contenedor crea `vcan0` en el kernel del host (gracias a `--cap-add NET_ADMIN`), por lo que SavvyCAN puede conectarse a él directamente desde el escritorio.
+
+```bash
+# Descargar AppImage en el host (una vez, antes del curso)
+wget https://github.com/collin80/SavvyCAN/releases/latest/download/SavvyCAN-x86_64.AppImage
+chmod +x SavvyCAN-x86_64.AppImage
+sudo apt install -y libfuse2   # solo si da error al ejecutar
+
+# Verificar que vcan0 es visible desde el host (con el contenedor corriendo)
+ip link show vcan0   # debe mostrar la interfaz
+
+# Lanzar SavvyCAN
+./SavvyCAN-x86_64.AppImage
+```
+
+- [ ] SavvyCAN abre sin errores en el escritorio del host.
+- [ ] En SavvyCAN: **Connection → Open Connection Manager → SocketCAN → `vcan0` → Connect**.
+- [ ] Al mover el acelerador en noVNC (`localhost:6080`), aparecen tramas en SavvyCAN.
+
 ---
 
 ## Opción B — VM VirtualBox + OVA (para Windows)

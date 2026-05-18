@@ -190,6 +190,12 @@ Completar en el informe de evidencias (`reports/00_Plantilla_informe_evidencias.
 > **Nivel:** exploración voluntaria · **Tiempo estimado:** 20 minutos  
 > Este anexo permite ver los mismos datos de los ejercicios anteriores con la herramienta que usan los investigadores profesionales y los OEM.
 
+> ⚠️ **Entorno de ejecución — importante:**  
+> SavvyCAN se ejecuta **en la máquina host**, NO dentro del contenedor Docker.  
+> El contenedor corre con `--network host` y `--cap-add NET_ADMIN`, por lo que la interfaz `vcan0` que crea el contenedor queda visible directamente en el kernel del host.  
+> El flujo es: `[ICSim + controls (Docker)] → vcan0 (kernel host) ← [SavvyCAN (host)]`  
+> El docente puede tener simultáneamente el navegador con noVNC (`localhost:6080`) y SavvyCAN abierto en el escritorio.
+
 ### ¿Qué aporta SavvyCAN sobre `cansniffer`?
 
 | `cansniffer` (terminal) | SavvyCAN (GUI) |
@@ -200,14 +206,14 @@ Completar en el informe de evidencias (`reports/00_Plantilla_informe_evidencias.
 | Sin historial visual | Historial completo con zoom |
 | No lee archivos DBC | Lee archivos DBC (estándar industria) |
 
-### Instalación en la VM (sin compilar)
+### Instalación en el host (sin compilar)
 
 ```bash
 # Descargar AppImage (no requiere instalar dependencias)
 wget https://github.com/collin80/SavvyCAN/releases/latest/download/SavvyCAN-x86_64.AppImage
 chmod +x SavvyCAN-x86_64.AppImage
 
-# Si FUSE no está disponible en tu VM:
+# Si FUSE no está disponible en tu sistema:
 sudo apt install -y libfuse2
 
 # Ejecutar
@@ -216,7 +222,7 @@ sudo apt install -y libfuse2
 
 ### Conectar a `vcan0`
 
-1. Arrancar ICSim y `controls` como de costumbre
+1. Asegurarse de que el contenedor Docker está corriendo (`docker ps` — debe aparecer `icsim_run`)
 2. En SavvyCAN: **Connection → Open Connection Manager**
 3. Seleccionar **SocketCAN**, interfaz: `vcan0` → **Connect**
 4. Ir a **Graph → Signal Graph View**

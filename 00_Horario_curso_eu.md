@@ -12,9 +12,9 @@
 |---|---|
 | 09:00 – 09:30 | **Aurkezpena:** Ikastaroaren edukiak eta helburuak |
 | 09:30 – 10:30 | **Teoria: Paradigma Aldaketa** |
-| 10:30 – 11:30 | **Araudien Errepasoa** (UNECE R155) |
-| 11:30 – 12:00 | Atsedenaldia |
-| 12:00 – 14:00 | **I. Praktikoa: CAN Bus Laborategia — A Praktika (Ezagutza pasiboa)** |
+| 10:30 – 13:00 | **UNECE R155 eta ISO/SAE 21434 Araudia** (bloke zabaldua) |
+| 13:00 – 13:30 | Atsedenaldia |
+| 13:30 – 14:00 | **I. Praktikoa: CAN Bus Laborategia — A Praktika (Ingurunea eta sarrera)** |
 
 ### 09:30 – 10:30 | Teoria: Paradigma Aldaketa
 
@@ -22,26 +22,47 @@
 - **Azaldu beharrekoa:** ECU (Electronic Control Unit) bakoitza ordenagailu txiki bat da. Auto moderno batek 100 ECU baino gehiago izan ditzake, Ethernet, CAN eta LIN bidez komunikatuak.
 - **Adibide praktikoa:** "Jeep Hack" (2015). Nola lortu zuten bolantea eta balaztak kontrolatzea urrunetik, entretenimendu sistemaren bidez.
 
-### 10:30 – 11:30 | Araudien Errepasoa (UNECE R155)
+### 10:30 – 13:00 | UNECE R155 eta ISO/SAE 21434 Araudia (bloke zabaldua)
 
-- Instituzio arautzaileak eta betebeharrak
-- Fitxa teknikoak
-- ISO/SAE 21434 sarrera
+**10:30 – 11:15 — UNECE R155 arau esparrua**
+- Jatorria eta testuingurua: zergatik sortu zen R155?
+- Aplikazio eremua: zein ibilgailu eta fabrikatzaile dauden eraginda
+- Fabrikatzailearen betebeharrak: CSMS (Cybersecurity Management System)
+- Indarrean jartzeko egutegia: 2022 (mota berriak) / 2024 (ibilgailu berri guztiak)
+- Homologazio eta auditoretza organoak: TÜV, DEKRA, IDIADA…
 
-### 12:00 – 14:00 | I. Praktikoa — CAN Bus: A Praktika (Ezagutza pasiboa)
+**11:15 – 12:00 — ISO/SAE 21434: Zibersegurtasun ingeniaritza**
+- R155 eta ISO/SAE 21434 artearen erlazioa
+- Ibilgailuaren zibersegurtasun bizitza-zikloa (concept → development → production → decommissioning)
+- TARA (Threat Analysis and Risk Assessment): mehatxuak identifikatu eta arriskuak baloratu
+- Rolak eta erantzukizunak: OEM, Tier-1, Tier-2
+- Fitxa teknikoak eta beharrezko dokumentazioa
+
+**12:00 – 12:30 — Betetze-ezaren kasu errealak eta ondorioak**
+- Ahultasun ezagunengatik merkatutik kendu diren ibilgailuak
+- Homologazio ziurtagirian duen eragina
+- Eztabaida: V16 balizak eta CVE-2025-65855, segurtasun akatsak dituen homologatutako gailuaren adibide gisa (3. eguneko aurreikuspena)
+
+**12:30 – 13:00 — Tailer eta LHri aplikazioa**
+- R155-ek automozio tailerrarentzat zer esan nahi duen
+- Security Gateway: zergatik blokeatzen duten ibilgailu berriek ziurtatu gabeko diagnostiko tresnak
+- Nola landu daiteke hau ikasgelan? LH moduluekin konexioa
+
+### 13:30 – 14:00 | I. Praktikoa — CAN Bus: A Praktika (Ingurunea eta sarrera)
 
 > Dokumentazioa: [`CANbus_ICSim_Ciber/lab/04_Practica_A_Reconocimiento_eu.md`](CANbus_ICSim_Ciber/lab/04_Practica_A_Reconocimiento_eu.md)
 
-**12:00 – 12:30 — Ingurunea konfiguratu**
-- `setup_vcan.sh` exekutatu → `vcan0` interfazea altxatu
-- ICSim abiarazi (`./icsim vcan0` + `./controls vcan0`)
-- `candump vcan0` lehen ikuspegia: pantaila datuz beteko da
-- Erronka: zer gertatzen da azeleragailua sakatzean? (`0x244` IDa)
+> **Oharra:** Ingurunearen sarrera blokea. A Praktika osoa (ezagutza pasiboa) 2. egunaren hasieran garatzen da.
 
-**12:30 – 14:00 — A Praktika: Ezagutza pasiboa**
-- `can_scanner.py`: ID guztiak maiztasunarekin zerrendatu
-- `cansniffer`: ekintza ↔ byte-aldaketa korrelazioa
-- Helburua: abiadura, ateak eta txandakatze-adierazleen IDak identifikatu
+**13:30 – 13:45 — Ingurunea konfiguratu**
+- Docker edukiontzia abiarazi: `docker run --name icsim_run --network host --cap-add NET_ADMIN -d icsim:local`
+- Interfazea nabigatzailean ireki: `http://localhost:6080/vnc_lite.html`
+- `candump vcan0` lehen ikuspegia: pantaila datuz beteko da
+
+**13:45 – 14:00 — Lehen esplorazioa**
+- Erronka: zer gertatzen da azeleragailua sakatzean? (`0x244` IDa bilatu)
+- `controls`-en ekintza fisikoa eta `candump`-en CAN trama arteko erlazioa behatu
+- Ingurumena bihar jarraitzeko prest utzi
 
 ---
 
@@ -51,15 +72,27 @@
 
 | Ordutegia | Blokea |
 |---|---|
-| 09:00 – 10:30 | **Teoria: Alderantzizko Ingeniaritzako Teknikak** |
+| 09:00 – 09:30 | **I. Praktikoa: CAN Bus Laborategia — A Praktika osoa (Ezagutza pasiboa)** |
+| 09:30 – 10:30 | **Teoria: Alderantzizko Ingeniaritzako Teknikak** |
 | 10:30 – 11:30 | **II. Praktikoa: CAN Bus Laborategia — B Praktika (Frame Injekzioa)** |
 | 11:30 – 12:00 | Atsedenaldia |
 | 12:00 – 13:00 | **III. Praktikoa: CAN Bus Laborategia — C Praktika (Replay Erasoa)** |
 | 13:00 – 14:00 | **IV. Praktikoa: CAN Bus Laborategia — D Praktika (Fuzzing eta DoS)** |
 
-### 09:00 – 10:30 | Teoria: Alderantzizko Ingeniaritzako Teknikak
+### 09:00 – 09:30 | I. Praktikoa — CAN Bus: A Praktika osoa (Ezagutza pasiboa)
 
-**09:00 – 09:15 — Erakustaldi proiektatua: SavvyCAN (irakasleak)**
+> Dokumentazioa: [`CANbus_ICSim_Ciber/lab/04_Practica_A_Reconocimiento_eu.md`](CANbus_ICSim_Ciber/lab/04_Practica_A_Reconocimiento_eu.md)
+
+> 1. egunean laborategia konfiguratu genuen eta lehen esplorazioa egin genuen. Orain A Praktika osatzen dugu.
+
+- `can_scanner.py`: ID guztiak maiztasunarekin zerrendatu
+- `cansniffer`: ekintza ↔ byte-aldaketa korrelazioa
+- Helburua: abiadura, ateak eta txandakatze-adierazleen IDak identifikatu
+- Ondorioak fitxa teknikoan dokumentatu
+
+### 09:30 – 10:30 | Teoria: Alderantzizko Ingeniaritzako Teknikak
+
+**09:30 – 09:45 — Erakustaldi proiektatua: SavvyCAN (irakasleak)**
 
 > Irakaslea SavvyCAN `vcan0`-ra konektatuta proiektatzen du `controls`-en azeleragailua mugitzen duen bitartean. Parte-hartzaileek denbora errealean ikusten dute `0x244` IDaren byteek gorantz doan kurba nola marrazten duten — atzo `cansniffer`-ekin testuan ikusi zuten datu bera, orain profesional batek bezala grafikatuta.
 >
@@ -67,7 +100,7 @@
 >
 > Erreferentzia: [SavvyCAN](https://github.com/collin80/SavvyCAN) — kode irekiko GUI-a, SocketCAN (`vcan0`) onartzen du Linux-en.
 
-**09:15 – 10:30 — Alderantzizko ingeniaritza: teoria eta metodologia**
+**09:45 – 10:30 — Alderantzizko ingeniaritza: teoria eta metodologia**
 
 - Segundoko milaka trama artean komando espezifiko bat nola isolatu
 - CAN trafiko-azterketa metodologia: kaptura → iragazketa → korrelazioa → hipotesia → egiaztapena

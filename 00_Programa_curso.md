@@ -12,9 +12,9 @@
 |---|---|
 | 09:00 – 09:30 | **Presentación:** Contenidos y objetivos del curso |
 | 09:30 – 10:30 | **Teoría: Cambio de Paradigma** |
-| 10:30 – 11:30 | **Repaso de Normativa** (UNECE R155) |
-| 11:30 – 12:00 | Descanso |
-| 12:00 – 14:00 | **I. Práctica: Laboratorio CAN Bus — Práctica A (Reconocimiento pasivo)** |
+| 10:30 – 13:00 | **Normativa UNECE R155 e ISO/SAE 21434** (bloque ampliado) |
+| 13:00 – 13:30 | Descanso |
+| 13:30 – 14:00 | **I. Práctica: Laboratorio CAN Bus — Práctica A (Introducción y entorno)** |
 
 ### 09:30 – 10:30 | Teoría: Cambio de Paradigma
 
@@ -22,26 +22,47 @@
 - **Conceptos:** Cada ECU (Electronic Control Unit) es un pequeño ordenador. Un vehículo moderno puede tener más de 100 ECUs comunicadas por Ethernet, CAN y LIN.
 - **Ejemplo práctico:** "Jeep Hack" (2015). Cómo lograron controlar el volante y los frenos remotamente a través del sistema de entretenimiento.
 
-### 10:30 – 11:30 | Repaso de Normativa (UNECE R155)
+### 10:30 – 13:00 | Normativa UNECE R155 e ISO/SAE 21434 (bloque ampliado)
 
-- Organismos reguladores y obligaciones
-- Fichas técnicas
-- Introducción a ISO/SAE 21434
+**10:30 – 11:15 — Marco regulatorio UNECE R155**
+- Origen y contexto: ¿por qué surge R155?
+- Ámbito de aplicación: qué vehículos y fabricantes están afectados
+- Obligaciones del fabricante: CSMS (Cybersecurity Management System)
+- Calendario de entrada en vigor: 2022 (nuevos tipos) / 2024 (todos los vehículos nuevos)
+- Organismos de aprobación y auditoría: TÜV, DEKRA, IDIADA…
 
-### 12:00 – 14:00 | I. Práctica — CAN Bus: Práctica A (Reconocimiento pasivo)
+**11:15 – 12:00 — ISO/SAE 21434: Ingeniería de ciberseguridad**
+- Relación entre R155 y la norma ISO/SAE 21434
+- Ciclo de vida de ciberseguridad del vehículo (concept → development → production → decommissioning)
+- TARA (Threat Analysis and Risk Assessment): identificar amenazas y valorar riesgos
+- Roles y responsabilidades: OEM, Tier-1, Tier-2
+- Fichas técnicas y documentación requerida
+
+**12:00 – 12:30 — Casos reales de incumplimiento y consecuencias**
+- Vehículos retirados del mercado por vulnerabilidades conocidas
+- Impacto en la certificación de homologación
+- Debate: balizas V16 y CVE-2025-65855 como ejemplo de dispositivo homologado con fallos de seguridad (avance del Día 3)
+
+**12:30 – 13:00 — Aplicación al taller y a la FP**
+- ¿Qué implica R155 para el taller de automoción?
+- Security Gateway: por qué los vehículos nuevos bloquean herramientas de diagnóstico no certificadas
+- ¿Cómo se trabaja esto en el aula? Conexión con los módulos de FP
+
+### 13:30 – 14:00 | I. Práctica — CAN Bus: Práctica A (Introducción al entorno)
 
 > Documentación: [`CANbus_ICSim_Ciber/lab/04_Practica_A_Reconocimiento.md`](CANbus_ICSim_Ciber/lab/04_Practica_A_Reconocimiento.md)
 
-**12:00 – 12:30 — Configurar el entorno**
-- Ejecutar `setup_vcan.sh` → levantar interfaz `vcan0`
-- Arrancar ICSim (`./icsim vcan0` + `./controls vcan0`)
-- Primera vista con `candump vcan0`: la pantalla se llenará de datos
-- Reto: ¿qué ocurre al pulsar el acelerador? (buscar el ID `0x244`)
+> **Nota:** Bloque de introducción al entorno. La Práctica A completa (reconocimiento pasivo) se desarrolla al inicio del Día 2.
 
-**12:30 – 14:00 — Práctica A: Reconocimiento pasivo**
-- `can_scanner.py`: listar todos los IDs con su frecuencia
-- `cansniffer`: correlacionar acción ↔ cambio de byte
-- Objetivo: identificar los IDs de velocidad, puertas e indicadores de giro
+**13:30 – 13:45 — Configurar el entorno**
+- Arrancar el contenedor Docker: `docker run --name icsim_run --network host --cap-add NET_ADMIN -d icsim:local`
+- Abrir la interfaz en el navegador: `http://localhost:6080/vnc_lite.html`
+- Primera vista con `candump vcan0`: la pantalla se llenará de datos
+
+**13:45 – 14:00 — Primera exploración**
+- Reto: ¿qué ocurre al pulsar el acelerador? (buscar el ID `0x244`)
+- Observar la relación entre acción física en `controls` y trama CAN en `candump`
+- Dejar el entorno listo para continuar mañana
 
 ---
 
@@ -51,15 +72,26 @@
 
 | Horario | Bloque |
 |---|---|
-| 09:00 – 10:30 | **Teoría: Técnicas de Ingeniería Inversa** |
+| 09:00 – 09:30 | **I. Práctica: Laboratorio CAN Bus — Práctica A completa (Reconocimiento pasivo)** |
+| 09:30 – 10:30 | **Teoría: Técnicas de Ingeniería Inversa** |
 | 10:30 – 11:30 | **II. Práctica: Laboratorio CAN Bus — Práctica B (Inyección de frames)** |
 | 11:30 – 12:00 | Descanso |
 | 12:00 – 13:00 | **III. Práctica: Laboratorio CAN Bus — Práctica C (Ataque Replay)** |
 | 13:00 – 14:00 | **IV. Práctica: Laboratorio CAN Bus — Práctica D (Fuzzing y DoS)** |
 
-### 09:00 – 10:30 | Teoría: Técnicas de Ingeniería Inversa
+### 09:00 – 09:30 | I. Práctica — CAN Bus: Práctica A completa (Reconocimiento pasivo)
 
-**09:00 – 09:15 — Demo proyectada: SavvyCAN (docente)**
+> Documentación: [`CANbus_ICSim_Ciber/lab/04_Practica_A_Reconocimiento.md`](CANbus_ICSim_Ciber/lab/04_Practica_A_Reconocimiento.md)
+
+> **Nota:** El entorno ya fue configurado al final del Día 1. Retomar directamente desde `candump vcan0`.
+
+- `can_scanner.py`: listar todos los IDs activos con su frecuencia
+- `cansniffer`: correlacionar acción ↔ cambio de byte
+- Objetivo: identificar los IDs de velocidad, puertas e indicadores de giro y elaborar el mapa `ID → función`
+
+### 09:30 – 10:30 | Teoría: Técnicas de Ingeniería Inversa
+
+**09:30 – 09:45 — Demo proyectada: SavvyCAN (docente)**
 
 > El docente proyecta SavvyCAN conectado a `vcan0` mientras mueve el acelerador en `controls`. Los participantes ven en tiempo real cómo los bytes del ID `0x244` dibujan una curva ascendente — el mismo dato que ayer vieron en texto con `cansniffer`, ahora graficado como lo haría un profesional.
 >
@@ -67,7 +99,7 @@
 >
 > Referencia: [SavvyCAN](https://github.com/collin80/SavvyCAN) — GUI de código abierto, soporta SocketCAN (`vcan0`) en Linux.
 
-**09:15 – 10:30 — Ingeniería inversa: teoría y metodología**
+**09:45 – 10:30 — Ingeniería inversa: teoría y metodología**
 
 - Cómo aislar un comando específico entre miles de tramas por segundo
 - Metodología de análisis de tráfico CAN: captura → filtrado → correlación → hipotésis → verificación

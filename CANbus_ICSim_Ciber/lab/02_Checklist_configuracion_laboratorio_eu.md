@@ -58,15 +58,19 @@ docker run --name icsim_run --network host --cap-add NET_ADMIN -d icsim:local
 
 ```bash
 # AppImage deskargatu host-ean (behin, ikastaroa baino lehen)
-wget https://github.com/collin80/SavvyCAN/releases/latest/download/SavvyCAN-x86_64.AppImage
-chmod +x SavvyCAN-x86_64.AppImage
+# Izen-fitxategia commit hash-a dauka release bakoitzean — curl-ek automatikoki konpontzen du
+curl -Lo SavvyCAN.AppImage \
+  $(curl -s https://api.github.com/repos/collin80/SavvyCAN/releases/latest \
+    | grep -o '"browser_download_url":"[^"]*AppImage[^"]*"' \
+    | cut -d'"' -f4)
+chmod +x SavvyCAN.AppImage
 sudo apt install -y libfuse2   # exekutatzean errorea bada soilik
 
 # Egiaztatu vcan0 host-etik ikusgai dagoela (edukiontziak exekutatzen ari denean)
 ip link show vcan0   # interfazea erakutsi behar du
 
 # SavvyCAN abiarazi
-./SavvyCAN-x86_64.AppImage
+./SavvyCAN.AppImage
 ```
 
 - [ ] SavvyCAN errorerik gabe irekitzen da host-aren mahaigainean.

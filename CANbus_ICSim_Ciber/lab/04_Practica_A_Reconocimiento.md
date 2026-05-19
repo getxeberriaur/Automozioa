@@ -185,16 +185,15 @@ Completar en el informe de evidencias (`reports/00_Plantilla_informe_evidencias.
 
 ---
 
-## Anexo A.5 — SavvyCAN: visualización gráfica (opcional)
+## Práctica A.5 — SavvyCAN: visualización gráfica e ingeniería inversa
 
-> **Nivel:** exploración voluntaria · **Tiempo estimado:** 20 minutos  
-> Este anexo permite ver los mismos datos de los ejercicios anteriores con la herramienta que usan los investigadores profesionales y los OEM.
+> **Nivel:** medio · **Tiempo estimado:** 35 minutos (10 min demo ponente + 25 min práctica)
+> Verás los mismos datos de los ejercicios anteriores con la herramienta que usan investigadores profesionales y fabricantes OEM.
 
-> ⚠️ **Entorno de ejecución — importante:**  
-> SavvyCAN se ejecuta **en la máquina host**, NO dentro del contenedor Docker.  
-> El contenedor corre con `--network host` y `--cap-add NET_ADMIN`, por lo que la interfaz `vcan0` que crea el contenedor queda visible directamente en el kernel del host.  
-> El flujo es: `[ICSim + controls (Docker)] → vcan0 (kernel host) ← [SavvyCAN (host)]`  
-> El docente puede tener simultáneamente el navegador con noVNC (`localhost:6080`) y SavvyCAN abierto en el escritorio.
+> ⚠️ **Entorno de ejecución — importante:**
+> SavvyCAN se ejecuta **en la máquina host**, NO dentro del contenedor Docker.
+> El contenedor corre con `--network host` y `--cap-add NET_ADMIN`, por lo que la interfaz `vcan0` queda visible directamente en el kernel del host.
+> Flujo: `[ICSim + controls (Docker)] → vcan0 (kernel host) ← [SavvyCAN (host)]`
 
 ### ¿Qué aporta SavvyCAN sobre `cansniffer`?
 
@@ -206,32 +205,81 @@ Completar en el informe de evidencias (`reports/00_Plantilla_informe_evidencias.
 | Sin historial visual | Historial completo con zoom |
 | No lee archivos DBC | Lee archivos DBC (estándar industria) |
 
-### Instalación en el host (sin compilar)
+---
+
+### Paso 1 — Instalación (si no está ya instalado)
 
 ```bash
-# Descargar AppImage (no requiere instalar dependencias)
-wget https://github.com/collin80/SavvyCAN/releases/latest/download/SavvyCAN-x86_64.AppImage
-chmod +x SavvyCAN-x86_64.AppImage
-
-# Si FUSE no está disponible en tu sistema:
-sudo apt install -y libfuse2
-
-# Ejecutar
-./SavvyCAN-x86_64.AppImage
+curl -Lo SavvyCAN.AppImage \
+  $(curl -s https://api.github.com/repos/collin80/SavvyCAN/releases/latest \
+    | grep -o '"browser_download_url":"[^"]*AppImage[^"]*"' \
+    | cut -d'"' -f4)
+chmod +x SavvyCAN.AppImage
+sudo apt install -y libfuse2   # solo si da error FUSE al ejecutar
+./SavvyCAN.AppImage
 ```
 
-### Conectar a `vcan0`
+---
 
-1. Asegurarse de que el contenedor Docker está corriendo (`docker ps` — debe aparecer `icsim_run`)
+### Paso 2 — Conectar a `vcan0`
+
+1. Verificar que el contenedor está corriendo: `docker ps` → debe aparecer `icsim_run`
 2. En SavvyCAN: **Connection → Open Connection Manager**
-3. Seleccionar **SocketCAN**, interfaz: `vcan0` → **Connect**
-4. Ir a **Graph → Signal Graph View**
+3. Clic en **Add new device bus** → tipo **SocketCAN** (sin 'd')
+4. En el campo de interfaz escribir: `vcan0`
+5. Clic **Connect** — la barra inferior debe empezar a contar tramas
 
-### Ejercicio guiado
+> ⚠️ Si la barra no cuenta tramas, ejecutar en terminal: `cansend vcan0 123#DEADBEEF`
+> Si SavvyCAN sigue sin mostrar nada, relanzar con `sudo ./SavvyCAN.AppImage`
 
-1. Mover el acelerador lentamente de 0 a máximo — observar la curva del ID `0x244`, byte 3
-2. Activar el intermitente izquierdo — localizar el ID `0x188` y observar el cambio de valor
-3. Comparar la visualización con lo que veías en `cansniffer` en los ejercicios anteriores
-4. Guardar una captura de pantalla de la gráfica para el informe de evidencias
+---
 
-> **Nota:** si el AppImage no arranca en tu VM, el docente tiene una demo proyectada lista con los mismos resultados.
+### Demo del ponente — 10 minutos
+
+> El ponente realiza esta secuencia en pantalla proyectada antes de que los participantes lo hagan por su cuenta.
+
+| Tiempo | Acción | Mensaje clave |
+|---|---|---|
+| 0–2 min | Mostrar ventana principal con tráfico en bruto | *"El bus habla sin parar. Sin autenticación. Cualquiera con acceso puede leerlo todo."* |
+| 2–5 min | Abrir Signal Graph + mover acelerador | *"En 3 minutos hemos identificado qué trama controla la velocidad sin documentación. Eso es ingeniería inversa de CAN."* |
+| 5–7 min | Filtrar a `0x188` + activar intermitente | *"Este bit que oscila es lo que capturaríamos para un ataque de replay."* |
+| 7–10 min | Guardar captura → abrir fichero | *"Este fichero `.csv` es todo lo que necesita un atacante para reproducir el comportamiento."* |
+
+---
+
+### Práctica guiada — participantes
+
+#### Ejercicio A.5.1 — Captura en vivo y filtrado
+
+1. Con SavvyCAN conectado a `vcan0` y el ICSim corriendo, observa la ventana principal
+2. Mueve el acelerador en noVNC (`localhost:6080`) — ¿qué IDs cambian su valor?
+3. Activa **Connection → Filters** → oculta todos los IDs excepto `0x244` y `0x188`
+4. ¿Qué diferencia notas en la pantalla con el filtro activo?
+
+#### Ejercicio A.5.2 — Visualización de señal en gráfica
+
+1. En la lista principal, **doble clic** sobre el ID `0x244` — se abre la ventana **Frame Info**
+2. En Frame Info, haz clic en el icono de gráfica sobre el **byte 3**
+3. Se abre la ventana **Graphing** con la curva del byte 3 en tiempo real
+4. Mueve el acelerador lentamente de 0 a máximo — observa la curva subir
+5. Suelta el acelerador — observa cómo la curva vuelve a bajar
+6. Repite con `0x188` byte 0 — activa/desactiva el intermitente y observa el pulso
+
+> Si Frame Info no muestra el icono de gráfica, prueba: **clic derecho sobre el byte → "Graph this signal"**
+
+#### Ejercicio A.5.3 — Captura y análisis offline
+
+1. Con el acelerador al máximo durante 5 segundos, guardar la captura:
+   **File → Save Frames** → nombre: `captura_acelerador.csv`
+2. Parar el tráfico: **Connection → Disconnect**
+3. Cargar el fichero guardado: **File → Load Frames**
+4. ¿Puedes identificar el momento exacto en que el acelerador llegó al máximo?
+5. Guardar una captura de pantalla de la gráfica para el informe de evidencias
+
+---
+
+### Preguntas de reflexión
+
+1. ¿Qué ventaja tiene SavvyCAN frente a `cansniffer` para un análisis prolongado?
+2. El fichero `.csv` que has guardado, ¿qué utilidad tendría para ejecutar un ataque de replay?
+3. ¿Qué información adicional necesitarías para decodificar el valor real de velocidad (en km/h) a partir del byte 3 de `0x244`?

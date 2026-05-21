@@ -2,7 +2,8 @@ from __future__ import annotations
 
 import json
 from collections import defaultdict, deque
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta, timezone
+UTC = timezone.utc
 from html import escape
 from pathlib import Path
 from typing import Any

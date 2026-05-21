@@ -17,25 +17,25 @@ Recomendación docente:
 ## 2) Flujo online recomendado (con Git)
 
 ### Paso A — Clonar
-```powershell
+```bash
 git clone <URL_DEL_REPO>
 cd Automozioa/Automocion_V16_Ciber
 ```
 
 ### Paso B — Ir a versión estable
-```powershell
+```bash
 git checkout v1.0-aula
 ```
 
 ### Paso C — Crear entorno e instalar
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
 ### Paso D — Arrancar y validar
-```powershell
+```bash
 uvicorn backend.app:app --host 127.0.0.1 --port 8080
 ```
 

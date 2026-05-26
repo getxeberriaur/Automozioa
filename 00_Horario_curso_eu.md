@@ -14,8 +14,8 @@
 | 09:30 – 10:00 | **Teoria: Paradigma Aldaketa** |
 | 10:00 – 11:30 | **UNECE R155 eta ISO/SAE 21434 Araudia** (bloke zabaldua) |
 | 11:30 – 12:00 | Atsedenaldia |
-| 12:00 – 13:30 | **UNECE R155 eta ISO/SAE 21434 Araudia** (bloke zabaldua) |
-| 13:30 – 14:00 | **I. Praktikoa: CAN Bus Laborategia — A Praktika (Ingurunea eta sarrera)** |
+| 12:00 – 13:00 | **UNECE R155 eta ISO/SAE 21434 Araudia** (bloke zabaldua) |
+| 13:00 – 14:00 | **I. Praktikoa: CAN Bus Laborategia — A Praktika (Ingurunea eta sarrera)** |
 
 ### 09:30 – 10:00 | Teoria: Paradigma Aldaketa
 

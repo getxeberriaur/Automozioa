@@ -12,8 +12,8 @@
 |---|---|
 | 09:00 – 09:30 | **Aurkezpena:** Ikastaroaren edukiak eta helburuak |
 | 09:30 – 10:30 | **Teoria: Paradigma Aldaketa** |
-| 10:30 – 13:00 | **UNECE R155 eta ISO/SAE 21434 Araudia** (bloke zabaldua) |
-| 13:00 – 13:30 | Atsedenaldia |
+| 11:30 – 12:00 | Atsedenaldia |
+| 12:00 – 13:30 | **UNECE R155 eta ISO/SAE 21434 Araudia** (bloke zabaldua) |
 | 13:30 – 14:00 | **I. Praktikoa: CAN Bus Laborategia — A Praktika (Ingurunea eta sarrera)** |
 
 ### 09:30 – 10:30 | Teoria: Paradigma Aldaketa
@@ -22,28 +22,27 @@
 - **Azaldu beharrekoa:** ECU (Electronic Control Unit) bakoitza ordenagailu txiki bat da. Auto moderno batek 100 ECU baino gehiago izan ditzake, Ethernet, CAN eta LIN bidez komunikatuak.
 - **Adibide praktikoa:** "Jeep Hack" (2015). Nola lortu zuten bolantea eta balaztak kontrolatzea urrunetik, entretenimendu sistemaren bidez.
 
-### 10:30 – 13:00 | UNECE R155 eta ISO/SAE 21434 Araudia (bloke zabaldua)
+### 10:30 – 13:30 | UNECE R155 eta ISO/SAE 21434 Araudia (bloke zabaldua)
 
-**10:30 – 11:15 — UNECE R155 arau esparrua**
+**10:30 – 11:15 — UNECE R155 arau esparrua eta ISO/SAE 21434: Zibersegurtasun ingeniaritza**
 - Jatorria eta testuingurua: zergatik sortu zen R155?
 - Aplikazio eremua: zein ibilgailu eta fabrikatzaile dauden eraginda
 - Fabrikatzailearen betebeharrak: CSMS (Cybersecurity Management System)
 - Indarrean jartzeko egutegia: 2022 (mota berriak) / 2024 (ibilgailu berri guztiak)
 - Homologazio eta auditoretza organoak: TÜV, DEKRA, IDIADA…
-
-**11:15 – 12:00 — ISO/SAE 21434: Zibersegurtasun ingeniaritza**
 - R155 eta ISO/SAE 21434 artearen erlazioa
 - Ibilgailuaren zibersegurtasun bizitza-zikloa (concept → development → production → decommissioning)
 - TARA (Threat Analysis and Risk Assessment): mehatxuak identifikatu eta arriskuak baloratu
 - Rolak eta erantzukizunak: OEM, Tier-1, Tier-2
 - Fitxa teknikoak eta beharrezko dokumentazioa
 
+**11:30 – 12:00 — ATSEDENALDIA**
+
 **12:00 – 12:30 — Betetze-ezaren kasu errealak eta ondorioak**
 - Ahultasun ezagunengatik merkatutik kendu diren ibilgailuak
 - Homologazio ziurtagirian duen eragina
-- Eztabaida: V16 balizak eta CVE-2025-65855, segurtasun akatsak dituen homologatutako gailuaren adibide gisa (3. eguneko aurreikuspena)
 
-**12:30 – 13:00 — Tailer eta LHri aplikazioa**
+**12:30 – 13:30 — Tailer eta LHri aplikazioa**
 - R155-ek automozio tailerrarentzat zer esan nahi duen
 - Security Gateway: zergatik blokeatzen duten ibilgailu berriek ziurtatu gabeko diagnostiko tresnak
 - Nola landu daiteke hau ikasgelan? LH moduluekin konexioa

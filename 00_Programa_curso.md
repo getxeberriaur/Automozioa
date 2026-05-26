@@ -11,12 +11,13 @@
 | Horario | Bloque |
 |---|---|
 | 09:00 – 09:30 | **Presentación:** Contenidos y objetivos del curso |
-| 09:30 – 10:30 | **Teoría: Cambio de Paradigma** |
-| 10:30 – 13:00 | **Normativa UNECE R155 e ISO/SAE 21434** (bloque ampliado) |
-| 13:00 – 13:30 | Descanso |
-| 13:30 – 14:00 | **I. Práctica: Laboratorio CAN Bus — Práctica A (Introducción y entorno)** |
+| 09:30 – 10:00 | **Teoría: Cambio de Paradigma** |
+| 10:00 – 11:30 | **Normativa UNECE R155 e ISO/SAE 21434** (bloque ampliado) |
+| 11:30 – 12:00 | Descanso |
+| 12:00 – 13:00 | **Normativa UNECE R155 e ISO/SAE 21434** (bloque ampliado) |
+| 13:00 – 14:00 | **I. Práctica: Laboratorio CAN Bus — Práctica A (Introducción y entorno)** |
 
-### 09:30 – 10:30 | Teoría: Cambio de Paradigma
+### 09:30 – 10:00 | Teoría: Cambio de Paradigma
 
 - **Clave:** Antes, la seguridad de un vehículo se asociaba a los frenos o los airbags. Ahora, la seguridad digital (*ciberseguridad*) es esencial para garantizar la seguridad física.
 - **Conceptos:** Cada ECU (Electronic Control Unit) es un pequeño ordenador. Un vehículo moderno puede tener más de 100 ECUs comunicadas por Ethernet, CAN y LIN.
@@ -24,14 +25,12 @@
 
 ### 10:30 – 13:00 | Normativa UNECE R155 e ISO/SAE 21434 (bloque ampliado)
 
-**10:30 – 11:15 — Marco regulatorio UNECE R155**
+**10:30 – 11:30 — Marco regulatorio UNECE R155/ISO/SAE 21434: Ingeniería de ciberseguridad**
 - Origen y contexto: ¿por qué surge R155?
 - Ámbito de aplicación: qué vehículos y fabricantes están afectados
 - Obligaciones del fabricante: CSMS (Cybersecurity Management System)
 - Calendario de entrada en vigor: 2022 (nuevos tipos) / 2024 (todos los vehículos nuevos)
 - Organismos de aprobación y auditoría: TÜV, DEKRA, IDIADA…
-
-**11:15 – 12:00 — ISO/SAE 21434: Ingeniería de ciberseguridad**
 - Relación entre R155 y la norma ISO/SAE 21434
 - Ciclo de vida de ciberseguridad del vehículo (concept → development → production → decommissioning)
 - TARA (Threat Analysis and Risk Assessment): identificar amenazas y valorar riesgos
@@ -48,7 +47,7 @@
 - Security Gateway: por qué los vehículos nuevos bloquean herramientas de diagnóstico no certificadas
 - ¿Cómo se trabaja esto en el aula? Conexión con los módulos de FP
 
-### 13:30 – 14:00 | I. Práctica — CAN Bus: Práctica A (Introducción al entorno)
+### 13:00 – 14:00 | I. Práctica — CAN Bus: Práctica A (Introducción al entorno)
 
 > Documentación: [`CANbus_ICSim_Ciber/lab/04_Practica_A_Reconocimiento.md`](CANbus_ICSim_Ciber/lab/04_Practica_A_Reconocimiento.md)
 

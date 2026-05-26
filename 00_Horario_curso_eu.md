@@ -11,20 +11,21 @@
 | Ordutegia | Blokea |
 |---|---|
 | 09:00 – 09:30 | **Aurkezpena:** Ikastaroaren edukiak eta helburuak |
-| 09:30 – 10:30 | **Teoria: Paradigma Aldaketa** |
+| 09:30 – 10:00 | **Teoria: Paradigma Aldaketa** |
+| 10:00 – 11:30 | **UNECE R155 eta ISO/SAE 21434 Araudia** (bloke zabaldua) |
 | 11:30 – 12:00 | Atsedenaldia |
 | 12:00 – 13:30 | **UNECE R155 eta ISO/SAE 21434 Araudia** (bloke zabaldua) |
 | 13:30 – 14:00 | **I. Praktikoa: CAN Bus Laborategia — A Praktika (Ingurunea eta sarrera)** |
 
-### 09:30 – 10:30 | Teoria: Paradigma Aldaketa
+### 09:30 – 10:00 | Teoria: Paradigma Aldaketa
 
 - **Gakoa:** Lehen, auto baten segurtasuna balaztekin edo airbag-ekin lotzen zen. Orain, segurtasun digitala (*zibersegurtasuna*) funtsezkoa da segurtasun fisikoa bermatzeko.
 - **Azaldu beharrekoa:** ECU (Electronic Control Unit) bakoitza ordenagailu txiki bat da. Auto moderno batek 100 ECU baino gehiago izan ditzake, Ethernet, CAN eta LIN bidez komunikatuak.
 - **Adibide praktikoa:** "Jeep Hack" (2015). Nola lortu zuten bolantea eta balaztak kontrolatzea urrunetik, entretenimendu sistemaren bidez.
 
-### 10:30 – 13:30 | UNECE R155 eta ISO/SAE 21434 Araudia (bloke zabaldua)
+### 10:00 – 13:00 | UNECE R155 eta ISO/SAE 21434 Araudia (bloke zabaldua)
 
-**10:30 – 11:15 — UNECE R155 arau esparrua eta ISO/SAE 21434: Zibersegurtasun ingeniaritza**
+**10:00 – 11:30 — UNECE R155 arau esparrua eta ISO/SAE 21434: Zibersegurtasun ingeniaritza**
 - Jatorria eta testuingurua: zergatik sortu zen R155?
 - Aplikazio eremua: zein ibilgailu eta fabrikatzaile dauden eraginda
 - Fabrikatzailearen betebeharrak: CSMS (Cybersecurity Management System)
@@ -42,23 +43,23 @@
 - Ahultasun ezagunengatik merkatutik kendu diren ibilgailuak
 - Homologazio ziurtagirian duen eragina
 
-**12:30 – 13:30 — Tailer eta LHri aplikazioa**
+**12:30 – 13:00 — Tailer eta LHri aplikazioa**
 - R155-ek automozio tailerrarentzat zer esan nahi duen
 - Security Gateway: zergatik blokeatzen duten ibilgailu berriek ziurtatu gabeko diagnostiko tresnak
 - Nola landu daiteke hau ikasgelan? LH moduluekin konexioa
 
-### 13:30 – 14:00 | I. Praktikoa — CAN Bus: A Praktika (Ingurunea eta sarrera)
+### 13:00 – 14:00 | I. Praktikoa — CAN Bus: A Praktika (Ingurunea eta sarrera)
 
 > Dokumentazioa: [`CANbus_ICSim_Ciber/lab/04_Practica_A_Reconocimiento_eu.md`](CANbus_ICSim_Ciber/lab/04_Practica_A_Reconocimiento_eu.md)
 
 > **Oharra:** Ingurunearen sarrera blokea. A Praktika osoa (ezagutza pasiboa) 2. egunaren hasieran garatzen da.
 
-**13:30 – 13:45 — Ingurunea konfiguratu**
+**13:00 – 13:30 — Ingurunea konfiguratu**
 - Docker edukiontzia abiarazi: `docker run --name icsim_run --network host --cap-add NET_ADMIN -d icsim:local`
 - Interfazea nabigatzailean ireki: `http://localhost:6080/vnc_lite.html`
 - `candump vcan0` lehen ikuspegia: pantaila datuz beteko da
 
-**13:45 – 14:00 — Lehen esplorazioa**
+**13:30 – 14:00 — Lehen esplorazioa**
 - Erronka: zer gertatzen da azeleragailua sakatzean? (`0x244` IDa bilatu)
 - `controls`-en ekintza fisikoa eta `candump`-en CAN trama arteko erlazioa behatu
 - Ingurumena bihar jarraitzeko prest utzi

@@ -77,6 +77,26 @@ class IQPlayer:
         freqs = fftfreq(4096, 1/self.sample_rate) / 1e6  # en MHz relativo
         
         return freqs, magnitude_db
+
+    def _slice_samples(self, start_s=0.0, duration_s=None):
+        """Devuelve un segmento de muestras según ventana temporal."""
+        start_idx = max(0, int(start_s * self.sample_rate))
+        if duration_s is None:
+            end_idx = len(self.data)
+        else:
+            end_idx = min(len(self.data), start_idx + int(duration_s * self.sample_rate))
+
+        if start_idx >= end_idx:
+            raise ValueError("Ventana de tiempo inválida para el tamaño del archivo.")
+
+        return self.data[start_idx:end_idx], start_idx, end_idx
+
+    def _decimate_for_plot(self, arr, max_points=200_000):
+        """Reduce puntos para evitar errores de memoria y gráficos lentos."""
+        if len(arr) <= max_points:
+            return arr, 1
+        stride = int(np.ceil(len(arr) / max_points))
+        return arr[::stride], stride
     
     def detect_events(self, threshold_db=6.0, min_duration_ms=8.0, smooth_ms=2.0, merge_gap_ms=5.0):
         """
@@ -173,21 +193,25 @@ class IQPlayer:
 
         return events
     
-    def plot_overview(self, output_file=None):
-        """Genera gráfica general de potencia"""
-        power = np.abs(self.data) ** 2
+    def plot_overview(self, output_file=None, start_s=0.0, duration_s=None, max_points=200_000):
+        """Genera gráfica de potencia en tiempo con decimación para archivos grandes."""
+        data_win, start_idx, _ = self._slice_samples(start_s=start_s, duration_s=duration_s)
+        power = np.abs(data_win) ** 2
         power_db = 10 * np.log10(power + 1e-10)
-        
-        time_s = np.arange(len(power_db)) / self.sample_rate
+
+        power_db_dec, stride = self._decimate_for_plot(power_db, max_points=max_points)
+        time_s = (np.arange(len(power_db_dec)) * stride + start_idx) / self.sample_rate
         
         fig, ax = plt.subplots(figsize=(14, 6))
-        ax.plot(time_s, power_db, linewidth=0.5, alpha=0.7)
+        ax.plot(time_s, power_db_dec, linewidth=0.6, alpha=0.8)
         ax.set_xlabel('Tiempo (s)')
-        ax.set_ylabel('Potencia (dBm)')
+        ax.set_ylabel('Potencia (dBFS)')
         ax.set_title(f'Potencia en el Tiempo - {self.filename}')
         ax.grid(True, alpha=0.3)
         
         if output_file:
+            output_path = Path(output_file)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
             plt.savefig(output_file, dpi=150, bbox_inches='tight')
             print(f"[✓] Gráfico guardado: {output_file}")
         else:
@@ -195,15 +219,18 @@ class IQPlayer:
         
         plt.close()
     
-    def plot_spectrogram(self, output_file=None):
-        """Genera espectrograma (tiempo-frecuencia)"""
+    def plot_spectrogram(self, output_file=None, start_s=0.0, duration_s=20.0):
+        """Genera espectrograma (tiempo-frecuencia) en una ventana acotada."""
+        data_win, _, _ = self._slice_samples(start_s=start_s, duration_s=duration_s)
+
         # Calcular espectrograma
         f, t, Sxx = signal.spectrogram(
-            self.data,
+            data_win,
             self.sample_rate,
             nperseg=1024,
             noverlap=512,
-            scaling='density'
+            scaling='density',
+            return_onesided=False,
         )
         
         # Convertir a dB
@@ -217,9 +244,11 @@ class IQPlayer:
         ax.set_ylabel('Frecuencia Relativa (kHz)')
         ax.set_xlabel('Tiempo (s)')
         ax.set_title(f'Espectrograma - {self.filename}')
-        cbar = fig.colorbar(pcm, ax=ax, label='Potencia (dB)')
+        fig.colorbar(pcm, ax=ax, label='Potencia (dB)')
         
         if output_file:
+            output_path = Path(output_file)
+            output_path.parent.mkdir(parents=True, exist_ok=True)
             plt.savefig(output_file, dpi=150, bbox_inches='tight')
             print(f"[✓] Espectrograma guardado: {output_file}")
         else:
@@ -280,6 +309,14 @@ def main():
                        help='Guardar gráfico de potencia en tiempo')
     parser.add_argument('--plot-spectrogram', metavar='FILE',
                        help='Guardar espectrograma')
+    parser.add_argument('--plot-all', metavar='DIR',
+                       help='Guardar potencia + espectrograma en un directorio')
+    parser.add_argument('--plot-start-s', type=float, default=0.0,
+                       help='Inicio de ventana de visualización en segundos (default: 0)')
+    parser.add_argument('--plot-duration-s', type=float, default=20.0,
+                       help='Duración de ventana para gráficos en segundos (default: 20)')
+    parser.add_argument('--max-plot-points', type=int, default=200000,
+                       help='Máximo de puntos para gráfica temporal (default: 200000)')
     parser.add_argument('--threshold', type=float, default=6.0,
                        help='Umbral sobre baseline en dB (default: 6)')
     parser.add_argument('--min-duration-ms', type=float, default=8.0,
@@ -309,13 +346,40 @@ def main():
     
     # Generar gráficos
     if args.plot_power:
-        player.plot_overview(args.plot_power)
+        player.plot_overview(
+            args.plot_power,
+            start_s=args.plot_start_s,
+            duration_s=args.plot_duration_s,
+            max_points=args.max_plot_points,
+        )
     
     if args.plot_spectrogram:
-        player.plot_spectrogram(args.plot_spectrogram)
+        player.plot_spectrogram(
+            args.plot_spectrogram,
+            start_s=args.plot_start_s,
+            duration_s=args.plot_duration_s,
+        )
+
+    if args.plot_all:
+        outdir = Path(args.plot_all)
+        outdir.mkdir(parents=True, exist_ok=True)
+        stem = Path(args.file).stem
+        power_file = outdir / f"{stem}_power.png"
+        spec_file = outdir / f"{stem}_spectrogram.png"
+        player.plot_overview(
+            str(power_file),
+            start_s=args.plot_start_s,
+            duration_s=args.plot_duration_s,
+            max_points=args.max_plot_points,
+        )
+        player.plot_spectrogram(
+            str(spec_file),
+            start_s=args.plot_start_s,
+            duration_s=args.plot_duration_s,
+        )
     
     # Si no hay opciones, mostrar reporte por defecto
-    if not (args.report or args.plot_power or args.plot_spectrogram):
+    if not (args.report or args.plot_power or args.plot_spectrogram or args.plot_all):
         player.generate_report()
         print("[*] Tip: Usa --plot-power o --plot-spectrogram para gráficos")
 

@@ -360,13 +360,94 @@ Usar: [templates/INFORME_ALUMNOS.md](../templates/INFORME_ALUMNOS.md)
 
 ---
 
+## FASE 9: Captura IQ (Opcional) — Para Reproducción con HackRF One
+
+### Objetivo
+Capturar datos IQ complejos (no solo potencia espectral) para análisis posterior y reproducción con HackRF One en portátil.
+
+### Cuándo Usar
+- Si tienes HackRF One conectado al portátil
+- Para visualización avanzada (espectrograma)
+- Para reproducción y análisis offline
+- Para investigación adicional sin hardware en directo
+
+### Procedimiento
+
+**Paso 9.1:** En Raspberry Pi, copiar el script de captura IQ
+```bash
+ssh pi@192.168.1.100
+cd ~/rf_capture
+
+# Script disponible en repo (si no lo tienes):
+wget https://github.com/getxeberriaur/Automozioa/raw/main/RF_Lab_Seguro/scripts/iq_capture.sh
+chmod +x iq_capture.sh
+```
+
+**Paso 9.2:** Ejecutar captura IQ (120 segundos con pulsaciones)
+```bash
+./iq_capture.sh 120 captures/
+
+# Salida esperada:
+# ╔════════════════════════════════════════════════════════════════╗
+# ║  CAPTURA DE DATOS IQ — RTL-SDR (Para HackRF One)              ║
+# ╚════════════════════════════════════════════════════════════════╝
+# 
+# [?] ¿Comenzar captura? (s/n): s
+# [*] Iniciando captura IQ...
+```
+
+**Paso 9.3:** Seguir el mismo cronograma de pulsaciones (10s, 20s, 30s, ...)
+
+**Resultado:**
+```
+[✓] Archivo guardado: captures/capture_20260624_123456.iq8
+[*] Tamaño real: 480 MB
+[*] Muestras IQ: 240000000
+```
+
+⚠️ **Nota:** El archivo .iq8 es grande (~480 MB para 120 segundos). Considerar captura más corta (30 segundos = 120 MB) si espacio es limitado.
+
+### Transferencia y Análisis con HackRF
+
+Para pasos completos: Ver [05_INTEGRACION_HACKRF_ONE.md](05_INTEGRACION_HACKRF_ONE.md)
+
+**Resumen rápido:**
+```bash
+# En portátil
+mkdir -p ~/rf-analysis/captures
+scp pi@192.168.1.100:~/rf_capture/captures/capture_*.iq8 ~/rf-analysis/captures/
+
+# Análisis
+cd ~/rf-analysis
+python3 ../RF_Lab_Seguro/scripts/hackrf_playback.py captures/capture_*.iq8 --report
+
+# Visualización
+python3 ../RF_Lab_Seguro/scripts/hackrf_playback.py captures/capture_*.iq8 --plot-power plots/potencia.png
+python3 ../RF_Lab_Seguro/scripts/hackrf_playback.py captures/capture_*.iq8 --plot-spectrogram plots/espectro.png
+
+# Reproducción con HackRF (SOLO LABORATORIO CONTROLADO)
+hackrf_transfer -t captures/capture_*.iq8 -f 433920000 -s 2000000 -p 1 -a 1
+```
+
+---
+
 ## ✅ Checklist Post-Captura
 
+**Opción A: Captura Espectral (CSV)**
 - [ ] Todos los CSVs descargados a portátil
 - [ ] Scripts de análisis ejecutados sin errores
 - [ ] Gráficos PNG generados en `plots/`
 - [ ] Tabla de resultados completada
 - [ ] Informe escrito y revisado
+
+**Opción B: Captura IQ (para HackRF)**
+- [ ] Archivo .iq8 descargado a portátil
+- [ ] `hackrf_playback.py --report` ejecutado exitosamente
+- [ ] Gráficos espectral y espectrograma generados
+- [ ] Eventos detectados coinciden con pulsaciones realizadas
+- [ ] (Si aplica) Reproducción con HackRF completada sin errores
+
+**Siempre:**
 - [ ] Preguntas de debate respondidas
 - [ ] Equipo devuelto en buen estado
 - [ ] Profesor validó límites éticos

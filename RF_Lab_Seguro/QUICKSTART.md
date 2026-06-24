@@ -16,10 +16,13 @@ RF_Lab_Seguro/
 │   ├── 01_GUIA_RASPBERRY.md            ← Instalar RPi+RTL-SDR
 │   ├── 02_GUIA_PORTATIL.md             ← Instalar análisis
 │   ├── 03_PROCEDIMIENTO_CAPTURA.md     ← Pasos prácticos
-│   └── 04_ETICA_Y_SEGURIDAD.md         ← LECTURA OBLIGATORIA
+│   ├── 04_ETICA_Y_SEGURIDAD.md         ← LECTURA OBLIGATORIA
+│   └── 05_INTEGRACION_HACKRF_ONE.md    ← NUEVO: Reproducción con HackRF
 ├── scripts/                     ← HERRAMIENTAS
-│   ├── spectrum_capture.sh              ← Captura en RPi
-│   └── analyze_spectrum.py              ← Análisis en portátil
+│   ├── spectrum_capture.sh              ← Captura espectral en RPi
+│   ├── iq_capture.sh                    ← NUEVO: Captura IQ en RPi
+│   ├── analyze_spectrum.py              ← Análisis en portátil
+│   └── hackrf_playback.py               ← NUEVO: Reproducción/análisis HackRF
 └── templates/                   ← PLANTILLAS
     ├── INFORME_ALUMNOS.md               ← Para lab reports
     └── CHECKLIST_SEGURIDAD.md           ← Para supervisión
@@ -43,6 +46,11 @@ RF_Lab_Seguro/
    - Usar: `templates/CHECKLIST_SEGURIDAD.md`
    - Antes, durante y después de cada sesión
 
+4. **Con HackRF One (Opcional):**
+   - Leer: `docs/05_INTEGRACION_HACKRF_ONE.md`
+   - Ejecutar captura IQ en RPi: `./scripts/iq_capture.sh`
+   - Reproducir/visualizar en portátil: `python3 ./scripts/hackrf_playback.py`
+
 ---
 
 ## 🎯 Flujo Principal
@@ -58,8 +66,12 @@ ANTES DE CLASE
 2. EN CLASE (120 min)
    ├─ Explicar límites éticos (alumnos firman)
    ├─ Seguir: docs/03_PROCEDIMIENTO_CAPTURA.md
-   ├─ Ejecutar: scripts/spectrum_capture.sh (RPi)
-   ├─ Analizar: scripts/analyze_spectrum.py (Portátil)
+   ├─ Ejecutar: scripts/spectrum_capture.sh (RPi)     ← Opción A: CSV espectral
+   │                          O
+   │           scripts/iq_capture.sh (RPi)            ← Opción B: IQ para HackRF
+   ├─ Analizar: scripts/analyze_spectrum.py (Portátil) ← Para Opción A
+   │                     O
+   │           scripts/hackrf_playback.py (Portátil)   ← Para Opción B
    └─ Generar gráficos y eventos
   ↓
 3. DESPUÉS (30 min)
@@ -72,15 +84,16 @@ ANTES DE CLASE
 
 ## 🔧 Requisitos Mínimos
 
-| Componente | Necesario |
-|---|---|
-| **Raspberry Pi 4/5** | Sí (2GB RAM) |
-| **RTL-SDR Dongle** | Sí (433 MHz) |
-| **Mando RF aislado** | Sí (433.92 MHz) |
-| **Python 3.8+** | Sí |
-| **Portátil** | Sí (análisis) |
+| Componente | Necesario | Opcional |
+|---|---|---|
+| **Raspberry Pi 4/5** | Sí (2GB RAM) | - |
+| **RTL-SDR Dongle** | Sí (433 MHz) | - |
+| **Mando RF aislado** | Sí (433.92 MHz) | - |
+| **Python 3.8+** | Sí | - |
+| **Portátil** | Sí (análisis) | - |
+| **HackRF One** | - | ✅ Para Opción B |
 
-**Presupuesto:** ~€60-100 sin contar portátil.
+**Presupuesto:** €60-100 (sin contar portátil ni HackRF)
 
 ---
 
@@ -97,6 +110,8 @@ ANTES DE CLASE
    - `docs/02_GUIA_PORTATIL.md` (20 min)
 
 4. **PARA EJECUTAR:** `docs/03_PROCEDIMIENTO_CAPTURA.md` (durante clase)
+
+5. **SI TIENES HACKRF:** `docs/05_INTEGRACION_HACKRF_ONE.md` (análisis avanzado)
 
 ---
 

@@ -15,7 +15,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import signal
 from scipy.fft import fft, fftfreq
-import struct
 import sys
 from pathlib import Path
 
@@ -38,17 +37,17 @@ class IQPlayer:
         self.load_file()
         
     def load_file(self):
-        """Carga archivo IQ8 (int8 I/Q samples)"""
+        """Carga archivo IQ8 (uint8 I/Q samples, formato rtl_sdr)."""
         try:
             with open(self.filename, 'rb') as f:
                 raw_data = f.read()
             
-            # Convertir bytes a int8 (sin signo)
-            iq_bytes = np.frombuffer(raw_data, dtype=np.int8)
+            # rtl_sdr genera uint8 intercalado: I0 Q0 I1 Q1 ... (centro ~127.5)
+            iq_bytes = np.frombuffer(raw_data, dtype=np.uint8)
             
             # Reconstruir pares I/Q complejos
             # Formato: I0 Q0 I1 Q1 I2 Q2 ...
-            iq_float = iq_bytes.astype(np.float32) / 128.0
+            iq_float = (iq_bytes.astype(np.float32) - 127.5) / 128.0
             self.data = iq_float[0::2] + 1j * iq_float[1::2]
             
             duration_sec = len(self.data) / self.sample_rate
@@ -79,39 +78,65 @@ class IQPlayer:
         
         return freqs, magnitude_db
     
-    def detect_events(self, threshold_db=10, min_samples=100):
+    def detect_events(self, threshold_db=6.0, min_duration_ms=8.0, smooth_ms=2.0, merge_gap_ms=5.0):
         """
         Detecta eventos (pulsaciones) en los datos IQ
         
         Args:
-            threshold_db: umbral sobre ruido de fondo
-            min_samples: duración mínima de evento
+            threshold_db: umbral sobre baseline en dB
+            min_duration_ms: duración mínima de evento (ms)
+            smooth_ms: ventana de suavizado para envolvente (ms)
+            merge_gap_ms: une fragmentos separados por huecos cortos (ms)
             
         Returns:
             lista de eventos: (start_time_s, end_time_s, max_power_db)
         """
-        # Potencia instantánea
+        if self.data is None or len(self.data) == 0:
+            return []
+
+        # Envolvente de potencia (dBFS) + suavizado para evitar microcortes OOK
         power = np.abs(self.data) ** 2
-        power_db = 10 * np.log10(power + 1e-10)
-        
-        # Baseline
-        baseline = np.percentile(power_db, 10)
-        
-        # Detectar actividad
-        activity = power_db > (baseline + threshold_db)
-        
+        power_db = 10 * np.log10(power + 1e-12)
+
+        smooth_samples = max(1, int(self.sample_rate * smooth_ms / 1000.0))
+        if smooth_samples > 1:
+            kernel = np.ones(smooth_samples, dtype=np.float32) / smooth_samples
+            smooth_db = np.convolve(power_db, kernel, mode='same')
+        else:
+            smooth_db = power_db
+
+        baseline = float(np.percentile(smooth_db, 20))
+        median = float(np.median(smooth_db))
+        mad = float(np.median(np.abs(smooth_db - median)))
+        robust_sigma = 1.4826 * mad
+
+        adaptive_threshold = max(baseline + threshold_db, median + 4.0 * robust_sigma)
+        activity = smooth_db > adaptive_threshold
+
+        # Cerrar huecos cortos entre fragmentos del mismo evento
+        merge_gap_samples = max(1, int(self.sample_rate * merge_gap_ms / 1000.0))
+        gap_count = 0
+        for i in range(len(activity)):
+            if activity[i]:
+                gap_count = 0
+            else:
+                gap_count += 1
+                if 0 < gap_count <= merge_gap_samples:
+                    activity[i] = True
+
+        min_samples = max(1, int(self.sample_rate * min_duration_ms / 1000.0))
         events = []
         in_event = False
         start_idx = 0
         max_power = baseline
-        
+
         for i, is_active in enumerate(activity):
             if is_active and not in_event:
                 start_idx = i
                 in_event = True
-                max_power = power_db[i]
+                max_power = smooth_db[i]
             elif is_active and in_event:
-                max_power = max(max_power, power_db[i])
+                max_power = max(max_power, smooth_db[i])
             elif not is_active and in_event:
                 duration = i - start_idx
                 if duration >= min_samples:
@@ -124,10 +149,28 @@ class IQPlayer:
                         'end_time': end_time,
                         'duration': end_time - start_time,
                         'max_power_db': float(max_power),
-                        'baseline_db': float(baseline)
+                        'baseline_db': float(baseline),
+                        'threshold_db': float(adaptive_threshold),
                     })
                 in_event = False
-        
+
+        # Cierre de evento si llega al final del archivo
+        if in_event:
+            duration = len(activity) - start_idx
+            if duration >= min_samples:
+                start_time = start_idx / self.sample_rate
+                end_time = len(activity) / self.sample_rate
+                events.append({
+                    'start_sample': start_idx,
+                    'end_sample': len(activity),
+                    'start_time': start_time,
+                    'end_time': end_time,
+                    'duration': end_time - start_time,
+                    'max_power_db': float(max_power),
+                    'baseline_db': float(baseline),
+                    'threshold_db': float(adaptive_threshold),
+                })
+
         return events
     
     def plot_overview(self, output_file=None):
@@ -191,27 +234,35 @@ class IQPlayer:
         print("="*70)
         
         # Detectar eventos
-        events = self.detect_events()
+        events = self.detect_events(
+            threshold_db=self.threshold_db,
+            min_duration_ms=self.min_duration_ms,
+            smooth_ms=self.smooth_ms,
+            merge_gap_ms=self.merge_gap_ms,
+        )
         print(f"\n[*] Eventos detectados: {len(events)}")
         
         if events:
-            print("\n    Evento | Tiempo Inicio | Duración | Potencia Máx | Baseline")
-            print("    " + "-" * 65)
+            print("\n    Evento | Tiempo Inicio | Duración | Potencia Máx | Baseline | Umbral")
+            print("    " + "-" * 78)
             for i, evt in enumerate(events, 1):
                 print(f"      {i:2d}   | {evt['start_time']:6.2f}s      | "
-                      f"{evt['duration']:6.3f}s   | {evt['max_power_db']:+7.1f} dBm | "
-                      f"{evt['baseline_db']:+7.1f} dBm")
+                      f"{evt['duration']:6.3f}s   | {evt['max_power_db']:+7.1f} dBFS | "
+                      f"{evt['baseline_db']:+7.1f} dBFS | {evt['threshold_db']:+7.1f} dBFS")
+        else:
+            print("\n[!] No se detectaron eventos con los parámetros actuales.")
+            print("[!] Prueba: --threshold 3 --min-duration-ms 2 --smooth-ms 1")
         
         # Estadísticas generales
         power = np.abs(self.data) ** 2
         power_db = 10 * np.log10(power + 1e-10)
         
-        print(f"\n[*] Estadísticas de Potencia:")
-        print(f"    Media:     {np.mean(power_db):+7.1f} dBm")
-        print(f"    Mediana:   {np.median(power_db):+7.1f} dBm")
+        print(f"\n[*] Estadísticas de Potencia (dBFS):")
+        print(f"    Media:     {np.mean(power_db):+7.1f} dBFS")
+        print(f"    Mediana:   {np.median(power_db):+7.1f} dBFS")
         print(f"    Desv. Est: {np.std(power_db):+7.1f} dB")
-        print(f"    Mínima:    {np.min(power_db):+7.1f} dBm")
-        print(f"    Máxima:    {np.max(power_db):+7.1f} dBm")
+        print(f"    Mínima:    {np.min(power_db):+7.1f} dBFS")
+        print(f"    Máxima:    {np.max(power_db):+7.1f} dBFS")
         print("="*70 + "\n")
 
 def main():
@@ -229,6 +280,14 @@ def main():
                        help='Guardar gráfico de potencia en tiempo')
     parser.add_argument('--plot-spectrogram', metavar='FILE',
                        help='Guardar espectrograma')
+    parser.add_argument('--threshold', type=float, default=6.0,
+                       help='Umbral sobre baseline en dB (default: 6)')
+    parser.add_argument('--min-duration-ms', type=float, default=8.0,
+                       help='Duración mínima de evento en ms (default: 8)')
+    parser.add_argument('--smooth-ms', type=float, default=2.0,
+                       help='Ventana de suavizado en ms (default: 2)')
+    parser.add_argument('--merge-gap-ms', type=float, default=5.0,
+                       help='Une huecos menores a X ms (default: 5)')
     
     args = parser.parse_args()
     
@@ -239,6 +298,10 @@ def main():
     
     # Crear player
     player = IQPlayer(args.file, freq_hz=args.freq, sample_rate=args.rate)
+    player.threshold_db = args.threshold
+    player.min_duration_ms = args.min_duration_ms
+    player.smooth_ms = args.smooth_ms
+    player.merge_gap_ms = args.merge_gap_ms
     
     # Generar reporte si se solicita
     if args.report:

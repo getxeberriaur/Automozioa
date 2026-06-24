@@ -2,14 +2,14 @@
 
 # iq_capture.sh
 # Script para captura de datos IQ (complejos) con RTL-SDR en Raspberry Pi
-# Uso: ./iq_capture.sh [duración_segundos] [ruta_salida]
+# Uso: ./iq_capture.sh [duracion_segundos] [ruta_salida] [frecuencia] [sample_rate]
 # Salida: archivo .iq8 compatible con HackRF One
 
 set -e
 
 # Configuración
-FREQ="433.92M"           # Frecuencia central (mando estándar)
-SAMPLE_RATE="2000000"    # 2 MHz (suficiente para 433 MHz)
+FREQ="${3:-433.92M}"     # Frecuencia central (ej: 433.92M, 315M, 868.3M)
+SAMPLE_RATE="${4:-2000000}"  # 2 MHz por defecto
 GAIN="40"
 DURATION="${1:-120}"     # 120 segundos por defecto
 OUTPUT_DIR="${2:-.}"

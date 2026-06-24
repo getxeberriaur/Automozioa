@@ -179,12 +179,33 @@ ANÁLISIS DE ARCHIVO IQ
 
 ### 3B: Generar Gráficos
 
+**Opción recomendada (un solo comando, robusto para archivos grandes):**
+
+```bash
+python3 ../RF_Lab_Seguro/scripts/hackrf_playback.py \
+    captures/capture_20260624_123456.iq8 \
+    --report \
+    --plot-all plots \
+    --plot-start-s 0 \
+    --plot-duration-s 20 \
+    --max-plot-points 200000
+```
+
+Genera automáticamente:
+- `plots/capture_20260624_123456_power.png`
+- `plots/capture_20260624_123456_spectrogram.png`
+
+**Comandos separados (si prefieres control manual):**
+
 **Gráfico de potencia en tiempo:**
 
 ```bash
 python3 ../RF_Lab_Seguro/scripts/hackrf_playback.py \
     captures/capture_20260624_123456.iq8 \
-    --plot-power plots/potencia.png
+    --plot-power plots/potencia.png \
+    --plot-start-s 0 \
+    --plot-duration-s 20 \
+    --max-plot-points 200000
 ```
 
 **Espectrograma (tiempo-frecuencia):**
@@ -192,7 +213,20 @@ python3 ../RF_Lab_Seguro/scripts/hackrf_playback.py \
 ```bash
 python3 ../RF_Lab_Seguro/scripts/hackrf_playback.py \
     captures/capture_20260624_123456.iq8 \
-    --plot-spectrogram plots/espectrograma.png
+    --plot-spectrogram plots/espectrograma.png \
+    --plot-start-s 0 \
+    --plot-duration-s 20
+```
+
+**Si aparece error de memoria o el gráfico tarda demasiado:**
+
+```bash
+python3 ../RF_Lab_Seguro/scripts/hackrf_playback.py \
+    captures/capture_20260624_123456.iq8 \
+    --plot-all plots \
+    --plot-start-s 0 \
+    --plot-duration-s 8 \
+    --max-plot-points 80000
 ```
 
 Salida esperada:
@@ -203,6 +237,20 @@ Salida esperada:
 [✓] Gráfico guardado: plots/potencia.png
 [✓] Espectrograma guardado: plots/espectrograma.png
 ```
+
+### 3C: Errores Típicos de Visualización
+
+**`ModuleNotFoundError: No module named 'numpy'`**
+```bash
+python3 -m pip install numpy scipy matplotlib
+```
+
+**No aparece ventana gráfica (entorno sin GUI):**
+- Usar siempre salida a archivo con `--plot-all` o `--plot-power/--plot-spectrogram`.
+
+**Archivo muy grande (120s o más):**
+- Limitar ventana temporal con `--plot-duration-s`.
+- Reducir puntos con `--max-plot-points`.
 
 ---
 

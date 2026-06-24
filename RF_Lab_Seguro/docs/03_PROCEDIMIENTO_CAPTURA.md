@@ -421,9 +421,13 @@ scp pi@192.168.1.100:~/rf_capture/captures/capture_*.iq8 ~/rf-analysis/captures/
 cd ~/rf-analysis
 python3 ../RF_Lab_Seguro/scripts/hackrf_playback.py captures/capture_*.iq8 --report
 
-# Visualización
-python3 ../RF_Lab_Seguro/scripts/hackrf_playback.py captures/capture_*.iq8 --plot-power plots/potencia.png
-python3 ../RF_Lab_Seguro/scripts/hackrf_playback.py captures/capture_*.iq8 --plot-spectrogram plots/espectro.png
+# Visualización (recomendada para portátil)
+python3 ../RF_Lab_Seguro/scripts/hackrf_playback.py captures/capture_*.iq8 \
+  --plot-all plots --plot-start-s 0 --plot-duration-s 20 --max-plot-points 200000
+
+# Visualización ligera (si hay errores de memoria)
+python3 ../RF_Lab_Seguro/scripts/hackrf_playback.py captures/capture_*.iq8 \
+  --plot-all plots --plot-start-s 0 --plot-duration-s 8 --max-plot-points 80000
 
 # Reproducción con HackRF (SOLO LABORATORIO CONTROLADO)
 hackrf_transfer -t captures/capture_*.iq8 -f 433920000 -s 2000000 -p 1 -a 1

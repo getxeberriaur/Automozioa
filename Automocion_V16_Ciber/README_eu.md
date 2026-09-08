@@ -21,7 +21,7 @@ Lehen bertsio honetan, biltegiak irakaskuntza-saio bat eta 2 orduko laborategi b
 - [Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md](materiales/00_Guion_intro_30min_eu.md): 30 minutuko sarrera-gidoia.
 - [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](materiales/01_Laboratorio_2h_eu.md): laborategi praktikoaren diseinua.
 - [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md](lab/02_Checklist_configuracion_laboratorio_eu.md): irakaslearentzako prestaketa-checklista.
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md](lab/03_Setup_rapido_windows_eu.md): Windows-erako erreferentziazko konfigurazio azkarra.
+- [Automocion_V16_Ciber/lab/03_Setup_rapido_linux_eu.md](lab/03_Setup_rapido_linux_eu.md): Linux / Ubuntu 22-rako erreferentziazko konfigurazio azkarra.
 
 ## Dokumentazioaren aurkibidea
 
@@ -32,7 +32,7 @@ Lehen bertsio honetan, biltegiak irakaskuntza-saio bat eta 2 orduko laborategi b
 - [Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md](materiales/00_Guion_intro_30min_eu.md)
 - [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](materiales/01_Laboratorio_2h_eu.md)
 - [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md](lab/02_Checklist_configuracion_laboratorio_eu.md)
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md](lab/03_Setup_rapido_windows_eu.md)
+- [Automocion_V16_Ciber/lab/03_Setup_rapido_linux_eu.md](lab/03_Setup_rapido_linux_eu.md)
 - [Automocion_V16_Ciber/lab/05_Demo_Ahultasunak_Help_Flash_eu.md](lab/05_Demo_Ahultasunak_Help_Flash_eu.md) — Demo CVE-2025-65855 (irakasleak)
 
 ### Gaztelaniazko dokumentazioa
@@ -55,8 +55,8 @@ Automozioa/
    ├─ lab/
    │  ├─ 02_Checklist_configuracion_laboratorio.md
    │  ├─ 02_Checklist_configuracion_laboratorio_eu.md
-   │  ├─ 03_Setup_rapido_windows.md
-   │  └─ 03_Setup_rapido_windows_eu.md
+   │  ├─ 03_Setup_rapido_linux.md
+   │  └─ 03_Setup_rapido_linux_eu.md
    ├─ logs/
    │  └─ .gitkeep
    └─ materiales/

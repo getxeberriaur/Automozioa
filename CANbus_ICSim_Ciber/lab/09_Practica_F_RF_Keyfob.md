@@ -4,7 +4,8 @@
 
 **Duración estimada:** 50 minutos  
 **Dificultad:** Media-Alta  
-**Herramientas:** RTL-SDR, `rtl_433`, Universal Radio Hacker (URH), `rpitx` o segundo SDR (relay)
+**Herramientas:** RTL-SDR v5, HackRF One, Universal Radio Hacker (URH), GNU Radio  
+**Vehículos de referencia:** Hyundai Ioniq (keyfob con botón — rolling code) · Peugeot 508 (entrada pasiva PKES — relay attack)
 
 ---
 
@@ -165,6 +166,36 @@ En URH:
 
 > Este ejercicio explica el ataque y lo simula conceptualmente. La retransmisión real requiere hardware de transmisión (HackRF / YARD Stick One).
 
+### Cómo funciona el relay attack COMPLETO en un sistema PKES
+
+```
+COCHE                   PERSONA B                PERSONA A              LLAVE
+(Peugeot 508)           (junto al coche)         (junto al propietario) (en bolsillo)
+   |                         |                         |                    |
+   |--- LF 125 kHz --------> |                         |                    |
+   |   "¿hay llave cerca?"   | -- retransmite LF ----> |                    |
+   |                         |                         | -- LF falso -----> |
+   |                         |                         |                    | (responde)
+   |                         |                         | <-- UHF 433 MHz -- |
+   |                         | <-- retransmite UHF --- |                    |
+   | <-- UHF 433 MHz --------|                         |                    |
+   | ✅ ABRE                  |                         |                    |
+```
+
+**Tiempo total del ataque real: < 30 segundos**
+
+> El coche cree que la llave está a 1 metro. En realidad puede estar al otro lado de una pared, en otra planta, o a 50 metros de distancia.
+
+### Hardware por persona
+
+| Persona | Dispositivo | Función |
+|---------|------------|---------|
+| **Persona B** (junto al coche) | HackRF One | Recibe LF del coche y retransmite UHF hacia el coche |
+| **Persona A** (junto a la llave) | RTL-SDR v5 + HackRF One | RTL-SDR captura UHF de la llave; HackRF retransmite LF hacia la llave |
+| Ambas | Portátil Linux + canal de red | Coordinación y paso de señal en tiempo real |
+
+> **Nota**: la parte LF (125 kHz) requiere idealmente un transceiver LF dedicado (Proxmark3 ~80€). Con el HackRF la cobertura a 125 kHz es marginal. Para la demostración en aula, si alguien **toca la manilla del coche**, el propio vehículo emite el LF — solo hay que retransmitir la respuesta UHF.
+
 ### Diagrama del ataque
 
 ```
@@ -180,8 +211,6 @@ Escenario real de robo:
   Ladrón A captura UHF → retransmite a Ladrón B →
   Ladrón B reenvía al coche → coche desbloquea y permite arranque
 ```
-
-### Tiempo necesario para el ataque real: < 30 segundos
 
 ### Con hardware de transmisión (HackRF o YARD Stick One)
 

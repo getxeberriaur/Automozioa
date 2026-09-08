@@ -21,7 +21,7 @@ En esta primera versión, el repositorio contiene documentación base para prepa
 - [Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md](materiales/00_Guion_intro_30min.md): guion de introducción de 30 minutos.
 - [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](materiales/01_Laboratorio_2h.md): diseño del laboratorio práctico.
 - [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](lab/02_Checklist_configuracion_laboratorio.md): checklist docente de preparación.
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md](lab/03_Setup_rapido_windows.md): guía rápida de referencia para Windows.
+- [Automocion_V16_Ciber/lab/03_Setup_rapido_linux.md](lab/03_Setup_rapido_linux.md): guía rápida de referencia para Linux / Ubuntu 22.
 
 ## Índice de documentación
 
@@ -31,7 +31,7 @@ En esta primera versión, el repositorio contiene documentación base para prepa
 - [Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md](materiales/00_Guion_intro_30min.md)
 - [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](materiales/01_Laboratorio_2h.md)
 - [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](lab/02_Checklist_configuracion_laboratorio.md)
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md](lab/03_Setup_rapido_windows.md)
+- [Automocion_V16_Ciber/lab/03_Setup_rapido_linux.md](lab/03_Setup_rapido_linux.md)
 - [Automocion_V16_Ciber/lab/05_Demo_Vulnerabilidades_Help_Flash.md](lab/05_Demo_Vulnerabilidades_Help_Flash.md) — Demo CVE-2025-65855 (docente)
 
 ### Documentación en euskara
@@ -54,8 +54,8 @@ Automozioa/
 	├─ lab/
 	│  ├─ 02_Checklist_configuracion_laboratorio.md
 	│  ├─ 02_Checklist_configuracion_laboratorio_eu.md
-	│  ├─ 03_Setup_rapido_windows.md
-	│  └─ 03_Setup_rapido_windows_eu.md
+	│  ├─ 03_Setup_rapido_linux.md
+	│  └─ 03_Setup_rapido_linux_eu.md
 	├─ logs/
 	│  └─ .gitkeep
 	└─ materiales/

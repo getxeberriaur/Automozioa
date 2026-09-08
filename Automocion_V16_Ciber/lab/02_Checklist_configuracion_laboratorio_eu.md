@@ -3,17 +3,19 @@
 [Gaztelaniazko bertsioa](02_Checklist_configuracion_laboratorio.md)
 
 ## A) Aurretiazko baldintzak (host)
-- Sistema: Windows 10/11, Linux edo macOS.
-- Python 3.11+ instalatuta.
+- Sistema: **Ubuntu 22.04 LTS** (makina birtuala edo fisikoa).
+- Python 3.10+ instalatuta (`python3 --version`).
+- `python3-venv` eta `python3-pip` eskuragarri (`sudo apt install -y python3-venv python3-pip`).
 - Editorea (VS Code gomendatua).
 - Terminal lokalerako sarbidea.
 - Trafiko-sistema errealekin konexiorik ez.
 
 ## B) Ingurunearen prestaketa (talde bakoitzeko)
 1. Laborategiko karpeta sortu talde bakoitzarentzat.
-2. Python ingurune birtuala sortu.
-3. Backend-aren eta probetako bezeroaren mendekotasunak instalatu.
-4. Egiaztatu backend-ak erabiliko duen ataka libre dagoela.
+2. Ingurune birtuala sortu: `python3 -m venv .venv`
+3. Ingurunea aktibatu: `source .venv/bin/activate`
+4. Mendekotasunak instalatu: `pip install -r requirements.txt`
+5. Egiaztatu 8080 ataka libre dagoela: `ss -tlnp | grep 8080`
 
 ## C) Gutxieneko osagaiak
 - `backend/`: simulatutako V16 abisuak jasotzeko APIa.

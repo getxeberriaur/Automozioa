@@ -41,6 +41,16 @@ Ejercicio integrador tipo **Capture The Flag** de 90 minutos que combina todas l
 
 ---
 
+### 4 — V2X Simulación (`V2X_Simulacion_Ciber/`)
+
+Laboratorio local sobre confianza en mensajes V2V/V2I/V2P. Simula CAM, DENM y eventos de infraestructura sin utilizar radio real.
+
+**Temas:** spoofing, replay, autenticación, frescura, plausibilidad física, rate limiting y detección de mensajes anómalos. Se complementa con el análisis RF de apertura de vehículos y TPMS, que se mantiene en sus laboratorios específicos.
+**Entorno:** Python 3.10+ y biblioteca estándar; tráfico limitado a `127.0.0.1`.
+**Documentación:** [V2X_Simulacion_Ciber/README.md](V2X_Simulacion_Ciber/README.md)
+
+---
+
 ## Estructura del repositorio
 
 ```text

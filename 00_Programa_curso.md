@@ -188,6 +188,19 @@ El terminal proyectado muestra en tiempo real cómo el dispositivo descarga el f
 - *¿Qué medida de bajo coste habría eliminado el 90% del riesgo?*
 - CVE-2025-65855 (MITRE) — investigación original: Luis Miranda Acebedo
 
+### Módulo complementario — V2X: confianza en mensajes cooperativos
+
+> Documentación: [`V2X_Simulacion_Ciber/lab/01_Practica_V2X.md`](V2X_Simulacion_Ciber/lab/01_Practica_V2X.md)
+
+Este módulo puede impartirse como ampliación de 90 minutos o sustituir parte del bloque de aplicación práctica del Día 3.
+
+- Arquitectura y conceptos: V2V, V2I, V2P, CAM, DENM y SPATEM.
+- Laboratorio software en `localhost`, sin transmisión RF ni conexión con vehículos reales.
+- Comparación entre gateway inseguro y gateway protegido.
+- Escenarios: replay, spoofing, timestamp antiguo, posición/velocidad imposible y ráfaga.
+- Contramedidas: autenticación, secuencia, ventana temporal, plausibilidad y rate limiting.
+- Conexión con las prácticas de apertura RF/keyless y TPMS: observar una señal no equivale a poder confiar en su contenido.
+
 ### 10:30 – 11:30 | Ciberseguridad en el Taller de Automoción
 
 - Riesgos de las herramientas de diagnóstico pirata

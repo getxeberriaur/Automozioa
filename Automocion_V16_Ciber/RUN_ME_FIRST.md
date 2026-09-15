@@ -6,23 +6,17 @@ Guía de despliegue para aula: [lab/04_Despliegue_participantes.md](lab/04_Despl
 
 ## 1) Crear y activar entorno virtual
 
-### Linux / Ubuntu 22
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-```
+### Windows PowerShell
+1. `python -m venv .venv`
+2. `.\.venv\Scripts\Activate.ps1`
 
 ## 2) Instalar dependencias
 
-```bash
-pip install -r requirements.txt
-```
+`pip install -r requirements.txt`
 
 ## 3) Levantar backend
 
-```bash
-uvicorn backend.app:app --host 127.0.0.1 --port 8080 --reload
-```
+`uvicorn backend.app:app --host 127.0.0.1 --port 8080 --reload`
 
 ### Ver documentación interactiva
 
@@ -35,34 +29,22 @@ uvicorn backend.app:app --host 127.0.0.1 --port 8080 --reload
 ## 4) Probar con el simulador
 
 ### Evento legítimo
-```bash
-python3 simulator/send_event.py legitimo
-```
+`python simulator/send_event.py legitimo`
 
 ### Replay
-```bash
-python3 simulator/send_event.py replay
-```
+`python simulator/send_event.py replay`
 
 ### Timestamp atrasado
-```bash
-python3 simulator/send_event.py timestamp-atrasado
-```
+`python simulator/send_event.py timestamp-atrasado`
 
 ### Coordenadas inválidas
-```bash
-python3 simulator/send_event.py coordenadas-invalidas
-```
+`python simulator/send_event.py coordenadas-invalidas`
 
 ### Identidad inválida
-```bash
-python3 simulator/send_event.py identidad-invalida
-```
+`python simulator/send_event.py identidad-invalida`
 
 ### Ráfaga
-```bash
-python3 simulator/send_event.py rafaga --count 8
-```
+`python simulator/send_event.py rafaga --count 8`
 
 ## 5) Revisar evidencias
 

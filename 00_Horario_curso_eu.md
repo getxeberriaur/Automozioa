@@ -190,6 +190,19 @@ Proiektutako terminalak denbora errealean erakusten du gailuak nola deskargatzen
 - *Zer kostu baxuko neurrik arrisku gehiena kenduko luke?*
 - CVE-2025-65855 (MITRE) — jatorrizko ikerketa: Luis Miranda Acebedo
 
+### Modulu osagarria — V2X: mezu kooperatiboekiko konfiantza
+
+> Dokumentazioa: [`V2X_Simulacion_Ciber/lab/01_Practica_V2X.md`](V2X_Simulacion_Ciber/lab/01_Practica_V2X.md)
+
+Modulu hau 90 minutuko zabalkuntza gisa eman daiteke, edo 3. eguneko praktika-aplikazioaren zati bat ordezkatu.
+
+- V2V, V2I, V2P, CAM, DENM eta SPATEM kontzeptuak.
+- Software-laborategia `localhost`-en, irrati-transmisiorik eta benetako ibilgailuekiko konexiorik gabe.
+- Gateway ez-seguruaren eta babestuaren arteko konparazioa.
+- Replay-a, spoofing-a, timestamp zaharra, kokapen/abiadura ezinezkoa eta burst-a.
+- Kontraneurriak: autentifikazioa, sekuentzia, denbora-leihoa, sinesgarritasuna eta rate limiting-a.
+- RF/keyless irekierako eta TPMSko praktikekin lotura: seinale bat behatzeak ez du esan nahi haren edukia fidagarria denik.
+
 ### 10:30 – 11:30 | Zibersegurtasuna Automozio Tailerrean
 
 - Diagnostiko-tresna piraten arriskuak

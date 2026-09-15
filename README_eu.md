@@ -43,6 +43,16 @@ V16 larrialdi-abisu sistema konektatuaren zibersegurtasunari buruzko laborategia
 
 ---
 
+### 4 — V2X Simulazioa (`V2X_Simulacion_Ciber/`)
+
+V2V/V2I/V2P mezuen konfiantzari buruzko laborategi lokala. CAM, DENM eta azpiegitura-mezuak simulatzen ditu, irrati-transmisiorik erabili gabe.
+
+**Gaiak:** spoofing-a, replay-a, autentifikazioa, freskotasuna, sinesgarritasun fisikoa eta rate limiting-a. RF, ibilgailuen irekiera eta TPMS analisiak beren laborategi espezifikoetan mantentzen dira.  
+**Ingurunea:** Python 3.10+ eta liburutegi estandarra; trafikoa `127.0.0.1`-era mugatuta.  
+**Dokumentazioa:** [V2X_Simulacion_Ciber/README.md](V2X_Simulacion_Ciber/README.md)
+
+---
+
 ## Biltegiaren egitura
 
 ```text

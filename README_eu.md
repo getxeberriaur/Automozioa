@@ -41,6 +41,8 @@ V16 larrialdi-abisu sistema konektatuaren zibersegurtasunari buruzko laborategia
 **Ingurunea:** Linux ICSim + vcan0-rekin (2. praktikako ingurune bera).  
 **Dokumentazioa:** [CTF_Automotive/README_eu.md](CTF_Automotive/README_eu.md)
 
+**Ikasgelako hedapena:** [CTF_Automotive/lab/05_Despliegue_Isard_CTFd.md](CTF_Automotive/lab/05_Despliegue_Isard_CTFd.md)
+
 ---
 
 ### 4 — V2X Simulazioa (`V2X_Simulacion_Ciber/`)
@@ -89,6 +91,13 @@ Automozioa/
     ├── RUN_ME_FIRST.md
     ├── lab/
     └── requirements.txt
+
+└── V2X_Simulacion_Ciber/              ← 4. Praktika: V2X simulazioa
+    ├── README.md
+    ├── RUN_ME_FIRST.md
+    ├── lab/
+    ├── reports/
+    └── scripts/
 ```
 
 ---

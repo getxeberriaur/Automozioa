@@ -39,6 +39,8 @@ Ejercicio integrador tipo **Capture The Flag** de 90 minutos que combina todas l
 **Entorno:** Linux con ICSim + vcan0 (mismo entorno que la práctica 2).  
 **Documentación:** [CTF_Automotive/README.md](CTF_Automotive/README.md)
 
+**Despliegue en aula:** [CTF_Automotive/lab/05_Despliegue_Isard_CTFd.md](CTF_Automotive/lab/05_Despliegue_Isard_CTFd.md)
+
 ---
 
 ### 4 — V2X Simulación (`V2X_Simulacion_Ciber/`)
@@ -81,12 +83,19 @@ Automozioa/
 │   ├── reports/
 │   └── requirements.txt
 │
-└── CTF_Automotive/                    ← Práctica 3: CTF integrador
+├── CTF_Automotive/                    ← Práctica 3: CTF integrador
     ├── README.md
     ├── README_eu.md
     ├── RUN_ME_FIRST.md
     ├── lab/
     └── requirements.txt
+
+└── V2X_Simulacion_Ciber/              ← Práctica 4: V2X simulado
+    ├── README.md
+    ├── RUN_ME_FIRST.md
+    ├── lab/
+    ├── reports/
+    └── scripts/
 ```
 
 ---

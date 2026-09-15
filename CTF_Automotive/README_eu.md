@@ -56,6 +56,12 @@ CTF_Automotive/
 4. [`03_Hoja_flags_equipo_eu.md`](lab/03_Hoja_flags_equipo_eu.md) kopia bat eman parte-hartzaile bakoitzari
 5. Kronometroa martxan jarri eta Game Master gisa jardun
 
+## Isard-en hedapena eta CTFd bidezko puntuazioa
+
+Talde anitzeko saioetarako, VM independente bat erabiltzea gomendatzen da talde bakoitzarentzat, beste bat Game Masterrarentzat eta beste bat CTFdrentzat. Parte-hartzaile bakoitzak bere ICSim, `controls`, `decoy_traffic.py` eta `vcan0` exekutatzen ditu; VM-en arteko CAN bus birtualak ez dira partekatzen.
+
+CTFd taldeak, erronkak, flagak eta puntuazioa kudeatzeko erabiltzen da soilik. Ez da `vcan0`-ra konektatzen. Konfigurazio osoa [`lab/05_Despliegue_Isard_CTFd.md`](lab/05_Despliegue_Isard_CTFd.md) gidan dago.
+
 ## Zailtasun aldaerak
 
 | Maila | Aldaketa |

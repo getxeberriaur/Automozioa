@@ -56,6 +56,12 @@ CTF_Automotive/
 4. Entregar una copia de [`03_Hoja_flags_equipo.md`](lab/03_Hoja_flags_equipo.md) a cada participante
 5. Arrancar el cronómetro y actuar como Game Master
 
+## Despliegue distribuido en Isard y puntuación con CTFd
+
+Para impartir el CTF con varios equipos se recomienda una VM independiente por equipo, una VM para el Game Master y otra VM para CTFd. Cada participante ejecuta su propio ICSim, `controls`, `decoy_traffic.py` y `vcan0`; los buses virtuales no se comparten entre VMs.
+
+CTFd se utiliza únicamente para equipos, retos, flags y puntuación. No necesita conectarse al bus CAN. La guía completa está en [`lab/05_Despliegue_Isard_CTFd.md`](lab/05_Despliegue_Isard_CTFd.md).
+
 ## Variantes de dificultad
 
 | Nivel | Modificación |

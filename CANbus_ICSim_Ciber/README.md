@@ -1,98 +1,26 @@
-# Laboratorio de Ciberseguridad CAN Bus — ICSim
+# CAN bus laborategia — ICSim
 
-> **Práctica independiente** del módulo V16. Esta carpeta contiene un laboratorio autónomo centrado en las vulnerabilidades del protocolo **CAN bus** usando el simulador **ICSim** (Instrument Cluster Simulator) y las herramientas **can-utils**.
+[Abiarazte azkarra](RUN_ME_FIRST.md)
 
----
+ICSim simulagailuarekin eta `vcan0` interfaze birtualarekin egiten den CAN bus laborategia. Jarduerak simulagailuan soilik egin; ez konektatu CAN interfaze fisikorik edo ibilgailurik.
 
-## ¿Qué aprenderás?
+## Praktikak
 
-| Competencia | Herramienta |
-|---|---|
-| Escuchar tráfico CAN en tiempo real | `candump`, `cansniffer` |
-| Identificar tramas de interés (ingeniería inversa) | `cansniffer`, scripts Python |
-| Inyectar tramas arbitrarias | `cansend`, `python-can` |
-| Ejecutar un ataque de replay | `canplayer`, script Python |
-| Hacer fuzzing al bus CAN | `cangen`, `fuzz_can.py` |
-| Saturar el bus (DoS) | `can_dos.py` |
+1. [Sarrera eta testuingurua](lab/01_Introduccion_CANbus_eu.md)
+2. [Linux edo makina birtualaren konfigurazioa](lab/03_Setup_entorno_linux_eu.md)
+3. [A — Bus-aren ezagutza pasiboa](lab/04_Practica_A_Reconocimiento_eu.md)
+4. [B — Frame-injekzioa](lab/05_Practica_B_Inyeccion_eu.md)
+5. [C — Replay-a](lab/06_Practica_C_Replay_eu.md)
+6. [D — Fuzzing-a eta DoS-a](lab/07_Practica_D_Fuzzing_DoS_eu.md)
 
----
+## Baldintzak
 
-## Arquitectura del laboratorio
+- Linux (Ubuntu edo Kali) edo Linux makina birtual bat.
+- `vcan0`, ICSim eta `can-utils`.
+- Python 3 eta `requirements.txt` fitxategiko mendekotasunak.
 
-```
-┌──────────────────────────────────────┐
-│          Linux VM / Host             │
-│                                      │
-│  vcan0 (interfaz CAN virtual)        │
-│      │                               │
-│      ├── ICSim (cuadro de mandos)    │
-│      ├── controls (mando)            │
-│      ├── candump / cansniffer        │
-│      └── scripts/ (ataques)          │
-└──────────────────────────────────────┘
-```
+Windowsen, erabili Linux VM bat; Docker Desktop Windows-en ez da `vcan0` laborategi honetarako egokia. Xehetasunak konfigurazio-gidan daude.
 
-> **Alcance:** todas las prácticas de esta rama usan exclusivamente `vcan0` e ICSim. No conectes interfaces CAN físicas.
+## Ebidentziak
 
----
-
-## Requisitos mínimos
-
-### Opción A — Docker (recomendada, sin instalar dependencias)
-- **Docker Engine** instalado en Linux. En Windows, ejecuta el laboratorio dentro de una VM Linux.
-- **CPU:** 2 núcleos, 4 GB RAM.
-- El contenedor incluye ICSim, can-utils, Xvfb, openbox, tint2 y noVNC.
-
-### Opción B — Instalación nativa en Linux
-- **Sistema operativo:** Ubuntu 22.04 LTS o Kali Linux 2024+ (VM o bare metal).  
-  *Windows no soporta SocketCAN de forma nativa. Ver `lab/03_Setup_entorno_linux.md` para opciones de VM.*
-- **CPU:** 2 núcleos, 4 GB RAM.
-- **Dependencias:** `can-utils`, `SDL2`, `SDL2_image`, `python3`, `python-can`.
-- **ICSim:** compilado desde [https://github.com/zombieCraig/ICSim](https://github.com/zombieCraig/ICSim).
-
----
-
-## Estructura de carpetas
-
-```
-CANbus_ICSim_Ciber/
-├── README.md                          ← este archivo
-├── RUN_ME_FIRST.md                    ← arranque rápido (10 min)
-├── requirements.txt                   ← dependencias Python
-├── lab/
-│   ├── 01_Introduccion_CANbus.md      ← teoría y contexto
-│   ├── 03_Setup_entorno_linux.md      ← setup VM/ICSim paso a paso
-│   ├── 04_Practica_A_Reconocimiento.md
-│   ├── 05_Practica_B_Inyeccion.md
-│   ├── 06_Practica_C_Replay.md
-│   └── 07_Practica_D_Fuzzing_DoS.md
-├── scripts/
-│   ├── setup_vcan.sh                  ← levanta vcan0
-│   ├── can_scanner.py                 ← escaneo y log de IDs activos
-│   ├── fuzz_can.py                    ← fuzzer de frames CAN
-│   ├── replay_attack.py               ← ataque de replay
-│   └── can_dos.py                     ← flooding / DoS
-├── samples/
-│   └── icsim_normal.log               ← captura de tráfico de referencia
-├── logs/
-│   └── .gitkeep
-└── reports/
-    └── 00_Plantilla_informe_evidencias.md
-```
-
----
-
-## Prácticas incluidas
-
-| Práctica | Objetivo |
-|---|---|
-| **A — Reconocimiento** | Escuchar el bus y catalogar IDs y bytes activos |
-| **B — Inyección de frames** | Tomar control del cuadro de mandos con `cansend` |
-| **C — Replay Attack** | Grabar y reproducir una secuencia de acción |
-| **D — Fuzzing y DoS** | Generar tráfico aleatorio y saturar el bus |
-
----
-
-## Aviso legal y ético
-
-Este laboratorio usa **exclusivamente entornos virtuales** (vcan0 + ICSim). Cualquier uso de estas técnicas sobre vehículos reales sin autorización explícita del propietario es **ilegal** (Ley Orgánica 10/1995, delitos informáticos, art. 264 y ss. CP). El acceso no autorizado a sistemas de control de vehículos puede comprometer la seguridad vial.
+Gorde komandoak, behaketak eta pantaila-argazkiak euskarazko [txosten-txantiloian](reports/00_Ebidentzia_txosten_txantiloia.md). Praktika guztiak `vcan0` + ICSim-en soilik egin behar dira.

@@ -1,7 +1,5 @@
 # Ebidentzia-txosten txantiloia — CAN Bus Laborategia (taldea)
 
-[Gaztelaniazko bertsioa](00_Plantilla_informe_evidencias.md)
-
 ## 1) Taldearen datuak
 
 - Zentroa:

@@ -1,8 +1,8 @@
-# Arranque rápido — Laboratorio V16
+# Abiarazte azkarra — V16 laborategia
 
-El laboratorio simula el envío de avisos V16 a una API local. Ejecuta los comandos desde `Automocion_V16_Ciber/`.
+V16 abisuak tokiko API batera bidaltzea simulatzen duen laborategia da. Exekutatu komandoak `Automocion_V16_Ciber/` karpetatik.
 
-## 1. Preparar Python
+## 1. Python ingurunea prestatu
 
 Windows PowerShell:
 
@@ -11,30 +11,30 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-Linux o macOS:
+Linux edo macOS:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-Instala las dependencias:
+Instalatu mendekotasunak:
 
 ```text
 pip install -r requirements.txt
 ```
 
-## 2. Iniciar el backend
+## 2. Backend-a abiarazi
 
 ```text
 uvicorn backend.app:app --host 127.0.0.1 --port 8080
 ```
 
-Abre `http://127.0.0.1:8080/docs` o `http://127.0.0.1:8080/aginte-panela`.
+Ireki `http://127.0.0.1:8080/docs` edo `http://127.0.0.1:8080/aginte-panela`.
 
-## 3. Ejecutar escenarios
+## 3. Agertokiak exekutatu
 
-En una segunda terminal, también desde `Automocion_V16_Ciber/`:
+Bigarren terminal batean, oraindik `Automocion_V16_Ciber/` karpetan:
 
 ```text
 python simulator/send_event.py legitimo
@@ -45,8 +45,10 @@ python simulator/send_event.py identidad-invalida
 python simulator/send_event.py rafaga --count 8
 ```
 
-## 4. Revisar y entregar evidencias
+Agertokien izenak simulagailuaren komando-interfazearen parte dira; ez itzuli komando horiek.
 
-Consulta `logs/events.log`, el panel local y `http://127.0.0.1:8080/events/recent?limit=10`. Completa una de las plantillas de informe en `reports/`.
+## 4. Ebidentziak berrikusi eta entregatu
 
-Todo el tráfico queda en `127.0.0.1`. No configures otro host ni conectes el laboratorio a servicios reales.
+Aztertu `logs/events.log`, tokiko panela eta `http://127.0.0.1:8080/events/recent?limit=10`. Bete `reports/00_Ebidentzia_txosten_txantiloia.md` txantiloia.
+
+Trafiko guztia `127.0.0.1` helbidean geratzen da. Ez erabili beste ostalaririk eta ez konektatu laborategia kanpoko zerbitzuetara.

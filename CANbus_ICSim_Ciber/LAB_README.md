@@ -1,12 +1,8 @@
-ICSim Docker deployment (noVNC)
-===============================
+# ICSim Docker bidez — Linux laborategia
 
-This folder contains a `Dockerfile`, `entrypoint.sh` and `docker-compose.yml` to build an ICSim image
-that exposes a web UI via noVNC and uses `vcan0` for the virtual CAN bus.
+Dokumentu honek Docker bidez ICSim abiarazteko urratsak azaltzen ditu. Erabili Linux makina batean edo Linux VM batean; Windows-eko Docker Desktop-ek ez du beharrezko `vcan` kernel-modulua eskaintzen.
 
-Quick start (host preparation)
-------------------------------
-1. Create `vcan0` on the host (recommended):
+## 1. `vcan0` prestatu
 
 ```bash
 sudo modprobe vcan
@@ -14,42 +10,38 @@ sudo ip link add dev vcan0 type vcan
 sudo ip link set up vcan0
 ```
 
-2. Build the image:
+## 2. Irudia eraiki
 
 ```bash
 cd CANbus_ICSim_Ciber
 docker build -t icsim-novnc:latest .
 ```
 
-3. Run with host networking (UI at http://HOST:6080):
+## 3. Edukiontzia abiarazi
 
 ```bash
 docker run --rm -it --network host --cap-add NET_ADMIN --shm-size=1g --name icsim-lab icsim-novnc:latest
 ```
 
-Or use docker-compose:
+Edo Compose erabilita:
 
 ```bash
-cd CANbus_ICSim_Ciber
-docker-compose up --build
+docker compose up --build
 ```
 
-Validation
-----------
-- Open http://<HOST_IP>:6080 in a browser to see the ICSim UI (noVNC).
-- In another terminal run:
+## 4. Egiaztatu
+
+Ireki `http://localhost:6080/vnc_lite.html`. Beste terminal batean:
 
 ```bash
 candump vcan0
-cansend vcan0 244#00000000FF000000  # increase speed
+cansend vcan0 244#00000000FF000000
 ```
 
-Troubleshooting
----------------
-- If the web UI does not appear, check container logs: `docker logs icsim-lab`.
-- If ICSim binary is missing, ensure build completed successfully during image build (meson/ninja steps).
-- For headless environments, ensure `xvfb`, `x11vnc` and `noVNC` are present in the image.
+## Arazoak konpontzea
 
-Security note
--------------
-This container requires `--network host` and `NET_ADMIN` for simple access to `vcan0`. Use only in trusted lab environments.
+- Web-interfazea ez bada agertzen, aztertu `docker logs icsim-lab`.
+- ICSim falta bada, egiaztatu Docker irudia behar bezala eraiki dela.
+- `vcan0` falta bada, egiaztatu kernelak `vcan` modulua duela eta interfazea ostalarian sortu dela.
+
+Edukiontziak `--network host` eta `NET_ADMIN` behar ditu `vcan0`-ra sartzeko. Erabili laborategi-ingurune fidagarrian soilik.

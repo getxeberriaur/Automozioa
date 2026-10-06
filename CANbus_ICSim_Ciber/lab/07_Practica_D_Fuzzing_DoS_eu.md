@@ -1,7 +1,5 @@
 # D Praktika — Fuzzing eta Zerbitzu-Ukapena (DoS)
 
-[Gaztelaniazko bertsioa](07_Practica_D_Fuzzing_DoS.md)
-
 **Estimatutako iraupena:** 45 minutu  
 **Zailtasuna:** Ertaina-Aurreratua  
 **Tresnak:** `cangen`, `scripts/fuzz_can.py`, `scripts/can_dos.py`

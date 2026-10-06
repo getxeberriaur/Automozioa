@@ -1,30 +1,53 @@
-# Informe de evidencias — V2X
+# V2X laborategiko txostena
 
-## Equipo
+## 1. Taldearen datuak
 
-- Integrantes:
-- Fecha:
-- Gateway usado: protegido / inseguro
+- Ikastetxea / taldea:
+- Kideak:
+- Data:
 
-## Observaciones
+## 2. Ingurunea
 
-| Escenario | HTTP | Decisión | Motivo observado |
-|---|---:|---|---|
-| legitimo | | | |
-| emergency | | | |
-| replay | | | |
-| spoof | | | |
-| impossible | | | |
-| old | | | |
-| burst | | | |
+- Python bertsioa:
+- Gateway-a `127.0.0.1:8090` helbidean: Bai / Ez
+- Babestutako modua probatua: Bai / Ez
+- Babesik gabeko modua probatua: Bai / Ez
 
-## Análisis
+## 3. Agertokien emaitzak
 
-1. ¿Qué ataques pasan en modo inseguro?
-2. ¿Qué controles los bloquean en modo protegido?
-3. ¿Por qué una firma válida no garantiza que el contenido sea verdadero?
-4. ¿Qué riesgo residual permanece?
+| Agertokia | Modua | HTTP kodea | Erabakia | Arrazoia |
+|---|---|---:|---|---|
+| legitimo | Babestua | | | |
+| emergency | Babestua | | | |
+| replay | Babestua | | | |
+| spoof | Babestua | | | |
+| impossible | Babestua | | | |
+| old | Babestua | | | |
+| burst | Babestua | | | |
+| Aukeratutako proba | Babesik gabe | | | |
 
-## Recomendación
+## 4. Kontrolen konparazioa
 
-Proponer tres medidas para el sistema `UrbanFleet` y justificar su prioridad.
+| Propietatea | Babesik gabeko modua | Babestutako modua | Behaketa |
+|---|---|---|---|
+| Autentikotasuna | | | |
+| Mezuaren osotasuna | | | |
+| Freskotasuna / replay-a | | | |
+| Kokapenaren plausibilitatea | | | |
+| Tasa-muga | | | |
+
+## 5. Ebidentziak eta ondorioak
+
+Erantsi terminaleko erantzunak edo pantaila-argazkiak. Azaldu zer frogatzen duen sinadurak eta zer ezin duen frogatu.
+
+**Hiru defentsa-neurri lehenetsi:**
+
+1.
+2.
+3.
+
+## 6. Amaierako egiaztapena
+
+- [ ] Gateway-a gelditu da.
+- [ ] Praktika `127.0.0.1` helbidean soilik egin da.
+- [ ] Ebidentziak eta ondorioak dokumentatu dira.

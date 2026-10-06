@@ -1,18 +1,8 @@
-# Automozioa
+# V16 laborategia — Konektatutako baliza
 
-[Versión en euskara](README_eu.md)
+[Abiarazte azkarra](RUN_ME_FIRST.md)
 
-Repositorio de apoyo para materiales docentes y laboratorio práctico sobre ciberseguridad en automoción, con foco en eventos conectados de balizas V16 en entorno simulado.
-
-## Objetivo
-
-Este repositorio está pensado para:
-
-- apoyar sesiones docentes introductorias sobre ciberseguridad en sistemas ITS y automoción conectada;
-- proporcionar un guion de laboratorio controlado, reproducible y orientado a defensa;
-- servir como base para construir una práctica local con backend, simulador y evidencias.
-
-> Importante: todo el contenido está orientado a formación defensiva en sandbox local o red aislada. No debe utilizarse sobre infraestructuras reales.
+Laborategi honetan V16 baliza baten abisuak tokiko API batera bidaltzea simulatzen da. Backend-ak mezuen eskema, gailu-identitatea, koordenatuak, denbora, nonce-a eta bidalketa-maiztasuna balioztatzen ditu.
 
 ## Práctica
 
@@ -22,7 +12,7 @@ Sigue el [arranque rápido](RUN_ME_FIRST.md). La API local, el simulador, el eve
 
 1. Lee [RUN_ME_FIRST.md](RUN_ME_FIRST.md).
 2. Realiza los escenarios con `simulator/send_event.py`.
-3. Revisa `logs/events.log` y entrega el informe de [reports/00_Plantilla_informe_evidencias.md](reports/00_Plantilla_informe_evidencias.md).
+3. Revisa `logs/events.log` y entrega el informe de [txosten-txantiloia](reports/00_Ebidentzia_txosten_txantiloia.md).
 
 ## Público
 

@@ -1,35 +1,35 @@
-# Inicio rápido — Laboratorio RF pasivo
+# Abiarazte azkarra — RF kaptura pasiboa
 
-Este laboratorio analiza espectro recibido con un RTL-SDR y un emisor de prueba propio, aislado y autorizado. No incluye transmisión, replay, jamming ni conexión a receptores o vehículos.
+Erabili RTL-SDR hargailua eta isolatutako proba-igorlea. Ez egin transmisiorik, replay-rik edo interferentziarik.
 
-## Requisitos
+## Baldintzak
 
-- Raspberry Pi 4/5 con RTL-SDR y antena de recepción.
-- Emisor de prueba aislado de 433.92 MHz.
-- Portátil con Python 3.8+ y conexión SSH a la Raspberry Pi.
+- Raspberry Pi 4/5 eta RTL-SDR hargailua.
+- 433.92 MHz-eko proba-igorle isolatua.
+- Python 3 duen eramangarria, analizatzeko mendekotasunekin.
 
-## Preparación
+## Prestaketa
 
-1. Lee [Ética y seguridad](docs/04_ETICA_Y_SEGURIDAD.md).
-2. Sigue la guía de [instalación de Raspberry Pi](docs/01_GUIA_RASPBERRY.md) y la [guía de análisis en portátil](docs/02_GUIA_PORTATIL.md).
-3. Revisa el [procedimiento de captura](docs/03_PROCEDIMIENTO_CAPTURA.md).
+1. Irakurri [segurtasun-arauak](docs/04_ETICA_Y_SEGURIDAD.md).
+2. Instalatu ekipoa [Raspberry Pi gidarekin](docs/01_GUIA_RASPBERRY.md) eta prestatu analisia [eramangarriaren gidarekin](docs/02_GUIA_PORTATIL.md).
+3. Jarraitu [kaptura-prozedurari](docs/03_PROCEDIMIENTO_CAPTURA.md).
 
-## Captura y análisis
+## Kapturatu eta aztertu
 
-En la Raspberry Pi, desde la carpeta que contiene `spectrum_capture.sh`:
+Raspberry Pi-n, `spectrum_capture.sh` scriptaren karpetan:
 
 ```bash
 ./spectrum_capture.sh 120 ~/rf_capture
 ```
 
-Copia el CSV resultante al portátil y prepara las dependencias documentadas en `docs/02_GUIA_PORTATIL.md`. Después ejecuta:
+Kopiatu sortutako CSVa eramangarrira eta exekutatu:
 
 ```bash
-python3 scripts/analyze_spectrum.py data/spectrum_<fecha>.csv
+python3 scripts/analyze_spectrum.py data/spectrum_<data>.csv
 ```
 
-Completa [la plantilla de informe](templates/INFORME_ALUMNOS.md) y conserva las capturas y resultados generados.
+Gorde grafikoak eta bete [txosten-txantiloia](templates/INFORME_ALUMNOS.md).
 
-## Límites
+## Segurtasun-mugak
 
-Usa únicamente señales de un emisor de prueba aislado, dentro del laboratorio y bajo supervisión. No captures señales de llaves, TPMS u otros equipos reales; no transmitas ni reproduzcas señales.
+Erabili laborategian eta zaintzapean dagoen proba-igorlea soilik. Ez harrapatu benetako giltzen edo ibilgailuen seinalerik. Ez transmititu edo erreproduzitu seinalerik.

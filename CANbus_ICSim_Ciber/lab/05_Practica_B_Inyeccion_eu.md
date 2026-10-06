@@ -1,7 +1,5 @@
 # B Praktika — CAN Frame Injekzioa
 
-[Gaztelaniazko bertsioa](05_Practica_B_Inyeccion.md)
-
 **Estimatutako iraupena:** 40 minutu  
 **Zailtasuna:** Ertaina  
 **Tresnak:** `cansend`, `python-can`

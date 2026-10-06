@@ -1,19 +1,19 @@
-# V2X Simulación — Laboratorio de Ciberseguridad
+# V2X simulazioa — Zibersegurtasun laborategia
 
-Laboratorio local para introducir la seguridad de comunicaciones **V2V, V2I y V2P** sin transmitir por radio ni conectarse a vehículos o infraestructuras reales.
+Tokiko laborategia V2V/V2I/V2P mezuen konfiantza lantzeko. Ez da irrati-transmisiorik egiten, eta ez da ibilgailu edo azpiegitura errealetara konektatzen.
 
-## Qué se trabaja
+## Landuko diren gaiak
 
-- Mensajes CAM, DENM y una representación simplificada de SPATEM.
-- Suplantación de identidad, replay, datos físicamente imposibles y ráfagas.
-- Autenticación HMAC de laboratorio, ventana temporal, secuencias, plausibilidad y rate limiting.
-- Diferencia entre autenticidad, integridad y veracidad de un mensaje.
-- Relación con TARA, UNECE R155 e ISO/SAE 21434.
+- CAM, DENM eta SPATEM motako mezuen irudikapena.
+- Igorlearen autentifikazioa eta mezuaren osotasuna.
+- Freskotasuna, sekuentzia-zenbakiak eta replay-a.
+- Koordenatu eta abiadura plausibilitatea.
+- Tasa-muga eta mezu anomaloen detekzioa.
 
-## Recorrido
+## Ibilbidea
 
-1. Sigue [RUN_ME_FIRST.md](RUN_ME_FIRST.md) para iniciar el gateway y ejecutar los escenarios.
-2. Completa [lab/01_Practica_V2X.md](lab/01_Practica_V2X.md).
-3. Guarda las evidencias en la plantilla de [`reports/`](reports/00_Plantilla_informe.md).
+1. Irakurri [abiarazte-gida](RUN_ME_FIRST.md).
+2. Egin [V2X praktika](lab/01_Practica_V2X.md).
+3. Gorde emaitzak [txosten-txantiloian](reports/00_Plantilla_informe.md).
 
-> Todo el tráfico se limita a `127.0.0.1`. No se incluye transmisión RF, jamming, replay por radio ni interacción con vehículos, semáforos o certificados reales.
+Gateway-a eta sortzailea `127.0.0.1` helbidean soilik komunikatzen dira. Ez aldatu helbidea eta ez erabili benetako ziurtagiri edo sistemarik.

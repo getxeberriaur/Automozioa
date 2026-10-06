@@ -1,8 +1,6 @@
 # CTF Automotive — UrbanFleet 2026
 ## Parte-hartzaileentzako enuntziatua
 
-[Gaztelaniazko bertsioa](01_Enunciado_participantes.md)
-
 ---
 
 ## Eszenatokia

@@ -1,7 +1,5 @@
 # A Praktika — CAN Bus-eko Ezagutza
 
-[Gaztelaniazko bertsioa](04_Practica_A_Reconocimiento.md)
-
 **Estimatutako iraupena:** 45 minutu  
 **Zailtasuna:** Oinarrizkoa  
 **Tresnak:** `candump`, `cansniffer`, `scripts/can_scanner.py`

@@ -1,8 +1,6 @@
 # CTF Automotive — UrbanFleet 2026
 ## Flag-en entrega-orria (banakakoa)
 
-[Gaztelaniazko bertsioa](03_Hoja_flags_equipo.md)
-
 ---
 
 **Zentroa:** ________________________________  

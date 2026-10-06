@@ -1,7 +1,5 @@
 # CAN Bus Protokoloaren eta Eraso-Azaleraren Sarrera
 
-[Gaztelaniazko bertsioa](01_Introduccion_CANbus.md)
-
 ## 1. Zer da CAN bus-a?
 
 **Controller Area Network (CAN)** Bosch-ek 1983an garatutako serie-komunikazio protokoloa da, mikrokontrolagailuek eta gailuek ordenagailu zentral baten beharrik gabe elkarrekin komunikatu ahal izateko diseinatua. 1990eko hamarkadatik autogintzako elektronikaren de facto estandarra da.

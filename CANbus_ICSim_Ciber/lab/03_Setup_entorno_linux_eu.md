@@ -1,7 +1,5 @@
 # Linux / VM Ingurunearen Konfigurazioa — Urrats Aurreratua
 
-[Gaztelaniazko bertsioa](03_Setup_entorno_linux.md)
-
 ## A aukera — Makina birtuala (Windows-erako gomendatua)
 
 ### A1. VirtualBox instalatu

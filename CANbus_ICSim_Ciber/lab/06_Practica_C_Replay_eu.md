@@ -1,7 +1,5 @@
 # C Praktika — Replay Erasoa
 
-[Gaztelaniazko bertsioa](06_Practica_C_Replay.md)
-
 **Estimatutako iraupena:** 40 minutu  
 **Zailtasuna:** Ertaina  
 **Tresnak:** `candump`, `canplayer`, `scripts/replay_attack.py`

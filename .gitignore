@@ -10,7 +10,6 @@ __pycache__/
 
 # Local outputs
 Automocion_V16_Ciber/logs/*.log
-Automocion_V16_Ciber/reports/*
 !Automocion_V16_Ciber/reports/.gitkeep
 !Automocion_V16_Ciber/logs/.gitkeep
 
@@ -18,3 +17,6 @@ Automocion_V16_Ciber/reports/*
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Backups
+*.bak

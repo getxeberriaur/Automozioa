@@ -1,176 +1,130 @@
-# Automozioa
+# Automozioa — Ciberseguridad en Automoción
 
-[Versión en euskara](README_eu.md)
+[Bertsioa euskaraz](README_eu.md)
+Repositorio para participantes con prácticas de laboratorio autónomas, instrucciones de ejecución, scripts, muestras y plantillas de evidencias.
 
-Repositorio de apoyo para materiales docentes y laboratorio práctico sobre ciberseguridad en automoción, con foco en eventos conectados de balizas V16 en entorno simulado.
+> Todo el contenido está orientado a **formación defensiva en entorno simulado o sandbox**. No debe utilizarse sobre vehículos o infraestructuras reales sin autorización explícita.
 
-## Objetivo
+---
 
-Este repositorio está pensado para:
+## Prácticas disponibles
 
-- apoyar sesiones docentes introductorias sobre ciberseguridad en sistemas ITS y automoción conectada;
-- proporcionar un guion de laboratorio controlado, reproducible y orientado a defensa;
-- servir como base para construir una práctica local con backend, simulador y evidencias.
+### 1 — Baliza V16 conectada (`Automocion_V16_Ciber/`)
 
-> Importante: todo el contenido está orientado a formación defensiva en sandbox local o red aislada. No debe utilizarse sobre infraestructuras reales.
+Laboratorio sobre ciberseguridad en el sistema de aviso de emergencia V16 conectado. Simula el envío y validación de eventos de baliza sobre una API REST local.
 
-## Contenido actual
+**Temas:** validación de esquema JSON, anti-replay por nonce, ventana temporal, rate limiting, trazabilidad de eventos.
 
-En esta primera versión, el repositorio contiene documentación base para preparar una sesión docente y un laboratorio de 2 horas:
+**Entorno:** Python / FastAPI — funciona en Windows, Linux y macOS.
+**Documentación:** [Automocion_V16_Ciber/README.md](Automocion_V16_Ciber/README.md)
 
-- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md): guion de introducción de 30 minutos.
-- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md): diseño del laboratorio práctico.
-- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md): checklist docente de preparación.
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md](Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md): guía rápida de referencia para Windows.
+---
 
-## Índice de documentación
+### 2 — CAN Bus con ICSim (`CANbus_ICSim_Ciber/`)
 
-### Documentación en castellano
+Laboratorio sobre las vulnerabilidades del protocolo **CAN bus** usando el simulador ICSim (Instrument Cluster Simulator) y las herramientas `can-utils`. Cubre reconocimiento pasivo, inyección de frames, replay y fuzzing/DoS.
 
-- [Automocion_V16_Ciber/RUN_ME_FIRST.md](Automocion_V16_Ciber/RUN_ME_FIRST.md)
-- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md)
-- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md)
-- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md)
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md](Automocion_V16_Ciber/lab/03_Setup_rapido_windows.md)
+**Temas:** protocolo CAN 2.0, ingeniería inversa de tramas, inyección sin autenticación, replay attack, flooding del bus.
 
-### Documentación en euskara
+**Entorno:** Linux (Ubuntu 22.04 / Kali) con `vcan0` virtual — se puede usar en VM.
+**Documentación:** [CANbus_ICSim_Ciber/README.md](CANbus_ICSim_Ciber/README.md)
 
-- [README_eu.md](README_eu.md)
-- [Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min_eu.md)
-- [Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h_eu.md)
-- [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio_eu.md)
-- [Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md](Automocion_V16_Ciber/lab/03_Setup_rapido_windows_eu.md)
+---
+
+### 3 — CTF Automotive — UrbanFleet 2026 (`CTF_Automotive/`)
+
+Ejercicio integrador tipo **Capture The Flag** de 90 minutos que combina todas las técnicas del lab CAN bus (reconocimiento, inyección, replay, DoS/fuzzing) en un escenario competitivo por equipos.
+
+**Temas:** Red Team en bus CAN, ataque encadenado por fases, defensa y contramedidas, presentación de evidencias.
+
+**Prerequisito:** haber completado `CANbus_ICSim_Ciber/`.
+
+**Entorno:** Linux con ICSim + vcan0 (mismo entorno que la práctica 2).
+**Documentación:** [CTF_Automotive/README.md](CTF_Automotive/README.md)
+
+El enunciado y la hoja de entrega están en `CTF_Automotive/lab/`.
+
+### 4 — Análisis RF pasivo (`RF_Lab_Seguro/`)
+
+Captura y análisis de espectro con RTL-SDR y un emisor de prueba aislado. La práctica no incluye transmisión, replay ni interferencia RF.
+
+**Entorno:** Raspberry Pi con RTL-SDR y portátil para el análisis.
+**Documentación:** [RF_Lab_Seguro/README.md](RF_Lab_Seguro/README.md)
+
+---
+
+### 4 — V2X Simulación (`V2X_Simulacion_Ciber/`)
+
+Laboratorio local sobre confianza en mensajes V2V/V2I/V2P. Simula CAM, DENM y eventos de infraestructura sin utilizar radio real.
+
+**Temas:** spoofing simulado, replay, autenticación, frescura, plausibilidad física, rate limiting y detección de mensajes anómalos.
+**Entorno:** Python 3.10+ y biblioteca estándar; tráfico limitado a `127.0.0.1`.
+**Documentación:** [V2X_Simulacion_Ciber/README.md](V2X_Simulacion_Ciber/README.md)
+
+---
 
 ## Estructura del repositorio
 
 ```text
 Automozioa/
-├─ README_eu.md
-├─ README.md
-└─ Automocion_V16_Ciber/
-	├─ backend/
-	│  └─ app.py
-	├─ lab/
-	│  ├─ 02_Checklist_configuracion_laboratorio.md
-	│  ├─ 02_Checklist_configuracion_laboratorio_eu.md
-	│  ├─ 03_Setup_rapido_windows.md
-	│  └─ 03_Setup_rapido_windows_eu.md
-	├─ logs/
-	│  └─ .gitkeep
-	└─ materiales/
-		├─ 00_Guion_intro_30min.md
-		├─ 00_Guion_intro_30min_eu.md
-		├─ 01_Laboratorio_2h.md
-		└─ 01_Laboratorio_2h_eu.md
-	├─ reports/
-	│  └─ .gitkeep
-	├─ samples/
-	│  └─ event_legitimo.json
-	├─ simulator/
-	│  └─ send_event.py
-	├─ requirements.txt
-	└─ RUN_ME_FIRST.md
+├── README.md                          ← este archivo (índice general)
+├── README_eu.md                       ← bertsio orokorra euskaraz
+│
+├── Automocion_V16_Ciber/              ← Práctica 1: Baliza V16
+│   ├── README.md
+│   ├── README_eu.md
+│   ├── RUN_ME_FIRST.md
+│   ├── backend/
+│   ├── lab/
+│   ├── simulator/
+│   ├── samples/
+│   ├── logs/
+│   ├── reports/
+│   └── requirements.txt
+│
+├── CANbus_ICSim_Ciber/                ← Práctica 2: CAN Bus
+│   ├── README.md
+│   ├── README_eu.md
+│   ├── RUN_ME_FIRST.md
+│   ├── lab/
+│   ├── scripts/
+│   ├── samples/
+│   ├── logs/
+│   ├── reports/
+│   └── requirements.txt
+│
+├── CTF_Automotive/                    ← Práctica 3: CTF integrador
+    ├── README.md
+    ├── README_eu.md
+    ├── lab/
+    └── requirements.txt
+
+├── RF_Lab_Seguro/                     ← Práctica 4: análisis RF pasivo
+│   ├── README.md
+│   ├── QUICKSTART.md
+│   ├── docs/
+│   ├── scripts/
+│   └── templates/
+└── V2X_Simulacion_Ciber/              ← Práctica 5: V2X simulado
+    ├── README.md
+    ├── RUN_ME_FIRST.md
+    ├── lab/
+    ├── reports/
+    └── scripts/
 ```
 
-## Público objetivo
+---
 
-Especialmente útil para:
+## Inicio rápido
 
-- profesorado de FP, universidad o formación técnica;
-- equipos que quieran montar una demostración local de seguridad en automoción conectada;
-- actividades de sensibilización sobre validación de eventos, trazabilidad y hardening básico.
+- V16: [arranque rápido](Automocion_V16_Ciber/RUN_ME_FIRST.md).
+- CAN/ICSim: [arranque rápido](CANbus_ICSim_Ciber/RUN_ME_FIRST.md).
+- CTF: completa primero el laboratorio CAN y sigue [CTF Automotive](CTF_Automotive/README.md).
+- RF: [guía de participantes](RF_Lab_Seguro/QUICKSTART.md).
+- V2X: [arranque rápido](V2X_Simulacion_Ciber/RUN_ME_FIRST.md).
 
-## Enfoque pedagógico
+---
 
-El laboratorio propuesto compara dos situaciones:
+## Aviso legal
 
-1. un backend con validaciones insuficientes;
-2. el mismo backend con controles defensivos activados.
-
-Los controles que se trabajan en la documentación incluyen:
-
-- validación estricta de esquema JSON;
-- validación de coordenadas;
-- ventana temporal para `timestamp`;
-- prevención de replay mediante `nonce`;
-- rate limiting por identidad;
-- logging con motivo de aceptación o rechazo.
-
-## Cómo usar este repositorio
-
-### Opción 1: solo material docente
-
-Si quieres usarlo solo como soporte de clase:
-
-1. revisa el guion de introducción en [Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md](Automocion_V16_Ciber/materiales/00_Guion_intro_30min.md);
-2. adapta la sesión práctica con [Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md](Automocion_V16_Ciber/materiales/01_Laboratorio_2h.md);
-3. utiliza la checklist de [Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md](Automocion_V16_Ciber/lab/02_Checklist_configuracion_laboratorio.md) antes de impartirla.
-
-### Opción 2: evolucionarlo a laboratorio ejecutable
-
-Siguiente evolución recomendada del repositorio:
-
-- crear `backend/` para la API local de ingestión;
-- crear `simulator/` para generar eventos legítimos y de prueba;
-- crear `logs/` para trazabilidad;
-- crear `reports/` para evidencias de cada equipo;
-- añadir `requirements.txt` y ejemplos de payloads.
-
-## Flujo de laboratorio previsto
-
-El flujo objetivo es el siguiente:
-
-1. el simulador genera un evento;
-2. el backend valida formato, tiempo, identidad y política;
-3. el backend decide `accepted` o `rejected`;
-4. la decisión se registra en logs;
-5. el equipo documenta evidencias y conclusiones.
-
-## Resultados de aprendizaje esperados
-
-Al trabajar con este material, el alumnado o profesorado participante debería poder:
-
-- identificar activos críticos en un sistema conectado de automoción;
-- diferenciar spoofing, replay e inyección de datos inválidos;
-- aplicar controles básicos de validación y trazabilidad;
-- interpretar logs como evidencia técnica;
-- justificar mitigaciones y riesgo residual.
-
-## Estado del repositorio
-
-Estado actual:
-
-- documentación docente: disponible;
-- guion del laboratorio: disponible;
-- backend mínimo de referencia: disponible;
-- simulador de pruebas: disponible;
-- plantillas de evidencias: pendiente.
-
-## Implementación mínima disponible
-
-El repositorio ya incluye una primera base ejecutable:
-
-- [Automocion_V16_Ciber/backend/app.py](Automocion_V16_Ciber/backend/app.py): API local con validación de esquema, ventana temporal, control anti-replay, control de tasa y logging.
-- [Automocion_V16_Ciber/simulator/send_event.py](Automocion_V16_Ciber/simulator/send_event.py): simulador con escenarios `legitimo`, `replay`, `timestamp-atrasado`, `coordenadas-invalidas`, `identidad-invalida` y `rafaga`.
-- [Automocion_V16_Ciber/samples/event_legitimo.json](Automocion_V16_Ciber/samples/event_legitimo.json): ejemplo de payload.
-- [Automocion_V16_Ciber/RUN_ME_FIRST.md](Automocion_V16_Ciber/RUN_ME_FIRST.md): arranque rápido.
-- [Automocion_V16_Ciber/requirements.txt](Automocion_V16_Ciber/requirements.txt): dependencias del laboratorio.
-
-## Próximos pasos recomendados
-
-1. completar la implementación mínima en Python;
-2. añadir ejemplos de eventos válidos e inválidos;
-3. preparar una plantilla de informe para `reports/`;
-4. incluir instrucciones de arranque rápido para cada equipo;
-5. validar el laboratorio en un entorno Windows real antes de impartirlo.
-
-## Principios de seguridad y ética
-
-- Solo entornos locales, simulados o aislados.
-- Prohibido usar estos materiales contra sistemas reales.
-- Objetivo exclusivamente formativo y defensivo.
-- La práctica debe centrarse en validación, hardening, detección y respuesta.
-
-## Licencia y uso
-
-Si vas a reutilizar este material en un centro educativo, conviene añadir una licencia explícita al repositorio y, si quieres, una nota de autoría o contribución.
+Las prácticas CAN, V16 y V2X se limitan a simuladores o `127.0.0.1`. La práctica RF es exclusivamente de recepción pasiva con un emisor de prueba aislado. No conectes los ejercicios a vehículos, redes CAN físicas ni sistemas RF reales.

@@ -1,0 +1,38 @@
+# Ignorar datos capturados (csv, raw, etc)
+*.csv
+*.raw
+*.iq
+*.bin
+
+# Ignorar gráficos generados
+plots/
+*.png
+*.jpg
+*.pdf
+
+# Ignorar cache
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.ipynb~
+
+# Ignorar entorno venv
+venv/
+env/
+
+# Ignorar archivos temporales
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+
+# Ignorar datos sensibles
+*.key
+*.token
+secrets/
+config_local.ini
+
+# Directorios de análisis local (cada usuario)
+data/
+notebooks/
+output/

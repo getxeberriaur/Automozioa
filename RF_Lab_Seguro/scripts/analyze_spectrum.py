@@ -21,6 +21,18 @@ def load_csv(filepath):
     try:
         # Saltar comentarios y cargar
         df = pd.read_csv(filepath, comment='#', skipinitialspace=True)
+        
+        # Si el CSV no tiene encabezados estándar, usar nombres genéricos
+        expected_metadata = ['Date', 'Time', 'Hz_low', 'Hz_high', 'Hz_step', 'Samples']
+        # Si no tiene los encabezados esperados, renombramos
+        if not all(col in df.columns for col in expected_metadata):
+            # Asumir que las primeras 6 columnas son metadatos
+            if len(df.columns) >= 6:
+                metadata_names = expected_metadata
+                power_names = [f"power_{i}" for i in range(len(df.columns) - 6)]
+                new_cols = metadata_names + power_names
+                df.columns = new_cols
+        
         print(f"[✓] CSV cargado: {len(df)} filas, {len(df.columns)} columnas")
         return df
     except Exception as e:
@@ -79,13 +91,17 @@ def plot_spectrum(df, output_dir="plots"):
     power_cols = [c for c in df.columns if 'dBm' in str(c) and '-' not in str(c)[:1]]
     
     if not power_cols:
-        # Alternativa: todas excepto metadatos
+        # Alternativa: todas excepto metadatos conocidos
         metadata = ['Date', 'Time', 'Hz_low', 'Hz_high', 'Hz_step', 'Samples']
-        power_cols = [c for c in df.columns if c not in metadata]
+        power_cols = [c for c in df.columns if c not in metadata and 'power_' in str(c).lower()]
     
     if not power_cols:
-        print("[!] No se encontraron columnas de potencia (dBm)")
-        return None
+        # Última alternativa: asumir que primeras 6 columnas son metadatos
+        if len(df.columns) > 6:
+            power_cols = list(df.columns[6:])
+        else:
+            print("[!] No se encontraron columnas de potencia (dBm)")
+            return None
     
     # Convertir a float y manejar errores
     power_data = df[power_cols].astype(float).values
@@ -263,11 +279,15 @@ def main():
     power_cols = [c for c in df.columns if 'dBm' in str(c) and '-' not in str(c)[:1]]
     if not power_cols:
         metadata = ['Date', 'Time', 'Hz_low', 'Hz_high', 'Hz_step', 'Samples']
-        power_cols = [c for c in df.columns if c not in metadata]
+        power_cols = [c for c in df.columns if c not in metadata and 'power_' in str(c).lower()]
     
     if not power_cols:
-        print("[✗] Error: No se encontraron columnas de potencia")
-        sys.exit(1)
+        # Última alternativa: asumir que primeras 6 columnas son metadatos
+        if len(df.columns) > 6:
+            power_cols = list(df.columns[6:])
+        else:
+            print("[✗] Error: No se encontraron columnas de potencia")
+            sys.exit(1)
     
     # Convertir a float para evitar errores de tipo
     power_array = df[power_cols].astype(float).values

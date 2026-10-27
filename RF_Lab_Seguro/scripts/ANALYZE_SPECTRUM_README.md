@@ -35,29 +35,43 @@ python3 analyze_spectrum.py capture_433_mhz.csv
 
 ## 📊 Estructura CSV esperada
 
-El CSV debe contener:
-- Metadatos: `Date`, `Time`, `Hz_low`, `Hz_high`, `Hz_step`, `Samples`
-- Columnas de potencia: Cualquier columna que contenga `"dBm"` en el nombre (ej: `433500 dBm`, `433600 dBm`, etc.)
+El CSV puede venir en dos formatos:
 
-**Ejemplo de formato:**
+### Formato 1: Con encabezados
 ```
 Date,Time,Hz_low,Hz_high,Hz_step,Samples,433500 dBm,433600 dBm,...
 2024-10-27,14:00:00,433500000,434500000,100000,10,-75.2,-76.1,...
 ```
 
+### Formato 2: Sin encabezados (formato nativo rtl_power)
+```
+2024-10-27,14:00:00,433500000,434500000,100000,10,-75.2,-76.1,...
+2024-10-27,14:00:01,433500000,434500000,100000,10,-74.5,-75.8,...
+```
+
+El script detecta automáticamente ambos formatos:
+- **Con encabezados:** Busca columnas que contengan `"dBm"` o nominadas `power_*`
+- **Sin encabezados:** Asume que las primeras 6 columnas son metadatos (Date, Time, Hz_low, Hz_high, Hz_step, Samples)
+- **Columnas de potencia:** El resto son valores numéricos de potencia
+
 ---
 
 ## 🐛 Solución de Errores
 
+### Error: `ValueError: could not convert string to float: '2026-10-27'`
+
+**Causa:** Las columnas Date/Time se estaban incluyendo en el análisis de potencia.
+
+**Solución:** ✅ Ya corregido en v1.2 — El script ahora:
+- Detecta automáticamente CSV con y sin encabezados
+- Excluye metadatos de las columnas de potencia
+- Renombra columnas ausentes automáticamente
+
 ### Error: `TypeError: can only concatenate str (not "int") to str`
 
-**Causa:** Las columnas de potencia contienen valores string en lugar de números.
+**Causa:** Las columnas de potencia contenían valores string en lugar de números.
 
-**Solución:** ✅ Ya corregido en v1.1 — el script convierte automáticamente a float.
-
-### Otros errores:
-- **"No se encontraron columnas de potencia"** → Verifica que el CSV tenga columnas con `dBm` en el nombre.
-- **"No module named 'pandas'"** → Instala dependencias: `pip install pandas numpy matplotlib scipy`
+**Solución:** ✅ Corregido en v1.1 — el script convierte automáticamente a float.
 
 ---
 
@@ -86,5 +100,6 @@ rtl_433 -f 433920000 -s 250000 -S unknown -R 0 | tee capture.log
 
 ## ✅ Última actualización
 
+- **v1.2** (2024-10-27): Soporte para CSV sin encabezados — auto-detección y renombrado de columnas.
 - **v1.1** (2024-10-27): Correción de tipos — convierte power columns a float automáticamente.
 - **v1.0** (2024-10-xx): Release inicial.

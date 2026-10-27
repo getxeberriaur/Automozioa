@@ -87,7 +87,8 @@ def plot_spectrum(df, output_dir="plots"):
         print("[!] No se encontraron columnas de potencia (dBm)")
         return None
     
-    power_data = df[power_cols].values
+    # Convertir a float y manejar errores
+    power_data = df[power_cols].astype(float).values
     
     # Frecuencias: desde 433.5 MHz en pasos de 100 kHz (10 bins)
     freq_mhz = np.linspace(433.5, 434.5, power_data.shape[1])
@@ -268,7 +269,8 @@ def main():
         print("[✗] Error: No se encontraron columnas de potencia")
         sys.exit(1)
     
-    power_array = df[power_cols].values
+    # Convertir a float para evitar errores de tipo
+    power_array = df[power_cols].astype(float).values
     mean_power = np.mean(power_array, axis=1)
     
     print(f"[*] Rango de potencia: {mean_power.min():.1f} a {mean_power.max():.1f} dBm")

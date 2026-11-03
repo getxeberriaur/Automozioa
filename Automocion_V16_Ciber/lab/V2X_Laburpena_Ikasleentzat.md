@@ -69,7 +69,7 @@
 
 ## 📊 Hamaika Gako Zenbakia / 11 Puntos Clave
 
-1. V2X = lehenengo teknologia autobusarentzat
+1. V2X = lehenengo teknologia busarentzat
 2. Dorriak baita balizak zure kokalekua irekitzen dute
 3. Testu garbian = **ez da segurua**
 4. Enkriptazioa = sarrera-aurrera gakoa

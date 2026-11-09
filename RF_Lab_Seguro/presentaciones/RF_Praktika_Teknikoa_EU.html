@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RF Praktika Teknikoa - Urrats Zehatza</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .presentation {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            padding: 60px 80px;
+            min-height: 720px;
+            background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide.title-slide {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .slide.content-slide h1 {
+            color: #c0392b;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            border-bottom: 4px solid #e74c3c;
+            padding-bottom: 15px;
+        }
+
+        .slide.content-slide h2 {
+            color: #e74c3c;
+            font-size: 1.8em;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .slide.content-slide h3 {
+            color: #c0392b;
+            font-size: 1.3em;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .slide.content-slide p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .slide.content-slide ul, 
+        .slide.content-slide ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .slide.content-slide li {
+            margin-bottom: 10px;
+        }
+
+        .info-box {
+            background: rgba(231, 76, 60, 0.1);
+            border-left: 5px solid #e74c3c;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            background: rgba(255, 107, 107, 0.15);
+            border-left: 5px solid #ff6b6b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #c92a2a;
+            font-weight: 500;
+        }
+
+        .success-box {
+            background: rgba(51, 184, 102, 0.1);
+            border-left: 5px solid #33b866;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #1a6b34;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-size: 0.95em;
+            color: #ecf0f1;
+            line-height: 1.5;
+        }
+
+        .command {
+            background: #34495e;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border-left: 3px solid #e74c3c;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .grid-item {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-top: 4px solid #e74c3c;
+        }
+
+        .grid-item h3 {
+            color: #c0392b;
+            margin-bottom: 15px;
+        }
+
+        .grid-item ul {
+            margin-left: 20px;
+            font-size: 1em;
+        }
+
+        .step-box {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 8px solid #e74c3c;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .step-box .step-number {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.1em;
+        }
+
+        .step-box strong {
+            color: #c0392b;
+            font-size: 1.1em;
+        }
+
+        .diagram {
+            background: white;
+            border: 2px solid #e74c3c;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 0.85em;
+            line-height: 1.4;
+            overflow-x: auto;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #e74c3c;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #fafafa;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #f8f9fa;
+        }
+
+        button {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #c0392b;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .slide-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 20px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: #e74c3c;
+        }
+
+        .title-slide h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.8em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .title-slide .meta {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-top: 60px;
+            border-top: 2px solid rgba(255,255,255,0.3);
+            padding-top: 30px;
+        }
+
+        .checklist {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .checklist-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checkbox {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e74c3c;
+            border-radius: 3px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin: 5px 5px 5px 0;
+        }
+
+        .badge.phase {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .badge.tool {
+            background: #3498db;
+            color: white;
+        }
+
+        .output {
+            background: #2c3e50;
+            color: #2ecc71;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 0.9em;
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 40px 50px;
+            }
+
+            .slide.content-slide h1 {
+                font-size: 2em;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px 20px;
+                min-height: auto;
+            }
+
+            .slide.content-slide h1 {
+                font-size: 1.5em;
+            }
+
+            .code-block {
+                font-size: 0.85em;
+            }
+
+            .controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="presentation">
+    <!-- SLIDE 1: Tituloa -->
+    <div class="slide title-slide active">
+        <h1>🔴 RF PRAKTIKA TEKNIKOA</h1>
+        <div class="subtitle">Urrats Zehatza Laborategian</div>
+        <p style="font-size: 1.4em; margin-top: 40px; opacity: 0.95;">Seinalea kapturatu, analisia, eta emaitzak dokumentua</p>
+        <div class="meta">
+            <p>🎯 Praktikaren helburua-zehaztasun</p>
+            <p>⏱️ 4-5 ordua, 3-4 saioan</p>
+            <p>⚡ Lanean osoa, urratsez urratsa</p>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: Aurreakondaketaren zerrenda -->
+    <div class="slide content-slide">
+        <h1>✅ Aurrekondaketa (Praktikaren aurretik)</h1>
+
+        <h2>Irakasleek betetzea (24 orduak aurretik):</h2>
+        <div class="checklist">
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>Hardware zerrenda:</strong> Raspberry Pi x3-4, RTL-SDR x3-4, mandoak, antenarak
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>RTL-SDR softwareak:</strong> Raspberry Pi-en instalatuta (drivers, GQRX, capture-tresnak)
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>Python liburutegia:</strong> numpy, scipy, matplotlib ikaslearen laptopean
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>Sareak:</strong> Raspberry Pi-ak WiFi-ekin konektatuta, laptopak SSH sarbidea du
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>Proba mandoa:</strong> Isolatua, 433 MHz-an emititzen du, bateria beterik
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>Laborategia:</strong> RF atsekabea, interferentzia minimo
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>Dokumentazioa:</strong> Printizatua edo screenean (Markdown fitxategiak)
+            </div>
+        </div>
+
+        <h2>Ikasleak aurretik (lehenbiziko saioan):</h2>
+        <div class="checklist">
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>Irakurketa:</strong> 04_ETICA_Y_SEGURIDAD.md osoa irakurrita
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>Deklarazioa:</strong> Segurtasunaren hitzarmena sinatzea prest
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>Softwarea:</strong> SSH-a baten ssh (Linux/Mac), PuTTY (Windows)
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>Python:</strong> Kode-editorea (VSCode, Geany, etc) daukatenak
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: Saio 1 - Diagrama osoa -->
+    <div class="slide content-slide">
+        <h1>📋 Saio 1: Hardware Setupa eta Kaptura (90 min)</h1>
+
+        <h2>Diagrama fluxua:</h2>
+        <div class="diagram">
+┌────────────────────────────────────────────────────────────┐
+│                  KAPTURA SAIOA OSOA                        │
+├────────────────────────────────────────────────────────────┤
+│                                                            │
+│  1. Hardware Atera                                         │
+│     ├─ Raspberry Pi                                        │
+│     ├─ RTL-SDR Dongle                                      │
+│     ├─ Antena dipolo                                       │
+│     └─ Kable USB                                           │
+│                                                            │
+│  2. RTL-SDR Konektatu                                      │
+│     ├─ Antena sartzea                                      │
+│     ├─ USB Raspberry Pi-an                                 │
+│     └─ Pirrima bota (berrabiatzea)                         │
+│                                                            │
+│  3. Seinalea Proba                                         │
+│     ├─ SSH laptopetik: ssh pi@raspberrypi.local            │
+│     ├─ Komandoa: rtl_test -t                               │
+│     └─ Emaitza: "IQ samples" ikusi                         │
+│                                                            │
+│  4. Baseline Kaptura (30 segundo, seinalerik gabe)         │
+│     ├─ Komandoa: rtl_fm -f 433.92M -s 250k ... >baseline  │
+│     └─ Fitxategia: baseline_20261110_140000.iq8            │
+│                                                            │
+│  5. Mandoa Sakatzen (5 x 3-4 segundo)                      │
+│     ├─ Seinalea: proba mandoa akatzetik sakatzea           │
+│     ├─ Komandoa: rtl_fm -f 433.92M -s 250k ... >capture   │
+│     └─ Fitxategi: capture_001.iq8, capture_002.iq8 ...     │
+│                                                            │
+│  6. Fitxategiak Transferitu                                │
+│     ├─ SCP laptopera: scp pi@rpi:/tmp/*.iq8 ./            │
+│     └─ Baieztatzea: ls -la *.iq8 (fitxategiak ikusten)    │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
+        </div>
+
+        <h2>Garai epea:</h2>
+        <ul>
+            <li>⏱️ <strong>Hardware eta konektak:</strong> 15 min</li>
+            <li>⏱️ <strong>RTL-SDR froga:</strong> 10 min</li>
+            <li>⏱️ <strong>Baseline kaptura:</strong> 5 min</li>
+            <li>⏱️ <strong>Mando sakatze 5 aldiz:</strong> 20 min (4 segundu x 5 + geldatzea)</li>
+            <li>⏱️ <strong>Fitxategiak transferitu:</strong> 10 min</li>
+            <li>⏱️ <strong>Amaitzea eta dokumentua:</strong> 20 min</li>
+        </ul>
+    </div>
+
+    <!-- SLIDE 4: Hardware konexioa -->
+    <div class="slide content-slide">
+        <h1>🔌 Hardware Konexioaren Diagrama</h1>
+
+        <div class="diagram">
+LAPTOP (ANALISI)
+    │
+    ├─ WiFi ─┐
+    │         │
+RASPBERRY PI   │
+    │         │
+    ├─ [Python]
+    │
+    └─ USB─────── RTL-SDR [Antena 433 MHz]
+                     │
+                     └─────► SEINALEA HARTZEA
+                             (Mando 433.92 MHz)
+
+FITXATEGIEN TRANSFERENTZIA:
+RPi:/tmp/*.iq8 ──(SCP)──► Laptop:/home/user/captures/
+
+
+LABORATEGIAN FISIKOA:
+┌─────────────────────────────────┐
+│  Laborategian mahaian:          │
+│  ┌─────────────────────────────┐│
+│  │ [RTL-SDR + Antena]          ││
+│  │         (33 cm altua)        ││
+│  └─────────────────────────────┘│
+│                                 │
+│  [Raspberry Pi] ←─USB─→         │
+│  (Proximatu: 30 cm)             │
+│                                 │
+│  [PROBA MANDOA]                 │
+│  (Sakatu 3 metro distantzia)    │
+│                                 │
+│  [Laptop analisia bidean]       │
+│                                 │
+└─────────────────────────────────┘
+        </div>
+
+        <h2>Hardware zerrenda:</h2>
+        <table>
+            <tr>
+                <th>Elementua</th>
+                <th>Zehaztapenak</th>
+                <th>Konexioa</th>
+            </tr>
+            <tr>
+                <td><strong>Raspberry Pi 4/5</strong></td>
+                <td>2GB RAM min, Debian SO</td>
+                <td>Power 5V, SSH WiFi</td>
+            </tr>
+            <tr>
+                <td><strong>RTL-SDR Dongle</strong></td>
+                <td>RTL2832U, 24-1766 MHz</td>
+                <td>USB-A Raspberry Pi-an</td>
+            </tr>
+            <tr>
+                <td><strong>Antena Dipolo</strong></td>
+                <td>433 MHz, ~17 cm (½ uhinaren luzeera)</td>
+                <td>MCX jack RTL-SDR-n</td>
+            </tr>
+            <tr>
+                <td><strong>Mando Proba</strong></td>
+                <td>433.92 MHz, Rolling Code</td>
+                <td>Airea (sakatzea gutxiean)</td>
+            </tr>
+            <tr>
+                <td><strong>Laptop Analisia</strong></td>
+                <td>Linux/macOS/Win+WSL2, Python3</td>
+                <td>WiFi Raspberry Pi-ra SSH</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SLIDE 5: Komandoak Saio 1 -->
+    <div class="slide content-slide">
+        <h1>💻 Komandoak Saio 1 (Kaptura)</h1>
+
+        <h2>1. SSH konektatzea Raspberry Pi-ra:</h2>
+        <div class="command">
+$ ssh pi@raspberrypi.local
+password: raspberry (defektua, aldatzea!)
+        </div>
+
+        <h2>2. RTL-SDR identifikatzea:</h2>
+        <div class="command">
+$ rtl_test -t
+Found 1 device(s):
+  0:  Realtek, RTL2832U, SN: 00000001
+Using device 0: Realtek RTL2832U
+Testing the test mode signal ...
+        </div>
+
+        <h2>3. Baseline kaptura (seinalerik gabe):</h2>
+        <div class="command">
+$ rtl_fm -f 433.92M -s 250k -g 49.6 \
+  - | sox -t raw -r 250k -e signed -b 16 -c 2 -V1 \
+  - baseline.iq8 stat
+        </div>
+
+        <h2>4. Mando seinalea kaptura (4 segundu):</h2>
+        <div class="command">
+$ timeout 4 rtl_fm -f 433.92M -s 250k -g 49.6 \
+  - | sox -t raw -r 250k -e signed -b 16 -c 2 -V1 \
+  - capture_001.iq8
+
+(Mando sakatzea LEHENBIZIAN, orduan CTRL+C)
+        </div>
+
+        <h2>5. Fitxategiak baieztatzea:</h2>
+        <div class="command">
+$ ls -lh *.iq8
+$ file baseline.iq8
+$ wc -c capture_*.iq8
+        </div>
+
+        <h2>6. Fitxategiak transferitu (laptop-era):</h2>
+        <div class="command">
+$ scp pi@raspberrypi.local:*.iq8 ~/captures/
+        </div>
+
+        <div class="info-box">
+            💡 <strong>Aholkua:</strong> Honako komandoak bash script batean jartzea praktikagarriagoa dute, "capture.sh" gisaren.
+        </div>
+    </div>
+
+    <!-- SLIDE 6: Saio 2 - Analisia -->
+    <div class="slide content-slide">
+        <h1>📊 Saio 2: Analisia Python-ekin (90 min)</h1>
+
+        <h2>Diagrama fluxua:</h2>
+        <div class="diagram">
+FITXATEGI KAPTURA
+    │
+    ├─► Python Script 1: Fitxategia irakurri
+    │      └─ numpy.fromfile() IQ laginak
+    │
+    ├─► Python Script 2: Potentzia kalkulatu
+    │      ├─ I,Q osagaiak
+    │      ├─ FFT (Fast Fourier Transform)
+    │      └─ dBm-an aldaketa
+    │
+    ├─► Python Script 3: Grafikak sortzea
+    │      ├─ Potentzia denboraz (timeline)
+    │      ├─ Espektroa (FFT bistaraketa)
+    │      ├─ Espektrograma (2D denbora-frekuentzia)
+    │      └─ matplotlib guarekin PDF sortzea
+    │
+    ├─► Python Script 4: Gertaera detektatzea
+    │      ├─ Zarataren ingurua kalkulatu
+    │      ├─ Sakatze momentua aurkitu (zarata > 1.5x)
+    │      ├─ Gertaeraren iraupena neurtu
+    │      └─ JSON fitxategian gordetzea
+    │
+    ├─► Analisia Kasu 1: Baseline vs Pulsazioak
+    │      └─ Konparazioa (Zarata, potentzia, frekuentzia)
+    │
+    └─► Txosten Sortzea
+           ├─ Grafikak + deskribapenak
+           ├─ Emaitzak + ondorioak
+           └─ Markdown fitxategian dokumentua
+        </div>
+
+        <h2>Denboraren epea:</h2>
+        <ul>
+            <li>⏱️ <strong>Python setup + liburu irakurketa:</strong> 10 min</li>
+            <li>⏱️ <strong>Potentzia grafika sortzea:</strong> 15 min</li>
+            <li>⏱️ <strong>Espektro eta espektrograma:</strong> 20 min</li>
+            <li>⏱️ <strong>Gertaera detektatzea eta neurtzea:</strong> 20 min</li>
+            <li>⏱️ <strong>Konparazioa sakatze anitzak:</strong> 15 min</li>
+            <li>⏱️ <strong>Txosten hasiera:</strong> 10 min</li>
+        </ul>
+    </div>
+
+    <!-- SLIDE 7: Python kode nagusia -->
+    <div class="slide content-slide">
+        <h1>🐍 Python Script Nagusia</h1>
+
+        <h2>Fitxategia irakurri eta bistaratzea:</h2>
+        <div class="code-block">
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+
+# Fitxategia irakurri
+filename = "capture_001.iq8"
+iq_data = np.fromfile(filename, dtype=np.uint8)
+
+# I eta Q osagaiak banandu
+iq_data = iq_data.astype(np.float32) - 127.5
+I = iq_data[::2]
+Q = iq_data[1::2]
+
+# Potentzia kalkulatu (dBm-an)
+power = 10 * np.log10(I**2 + Q**2 + 1e-10)
+
+# Denborea sekundutan
+sample_rate = 250000  # 250 kHz
+time = np.arange(len(I)) / sample_rate
+
+# Grafikak sortzea
+fig, axes = plt.subplots(2, 1, figsize=(12, 8))
+
+# 1. Potentzia denboraz
+axes[0].plot(time, power, linewidth=0.5)
+axes[0].set_ylabel('Potentzia (dBm)')
+axes[0].set_title('Seinalaren Potentzia Denboraz')
+axes[0].grid(True, alpha=0.3)
+
+# 2. Espektroa (FFT)
+fft_result = np.abs(np.fft.fft(I + 1j*Q))
+freq = np.fft.fftfreq(len(fft_result), 1/sample_rate) / 1e6  # MHz-an
+axes[1].plot(freq[:len(freq)//2], fft_result[:len(fft_result)//2])
+axes[1].set_xlabel('Frekuentzia (MHz)')
+axes[1].set_ylabel('Amplitudea')
+axes[1].set_title('Espektroa (FFT)')
+axes[1].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.savefig('analisis.pdf')
+plt.show()
+        </div>
+
+        <div class="success-box">
+            ✅ Emaitza: 2 grafikak (potentzia + espektroa) PDF-an
+        </div>
+    </div>
+
+    <!-- SLIDE 8: Gertaera detektatzea -->
+    <div class="slide content-slide">
+        <h1>🔍 Gertaera Detektatzea (Python)</h1>
+
+        <h2>Mando sakatze momentua detektatzea:</h2>
+        <div class="code-block">
+# Zarata neurtzea (baseline aurrena)
+baseline_iq = np.fromfile("baseline.iq8", dtype=np.uint8).astype(np.float32) - 127.5
+baseline_power = np.mean(baseline_iq**2)
+noise_threshold = baseline_power * 1.5  # 1.5x intelektua zarataren gainetik
+
+# Seinalea irakurri
+capture_iq = np.fromfile("capture_001.iq8", dtype=np.uint8).astype(np.float32) - 127.5
+capture_power = capture_iq**2
+
+# Gertaera detektatzea
+events = np.where(capture_power > noise_threshold)[0]
+
+if len(events) > 0:
+    event_start = events[0] / sample_rate
+    event_end = events[-1] / sample_rate
+    event_duration = event_end - event_start
+    
+    print(f"Gertaera detektatua!")
+    print(f"Hasiera: {event_start:.3f} s")
+    print(f"Amaiera: {event_end:.3f} s")
+    print(f"Iraupena: {event_duration:.3f} s")
+else:
+    print("Gertaera ez detektatua")
+
+# JSON gordetzea (hurrengo ebaluazioa)
+import json
+results = {
+    "filename": "capture_001.iq8",
+    "event_start_s": float(event_start),
+    "event_end_s": float(event_end),
+    "duration_s": float(event_duration),
+    "peak_power_dbm": float(np.max(10*np.log10(capture_power + 1e-10))),
+    "noise_level_dbm": float(10*np.log10(baseline_power))
+}
+
+with open("events.json", "w") as f:
+    json.dump(results, f, indent=2)
+        </div>
+
+        <div class="info-box">
+            💡 <strong>Emaitza:</strong> events.json fitxategi automatikoki gordeta, txosten azkenera berari jartzea.
+        </div>
+    </div>
+
+    <!-- SLIDE 9: Grafikak konparazioa -->
+    <div class="slide content-slide">
+        <h1>📈 Grafikak Konparatu (Sakatze anitzak)</h1>
+
+        <h2>Nola konparatu captures artean:</h2>
+        <div class="code-block">
+import glob
+
+# Fitxategi guztiak irakurri
+capture_files = sorted(glob.glob("capture_*.iq8"))
+
+fig, axes = plt.subplots(len(capture_files), 1, figsize=(12, 4*len(capture_files)))
+
+for idx, filename in enumerate(capture_files):
+    iq_data = np.fromfile(filename, dtype=np.uint8).astype(np.float32) - 127.5
+    power = 10 * np.log10(iq_data[::2]**2 + iq_data[1::2]**2 + 1e-10)
+    time = np.arange(len(power)) / 250000
+    
+    axes[idx].plot(time, power, linewidth=0.5, color='steelblue')
+    axes[idx].set_ylabel('dBm')
+    axes[idx].set_title(f'{filename} - Potentzia Denboraz')
+    axes[idx].grid(True, alpha=0.3)
+
+plt.xlabel('Denbora (s)')
+plt.tight_layout()
+plt.savefig('konparazioa_captures.pdf')
+plt.show()
+
+print(f"✅ {len(capture_files)} capture konparatuta!")
+        </div>
+
+        <h2>Zer ikusi behar du konparazioan:</h2>
+        <ul>
+            <li>📊 Seinalen forma berdina?</li>
+            <li>⏱️ Iraupena berdina (sakatze 1, 2, 3)?</li>
+            <li>📡 Potentzia antzeko denbora?</li>
+            <li>🔊 Amplitude berdinak?</li>
+            <li>⚡ Aldaketarik? (Mando bibrazioak, batteriari?)</li>
+        </ul>
+    </div>
+
+    <!-- SLIDE 10: Txosten sortzea -->
+    <div class="slide content-slide">
+        <h1>📝 Txosten Sortzea (Saio 2 amaiera)</h1>
+
+        <h2>Txosten itxuraren zerrenda:</h2>
+        <div class="step-box">
+            <div class="step-number">1</div>
+            <strong>Izenburua eta Sarrera</strong><br>
+            <p style="margin-top: 10px;">Praktikaren titulua, data, taldean kideak, praktika helburua.</p>
+        </div>
+
+        <div class="step-box">
+            <div class="step-number">2</div>
+            <strong>Hardware Deskribapena</strong><br>
+            <p style="margin-top: 10px;">Erabilita RTL-SDR, Raspberry Pi, antena, mando modeloa. Zehaztapena eta konfigarazioak.</p>
+        </div>
+
+        <div class="step-box">
+            <div class="step-number">3</div>
+            <strong>Prozedura</strong><br>
+            <p style="margin-top: 10px;">Urrats-urratsa zer egin zenuten (kaptura, transfer, analisia). Arazoak bada, deskribatu.</p>
+        </div>
+
+        <div class="step-box">
+            <div class="step-number">4</div>
+            <strong>Emaitzak (Grafikak)</strong><br>
+            <p style="margin-top: 10px;">Potentzia grafikak, espektroak, espektrogramas. Irudiak beharrak beste testu batera konparatzea.</p>
+        </div>
+
+        <div class="step-box">
+            <div class="step-number">5</div>
+            <strong>Analisia</strong><br>
+            <p style="margin-top: 10px;">Zer ikusten duzu grafiketan? Seinalen berezitasunak? Zarata vs Seinalea? Gertaeren iraupena? Aldaketarik?</p>
+        </div>
+
+        <div class="step-box">
+            <div class="step-number">6</div>
+            <strong>Ondorioak</strong><br>
+            <p style="margin-top: 10px;">Zer ikasi duzu? Atakaen arrisku zer? Defentsako teknikak zer? Gure laborategia zer zergatik garrantzitsua?</p>
+        </div>
+
+        <div class="step-box">
+            <div class="step-number">7</div>
+            <strong>Arazoak eta Gabezia</strong><br>
+            <p style="margin-top: 10px;">Zer ez egin ahal zenuen? Zergatik? Nola hobetu ahal genuke?</p>
+        </div>
+    </div>
+
+    <!-- SLIDE 11: Saio 3 - Presentazioa -->
+    <div class="slide content-slide">
+        <h1>🎤 Saio 3: Aurkezpena eta Debate (45 min)</h1>
+
+        <h2>Aurkezpenak:</h2>
+        <div class="step-box">
+            <div class="step-number">1</div>
+            <strong>Taldearen aurkezpena (5 min)</strong><br>
+            <p style="margin-top: 10px;">Kide izenak, Hardware eta prozedura laburrean, hautemate osoa sarrera.</p>
+        </div>
+
+        <div class="step-box">
+            <div class="step-number">2</div>
+            <strong>Emaitza nagusiak (7 min)</strong><br>
+            <p style="margin-top: 10px;">Grafikak bistaratu (projektorean), zer da interesgarria (seinalen informa, gertaearen tramanua, zarata).</p>
+        </div>
+
+        <div class="step-box">
+            <div class="step-number">3</div>
+            <strong>Analisia sakonagoa (5 min)</strong><br>
+            <p style="margin-top: 10px;">Seinalaren berezitasunak (potentzia, denbora, frekuentzia), ezberdintasun capture artean.</p>
+        </div>
+
+        <div class="step-box">
+            <div class="step-number">4</div>
+            <strong>Defentsaren eztabaida (5 min)</strong><br>
+            <p style="margin-top: 10px;">Replay atakeak detektatu ahal genuke? Zer teknika hobeak? Zer proposatzen duzu?</p>
+        </div>
+
+        <div class="step-box">
+            <div class="step-number">5</div>
+            <strong>Galderak ikasketa-talde besteak (3 min)</strong><br>
+            <p style="margin-top: 10px;">Entzuleak galdera egiten du, taldeek erantzuten.</p>
+        </div>
+
+        <h2>Irakaslearen zalantza:</h2>
+        <ul>
+            <li>❓ Zer nola gertatu zen esperoa baino desberdin?</li>
+            <li>❓ Kode Python-ean nola funtzionatzen du?</li>
+            <li>❓ Zer hobetzea dugu praktika honerako datorren urtean?</li>
+            <li>❓ Lurrera etxean arazoak aski balintenak, eta inola ez etxean erabiltzea!</li>
+        </ul>
+    </div>
+
+    <!-- SLIDE 12: Arazoak konpontzea -->
+    <div class="slide content-slide">
+        <h1>🔧 Arazoak Konpontzea</h1>
+
+        <h2>Arazoa 1: RTL-SDR ez dago detektatua</h2>
+        <div class="command">
+Konpontzea:
+$ lsusb  # RTL-SDR ikusten da?
+$ sudo apt install rtl-sdr  # Drivers reinstalatu
+$ rtl_test -t  # Froga berria
+        </div>
+
+        <h2>Arazoa 2: Fitxategiak oso handiak (>1 GB)</h2>
+        <div class="command">
+Konpontzea:
+$ timeout 4 rtl_fm ... # timeout erabiltzea
+$ sox ... stat  # sox-en baten potentziaren neurketa
+$ rm *.iq8 && scp ... # transfferitu aurrena, orduan ezabatu
+        </div>
+
+        <h2>Arazoa 3: Python-en grafika ez kargatu</h2>
+        <div class="command">
+Konpontzea:
+$ pip install matplotlib numpy scipy  # Liburutegia berrintalar
+$ python3 -c "import matplotlib; print(matplotlib.__version__)"
+$ python3 script.py  # Berria proba
+        </div>
+
+        <h2>Arazoa 4: Seinalea weak / zarata asko</h2>
+        <div class="command">
+Konpontzea:
+$ rtl_fm -f 433.92M -s 250k -g 49.6 ...  # Gain gehitu (-g 49.6)
+$ mv antena urrunago  # Antena hobeak distantziak
+$ mando sakatu laborategian gutxiago RF perturbazio
+        </div>
+
+        <h2>Arazoa 5: Python script crash (Memory Error)</h2>
+        <div class="command">
+Konpontzea:
+# Fitxategia chunketan irakurri
+chunk_size = 250000 * 10  # 10 segundu
+with open(filename, 'rb') as f:
+    chunk = np.frombuffer(f.read(chunk_size), dtype=np.uint8)
+    # Prozesatu chunk
+        </div>
+    </div>
+
+    <!-- SLIDE 13: Dokumentazioa eta sinatzea -->
+    <div class="slide content-slide">
+        <h1>📋 Dokumentazio Finalak eta Sinatzea</h1>
+
+        <h2>Zer behar irakasleari:</h2>
+        <div class="checklist">
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>Txosten Markdown:</strong> Ikasleak txosten osoa dokumentua (introa, prozedura, emaitza, ondorio)
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>Grafikak PDF:</strong> Potentzia, espektroa, espektrograma, konparazioak
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>Python Script:</strong> Kodea (comments batean euskaraz edo ingelesez)
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>JSON Events:</strong> Gertaeren emaitzak (startua, amaiera, iraupena)
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>Deklarazioa Etikoa:</strong> Sinaturik, data batean, sinadura irakaslea
+            </div>
+            <div class="checklist-item">
+                <div class="checkbox"></div>
+                <strong>Ebidentziak:</strong> Argazkiak hardware-ren, RTL-SDR konektatua, laborategia atsekabe
+            </div>
+        </div>
+
+        <h2>Kalifikazioa:</h2>
+        <div class="info-box">
+            <strong>5 puntu osoa:</strong><br>
+            1 puntu: Hardware setupa + prozedura<br>
+            1 puntu: Emaitzak (grafikak kalitatea)<br>
+            1 puntu: Analisia (interpretazioa, defentsak)<br>
+            1 puntu: Dokumentua (txosten kalitatea, kodearen garbitasuna)<br>
+            1 puntu: Presentazioa + debate
+        </div>
+
+        <div class="warning-box">
+            ⚠️ Oharra: Ez bada sinaturik deklarazioa etikoa, ez dago balioztatuta praktika. Balioak = 0.
+        </div>
+    </div>
+
+    <!-- SLIDE 14: Zehaztapenak laburra -->
+    <div class="slide content-slide">
+        <h1>⚡ Laburra: Praktika Osoa 5 Puntutan</h1>
+
+        <h2>Zeina? Nola? Noiz?</h2>
+        <table>
+            <tr>
+                <th>Saioa</th>
+                <th>Nola?</th>
+                <th>Denborea</th>
+                <th>Emaitza</th>
+            </tr>
+            <tr>
+                <td><strong>1. Kaptura</strong></td>
+                <td>RTL-SDR Raspberry Pi, mando seinalea hartzea</td>
+                <td>90 min</td>
+                <td>.iq8 fitxategiak</td>
+            </tr>
+            <tr>
+                <td><strong>2. Analisia</strong></td>
+                <td>Python FFT, grafikak sortzea, gertaeak detektatzea</td>
+                <td>90 min</td>
+                <td>Grafikak PDF, JSON events</td>
+            </tr>
+            <tr>
+                <td><strong>3. Dokumentu + Presentazioa</strong></td>
+                <td>Txosten merkatzea, aurkezpena taldean, debate</td>
+                <td>45 min</td>
+                <td>Txosten MD, ebidentziak, kalifikazioa</td>
+            </tr>
+        </table>
+
+        <h2>Segurtasun erantzukizana:</h2>
+        <div class="warning-box">
+            🔴 <strong>GARRANTZITSUA:</strong> Etxean ez erabiltzea hardware, ez seinaleak benetakoak kapturatzea, ez jamming edo erreprodukzioa. Hautsea: ekspultsioa + kriminal karguak!
+        </div>
+
+        <h2>Pisu atsegina:</h2>
+        <div class="success-box">
+            ✅ <strong>Galardon:</strong> Amaitzea praktika nola aditzea: +1 kalifikazioa+ (5→6 puntua baldin maxima 5 aditzea). Laboral oportunitatea kiberosasun industriaren.
+        </div>
+    </div>
+
+    <!-- SLIDE 15: Amaiera -->
+    <div class="slide title-slide">
+        <h1>🎓 Prest Laborategian?</h1>
+        <div class="subtitle">Praktika Teknikoa Osoa</div>
+        <p style="font-size: 1.3em; margin-top: 40px;">Gaurko dokumentazioa irakurrita? Galderak?</p>
+        <div class="meta" style="margin-top: 60px;">
+            <p>📊 Denbora lehenbiziko saioan: Astelehenean 14:00</p>
+            <p>📍 Laborategia: Aula 204</p>
+            <p>⚠️ Deklarazioa sinaturik kargatu: Laborategian aurkitu</p>
+        </div>
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="controls">
+        <button id="prevBtn" onclick="changeSlide(-1)">← Aurrekoa</button>
+        <div class="slide-dots" id="dotsContainer"></div>
+        <button id="nextBtn" onclick="changeSlide(1)">Hurrengoa →</button>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    function showSlide(n) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        slides[n].classList.add('active');
+        
+        document.getElementById('prevBtn').disabled = n === 0;
+        document.getElementById('nextBtn').disabled = n === totalSlides - 1;
+        
+        updateDots();
+    }
+
+    function changeSlide(direction) {
+        currentSlide += direction;
+        if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+        if (currentSlide < 0) currentSlide = 0;
+        showSlide(currentSlide);
+    }
+
+    function createDots() {
+        const container = document.getElementById('dotsContainer');
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            if (i === 0) dot.classList.add('active');
+            dot.onclick = () => {
+                currentSlide = i;
+                showSlide(i);
+            };
+            container.appendChild(dot);
+        }
+    }
+
+    function updateDots() {
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentSlide);
+        });
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') changeSlide(-1);
+        if (e.key === 'ArrowRight') changeSlide(1);
+    });
+
+    // Initialize
+    createDots();
+    showSlide(0);
+</script>
+
+</body>
+</html>

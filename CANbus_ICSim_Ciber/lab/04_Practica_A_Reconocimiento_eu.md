@@ -228,7 +228,7 @@ sudo apt install -y libfuse2   # FUSE errorea bada soilik
 
 | Denbora | Ekintza | Mezu nagusia |
 |---|---|---|
-| 0–2 min | Trafiko gordina duen leiho nagusia erakutsi | *"Autobusa etengabe hitz egiten ari da. Autentifikaziorik gabe. Sarbidea duenak dena irakur dezake."* |
+| 0–2 min | Trafiko gordina duen leiho nagusia erakutsi | *"busa etengabe hitz egiten ari da. Autentifikaziorik gabe. Sarbidea duenak dena irakur dezake."* |
 | 2–5 min | Signal Graph ireki + azeleragailua mugitu | *"3 minututan identifikatu dugu zein tramak kontrolatzen duen abiadura, dokumentaziorik gabe. Hori da CAN alderantzizko ingeniaritza."* |
 | 5–7 min | `0x188`-ra iragazi + txandakatze-adierazlea aktibatu | *"Oszilatu egiten den bit hori replay eraso baterako kapturatuko genukeena da."* |
 | 7–10 min | Kaptura gorde → fitxategia ireki | *"`.csv` fitxategi honek da erasotzaile batek portaera erreproduzitzeko behar duen guztia."* |

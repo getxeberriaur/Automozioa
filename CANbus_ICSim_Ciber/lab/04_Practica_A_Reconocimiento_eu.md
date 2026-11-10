@@ -2,7 +2,7 @@
 
 [Gaztelaniazko bertsioa](04_Practica_A_Reconocimiento.md)
 
-**Estimatutako iraupena:** 45 minutu  
+**Estimatutako iraupena:** 120 minutu  
 **Zailtasuna:** Oinarrizkoa  
 **Tresnak:** `candump`, `cansniffer`, `scripts/can_scanner.py`
 
@@ -44,7 +44,7 @@ Hori dela eta, sarbide fisikoa duen erasotzaile batek trafiko osoa erabat isilta
 candump vcan0
 ```
 
-2. `controls`-en leihoan, teklatua erabili simulagailuarekin interaktuatzeko (azeleratu, txandakatzaileak aktibatu, ateak blokeatu).
+2. `controls`-en leihoan, teklatua erabili simulagailuarekin interaktuatzeko (azeleratu, intermitenteak aktibatu, ateak blokeatu).
 
 3. `candump`-en irteera behatu. Espero den irteera adibidea:
 ```
@@ -65,7 +65,7 @@ candump -l vcan0
 
 - ICSim aktibo dagoen bitartean zenbat ID desberdin agertzen dira?
 - Azeleratzailea sakatzen duzunean datuak aldatzen dituen IDrik al dago?
-- Ezkerreko txandakatzearen adierazlea aktibatzean aldatzen den IDrik al dago?
+- Ezkerreko intermitente adierazlea aktibatzean aldatzen den IDrik al dago?
 
 ---
 
@@ -87,8 +87,8 @@ cansniffer -c vcan0
 | Poliki azeleratu | | | | |
 | Maximora azeleratu | | | | |
 | Frenatu | | | | |
-| Ezkerreko txandakatzailea | | | | |
-| Eskuineko txandakatzailea | | | | |
+| Ezkerreko intermitentea | | | | |
+| Eskuineko intermitentea | | | | |
 | 1. atea blokeatu | | | | |
 | 1. atea desblokeatu | | | | |
 
@@ -149,21 +149,9 @@ candump -l vcan0,244:7FF
 Ebidentzia-txantiloian bete (`reports/00_Ebidentzia_txosten_txantiloia.md`):
 
 1. **Identifikatutako IDen taula** maiztasunarekin, DLC-arekin eta inferitutako funtzioarekin.
-2. **Erlaziotze-taula** ekintza → ID → byte → balioa (A.2 ariketatik).
+2. **Erlazionatze-taula** ekintza → ID → byte → balioa (A.2 ariketatik).
 3. **Pantaila-argazkia** byte aldakorrak erakusten dituen `cansniffer`-ekin.
 4. **Log fitxategia** `can_scanner.py`-k sortuta.
-
----
-
-## Erreferentziazko mapa (ICSim modu ez-aleatorio)
-
-> Praktikaren amaieran soilik erakutsi, parte-hartzaileek beraiek aurkitu dezaten.
-
-| CAN ID | Funtzioa | Bytea | Deskribapena |
-|---|---|---|---|
-| `0x244` | Abiadura | 3. byte | 0x00=0 km/h, 0xFF=maximoa |
-| `0x188` | Txandakatzaileak | 0. byte | `0x01`=ezkerra, `0x02`=eskuina, `0x03`=biak |
-| `0x19B` | Ateak | 0. byte | 0-3 bitak = 1-4 ateak (1=irekita/desblokeatuta) |
 
 ---
 
@@ -177,7 +165,7 @@ Ebidentzia-txantiloian bete (`reports/00_Ebidentzia_txosten_txantiloia.md`):
 
 ## A.5 Praktika — SavvyCAN: bistaratze grafikoa eta alderantzizko ingeniaritza
 
-> **Maila:** ertaina · **Gutxi gorabeherako denbora:** 35 minutu (10 min hizlariaren erakustaldia + 25 min praktika)
+> **Maila:** ertaina · **Gutxi gorabeherako denbora:** 35 minutu
 > Aurreko ariketetan ikusi dituzun datu berdinak ikertzaile profesionalek eta OEM fabrikatzaileek erabiltzen duten tresnarekin aztertuko dituzu.
 
 > ⚠️ **Exekuzio ingurunea — garrantzitsua:**
@@ -219,19 +207,6 @@ sudo apt install -y libfuse2   # FUSE errorea bada soilik
 
 > ⚠️ Barrak ez badu zenbatzen, exekutatu terminalean: `cansend vcan0 123#DEADBEEF`
 > SavvyCAN-ek oraindik ezer erakusten ez badu, berrabiarazi: `sudo ./SavvyCAN.AppImage`
-
----
-
-### Hizlariaren erakustaldia — 10 minutu
-
-> Hizlariak sekuentzia hau egiten du proiektatutako pantailan, parte-hartzaileek euren kabuz egin aurretik.
-
-| Denbora | Ekintza | Mezu nagusia |
-|---|---|---|
-| 0–2 min | Trafiko gordina duen leiho nagusia erakutsi | *"busa etengabe hitz egiten ari da. Autentifikaziorik gabe. Sarbidea duenak dena irakur dezake."* |
-| 2–5 min | Signal Graph ireki + azeleragailua mugitu | *"3 minututan identifikatu dugu zein tramak kontrolatzen duen abiadura, dokumentaziorik gabe. Hori da CAN alderantzizko ingeniaritza."* |
-| 5–7 min | `0x188`-ra iragazi + txandakatze-adierazlea aktibatu | *"Oszilatu egiten den bit hori replay eraso baterako kapturatuko genukeena da."* |
-| 7–10 min | Kaptura gorde → fitxategia ireki | *"`.csv` fitxategi honek da erasotzaile batek portaera erreproduzitzeko behar duen guztia."* |
 
 ---
 

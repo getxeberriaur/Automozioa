@@ -146,7 +146,7 @@ candump -l vcan0,244:7FF
 
 ## A Praktikaren entregagaiak
 
-Ebidentzia-txantiloian bete (`reports/00_Ebidentzia_txosten_txantiloia.md`):
+Ebidentzia-txantiloian bete (Moodle-n partekatutako aurkezpenean dago):
 
 1. **Identifikatutako IDen taula** maiztasunarekin, DLC-arekin eta inferitutako funtzioarekin.
 2. **Erlazionatze-taula** ekintza → ID → byte → balioa (A.2 ariketatik).

@@ -29,22 +29,22 @@ Guía de despliegue para aula: [lab/04_Despliegue_participantes.md](lab/04_Despl
 ## 4) Probar con el simulador
 
 ### Evento legítimo
-`python simulator/send_event.py legitimo`
+`python3 simulator/send_event.py legitimo`
 
 ### Replay
-`python simulator/send_event.py replay`
+`python3 simulator/send_event.py replay`
 
 ### Timestamp atrasado
-`python simulator/send_event.py timestamp-atrasado`
+`python3 simulator/send_event.py timestamp-atrasado`
 
 ### Coordenadas inválidas
-`python simulator/send_event.py coordenadas-invalidas`
+`python3 simulator/send_event.py coordenadas-invalidas`
 
 ### Identidad inválida
-`python simulator/send_event.py identidad-invalida`
+`python3 simulator/send_event.py identidad-invalida`
 
 ### Ráfaga
-`python simulator/send_event.py rafaga --count 8`
+`python3 simulator/send_event.py rafaga --count 8`
 
 ## 5) Revisar evidencias
 

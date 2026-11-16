@@ -5,7 +5,7 @@ import json
 import sys
 import time
 import uuid
-from datetime import UTC, datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
 import requests
@@ -20,7 +20,7 @@ DEFAULT_FIRMWARE = "1.4.2"
 
 
 def utc_now_iso() -> str:
-    return datetime.now(UTC).isoformat()
+    return datetime.now(timezone.utc).isoformat()
 
 
 def build_payload(
@@ -103,7 +103,7 @@ def run_replay(url: str, device_id: str) -> int:
 
 
 def run_timestamp_atrasado(url: str, device_id: str) -> int:
-    old_timestamp = (datetime.now(UTC) - timedelta(seconds=120)).isoformat()
+    old_timestamp = (datetime.now(timezone.utc) - timedelta(seconds=120)).isoformat()
     payload = build_payload(device_id=device_id, sent_at=old_timestamp)
     status_code, body = post_event(url, payload)
     print_result("timestamp-atrasado", status_code, body)
